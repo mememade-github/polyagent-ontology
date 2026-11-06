@@ -1,0 +1,153 @@
+package structure
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+	"strings"
+	"sync"
+	"testing"
+
+	"gopkg.in/yaml.v3"
+	"ragflow/internal/ingestion/component/knowledge_compiler/common"
+	"ragflow/internal/tokenizer"
+)
+
+type hChat struct {
+	mu    sync.Mutex
+	calls []common.ChatRequest
+	node  string
+	edge  string
+}
+
+func (c *hChat) Chat(_ context.Context, r common.ChatRequest) (*common.ChatResponse, error) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.calls = append(c.calls, r)
+	if strings.Contains(r.SystemPrompt, "## Known Entities") {
+		return &common.ChatResponse{Content: c.edge}, nil
+	}
+	if strings.Contains(r.SystemPrompt, "## Entity Fields") {
+		return &common.ChatResponse{Content: c.node}, nil
+	}
+	return &common.ChatResponse{Content: `{"items":[]}`}, nil
+}
+
+type hEmbed struct{}
+
+func (hEmbed) Encode(_ context.Context, t []string) ([][]float32, error) {
+	o := make([][]float32, len(t))
+	for i, s := range t {
+		v := make([]float32, 8)
+		for j := 0; j < len(s); j++ {
+			v[j%8] += float32(s[j])
+		}
+		o[i] = v
+	}
+	return o, nil
+}
+func (hEmbed) Dimensions() int { return 8 }
+
+type hTok struct{}
+
+func (hTok) NumTokens(s string) int { return tokenizer.NumTokensFromString(s) }
+
+func hTemplate(t *testing.T) map[string]any {
+	b, err := os.ReadFile("../../../knowledge_compile/templates/knowledge_graph.yaml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var d struct {
+		Config map[string]any `yaml:"config"`
+	}
+	if err := yaml.Unmarshal(b, &d); err != nil {
+		t.Fatal(err)
+	}
+	return d.Config
+}
+
+const hDoc = "Jane Doe of Acme promised Globex a 10% service credit on the call."
+
+func hRun(t *testing.T, cfg map[string]any, c *hChat, ctxLen int, chunks []common.Chunk) []common.Product {
+	p := common.Param{}.Defaults()
+	p.LLMID = "stub"
+	out, err := Run(context.Background(), common.Deps{Chat: c, Embed: hEmbed{}, Tokenizer: hTok{}, ModelContextLen: ctxLen},
+		p, common.Inputs{Chunks: chunks, DocID: "d", VariantSpecific: map[string]any{"parser_config": cfg}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	return out.Products
+}
+
+func TestHInject(t *testing.T) {
+	node := `{"items":[
+ {"type":"person","name":"Jane Doe","description":"d1","source_chunk_ids":["c1"]},
+ {"type":"org","name":"Globex","description":"d2","source_chunk_ids":["c1"]},
+ {"type":"alien_type","name":"BadType Inc","description":"d3","source_chunk_ids":["c1"]},
+ {"type":"org","name":"Fabricated Corp","description":"not in text","source_chunk_ids":["c1"]},
+ {"type":"org","name":"BadChunk Ltd","description":"d","source_chunk_ids":["c999"]},
+ {"type":"org","name":"RealQuote Co","description":"d","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1"}]},
+ {"type":"org","name":"FakeQuote Co","description":"d","source_chunk_ids":["c1"],"evidence":[{"quote":"guaranteed a full refund","chunk_id":"c1"}]}
+]}`
+	edge := `{"items":[
+ {"type":"owns","source":"Jane Doe","target":"Globex","description":"e1","source_chunk_ids":["c1"]},
+ {"type":"alien_rel","source":"Jane Doe","target":"Globex","description":"e2","source_chunk_ids":["c1"]},
+ {"type":"owns","source":"Jane Doe","target":"Ghost Entity","description":"e3","source_chunk_ids":["c1"]},
+ {"type":"owns","source":"Globex","target":"Globex","description":"self","source_chunk_ids":["c1"]}
+]}`
+	for _, mode := range []string{"", "hard"} {
+		cfg := hTemplate(t)
+		if mode != "" {
+			cfg["evidence_gate_mode"] = mode
+		}
+		c := &hChat{node: node, edge: edge}
+		rows := hRun(t, cfg, c, 8000, []common.Chunk{{ID: "c1", Text: hDoc}})
+		fmt.Printf("MODE=%q calls=%d jsonmode=%v\n", mode, len(c.calls), c.calls[0].JSONMode)
+		for _, r := range rows {
+			j, _ := json.Marshal(map[string]any{"kind": r.Meta["kind"], "name": r.Meta["name"], "etype": r.Meta["entity_type"], "from": r.Meta["from"], "to": r.Meta["to"], "rtype": r.Meta["relation_type"], "chunks": r.Meta["source_chunk_ids"]})
+			fmt.Println("  ROW", string(j))
+		}
+	}
+}
+
+func hPara(n int) string {
+	return strings.Repeat("The supplier shall deliver the goods to the buyer within thirty days of the order date. ", n)
+}
+
+func TestHBudget(t *testing.T) {
+	var chunks []common.Chunk
+	for i := 0; i < 40; i++ {
+		chunks = append(chunks, common.Chunk{ID: fmt.Sprintf("c%d", i), Text: hPara(40)})
+	}
+	chunks = append(chunks, common.Chunk{ID: "big", Text: hPara(800)})
+	for _, ctxLen := range []int{8000, 4096, 2000, 0, 65536} {
+		c := &hChat{node: `{"items":[{"type":"person","name":"Jane","description":"d"}]}`, edge: `{"items":[]}`}
+		hRun(t, hTemplate(t), c, ctxLen, chunks)
+		var nodeT, edgeT []int
+		for _, r := range c.calls {
+			n := hTok{}.NumTokens(r.SystemPrompt) + hTok{}.NumTokens(r.UserPrompt)
+			if strings.Contains(r.SystemPrompt, "## Known Entities") {
+				edgeT = append(edgeT, n)
+			} else if strings.Contains(r.SystemPrompt, "## Entity Fields") {
+				nodeT = append(nodeT, n)
+			}
+		}
+		mx := func(a []int) int {
+			m := 0
+			for _, x := range a {
+				if x > m {
+					m = x
+				}
+			}
+			return m
+		}
+		over := 0
+		for _, x := range nodeT {
+			if x > 10000 {
+				over++
+			}
+		}
+		fmt.Printf("ctx=%d nodeCalls=%d edgeCalls=%d maxNode=%d maxEdge=%d nodeOver10k=%d sysTok=%d\n", ctxLen, len(nodeT), len(edgeT), mx(nodeT), mx(edgeT), over, hTok{}.NumTokens(c.calls[0].SystemPrompt))
+	}
+}

@@ -1,0 +1,12 @@
+done
+## s8k doc.md ctx 8192 sec=204 status done
+  outcome {'kind': 'ingested'} sections 3 counts {'entities': 2, 'mentions': 5, 'facts': 1, 'reviews': 1, 'rejected': 2, 'attributes': 1, 'created': 2} resolved {'created': 2} usage {"usd_micros": 0, "input_tokens": 2954, "output_tokens": 574, "replayed": false, "phases": {"entity": {"calls": 1, "replayed": 0, "usd_micros": 0, "input_tokens": 406, "output_tokens": 75}, "link": {"calls": 3, "replayed": 0, "usd_micros": 0, "input_tokens": 1809, "output_tokens": 459}, "verify": {"
+  calls [('entities', 406, 75, 15)]
+  V reject quote_not_in_source None {}
+  U {"quote": "The promise was made to the customer.", "section": 0, "suggested_link": "made_to"}
+  section calls [('facts', 592, 132, 71)]
+  V accept None 1.0 {"link": "promised_to", "object": "E1", "props": [], "quote": "On the call, Jane Doe promised Globex a 10% service credit, due on 2026-12-01.", "subject": "E2"}
+  section calls [('facts', 625, 140, 79), ('judgements', 739, 40, 22)]
+  V reject quote_not_in_source None {}
+  U {"quote": "Globex may not renew if the SSO feature slips.", "section": 2, "suggested_link": "unrelated"}
+  section calls [('facts', 592, 187, 18)]

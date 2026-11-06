@@ -1,0 +1,23 @@
+Load structured sources into Helix through a mapping file
+
+Usage: ingest-mapped [OPTIONS] --ontology <ONTOLOGY> --mappings <MAPPINGS> --sources <SOURCES> --load <LOAD>
+
+Options:
+      --ontology <ONTOLOGY>
+          Ontology TOML file
+      --mappings <MAPPINGS>
+          Mappings TOML file
+      --sources <SOURCES>
+          Sources JSON file
+      --helix-url <HELIX_URL>
+          The Helix instance; required unless `--dry-run`
+      --load <LOAD>
+          The load the rows go into
+      --chunk-rows <CHUNK_ROWS>
+          The most rows one chunk, and one transaction, holds [default: 1000]
+      --max-request-bytes <MAX_REQUEST_BYTES>
+          The largest write to send to Helix; Helix Cloud takes 2 MiB [default: 15728640]
+      --dry-run
+          Load into an empty memory store instead, writing nothing
+  -h, --help
+          Print help

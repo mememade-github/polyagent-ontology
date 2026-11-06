@@ -1,0 +1,5 @@
+{"event":"turn_started","contract_version":"4.7.0","model":{"provider":"openai_compatible","name":"stub-d"}}
+{"event":"warning","text":"the model call failed: context_too_long (HTTP 400, context_length_exceeded)"}
+{"event":"warning","text":"the conversation is too long for the model; `continue` resumes in a fresh one"}
+{"event":"turn_finished","status":"budget_exhausted"}
+{"rules":{"count":0,"evaluated":0},"status":"budget_exhausted","state":{"brief":{"workflow":"Track promises to customers","goals":["What was promised to Globex?"]},"draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]},"decisions":{},"log":[],"evidence":{},"feedback":[]},"draft":{"ontology_toml":"version = \"draft\"\n","mappings_toml":"version = \"draft\"\nontology = \"draft\"\n","draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]}},"bundle":null,"summary":null,"usage":{"input":0,"cache_read":0,"cache_write":0,"output":0,"usd":0.0}}

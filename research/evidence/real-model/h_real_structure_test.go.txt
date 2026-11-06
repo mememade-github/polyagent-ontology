@@ -1,0 +1,92 @@
+package structure
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"strings"
+	"testing"
+	"time"
+
+	"gopkg.in/yaml.v3"
+	"ragflow/internal/ingestion/component/knowledge_compiler/common"
+	"ragflow/internal/tokenizer"
+)
+
+type rChat struct{ calls []string }
+
+func (c *rChat) Chat(ctx context.Context, r common.ChatRequest) (*common.ChatResponse, error) {
+	msgs := []map[string]string{{"role": "system", "content": r.SystemPrompt}, {"role": "user", "content": r.UserPrompt}}
+	body := map[string]any{"model": "qwen3b-t8", "stream": false, "messages": msgs, "options": map[string]any{"num_ctx": 8192, "num_predict": 1500, "temperature": 0.1}}
+	if r.JSONMode {
+		body["format"] = "json"
+	}
+	b, _ := json.Marshal(body)
+	t := time.Now()
+	resp, err := (&http.Client{Timeout: 600 * time.Second}).Post("http://__INTERNAL_IP__:11434/api/chat", "application/json", bytes.NewReader(b))
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	raw, _ := io.ReadAll(resp.Body)
+	var d struct {
+		Message struct{ Content string `json:"content"` } `json:"message"`
+		PromptEval int `json:"prompt_eval_count"`
+		Eval       int `json:"eval_count"`
+		Done       string `json:"done_reason"`
+	}
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("status %d: %s", resp.StatusCode, raw)
+	}
+	_ = json.Unmarshal(raw, &d)
+	fmt.Printf("  CALL prompt=%d out=%d done=%s sec=%.0f\n", d.PromptEval, d.Eval, d.Done, time.Since(t).Seconds())
+	fmt.Printf("  RAW %s\n", strings.ReplaceAll(d.Message.Content, "\n", " "))
+	return &common.ChatResponse{Content: d.Message.Content}, nil
+}
+
+func goldChunks() []common.Chunk {
+	b, _ := os.ReadFile(os.Getenv("GOLD"))
+	var out []common.Chunk
+	for i, s := range strings.Split(string(b), "\n## ") {
+		out = append(out, common.Chunk{ID: fmt.Sprintf("c%d", i), Text: s})
+	}
+	return out
+}
+
+type rEmbed struct{}
+
+func (rEmbed) Encode(_ context.Context, t []string) ([][]float32, error) {
+	o := make([][]float32, len(t))
+	for i, s := range t {
+		v := make([]float32, 8)
+		for j := 0; j < len(s); j++ {
+			v[j%8] += float32(s[j])
+		}
+		o[i] = v
+	}
+	return o, nil
+}
+func (rEmbed) Dimensions() int { return 8 }
+
+type rTok struct{}
+
+func (rTok) NumTokens(s string) int { return tokenizer.NumTokensFromString(s) }
+
+func TestRealGraph(t *testing.T) {
+	b, _ := os.ReadFile("../../../knowledge_compile/templates/knowledge_graph.yaml")
+	var d struct {
+		Config map[string]any `yaml:"config"`
+	}
+	_ = yaml.Unmarshal(b, &d)
+	p := common.Param{}.Defaults()
+	p.LLMID = "real"
+	out, err := Run(context.Background(), common.Deps{Chat: &rChat{}, Embed: rEmbed{}, Tokenizer: rTok{}, ModelContextLen: 8192}, p, common.Inputs{Chunks: goldChunks(), DocID: "g", VariantSpecific: map[string]any{"parser_config": d.Config}})
+	fmt.Println("GRAPH err", err, "rows", len(out.Products))
+	for _, r := range out.Products {
+		fmt.Printf("  ROW %v name=%v type=%v/%v %v->%v chunks=%v\n", r.Meta["kind"], r.Meta["name"], r.Meta["entity_type"], r.Meta["relation_type"], r.Meta["from"], r.Meta["to"], r.Meta["source_chunk_ids"])
+	}
+}

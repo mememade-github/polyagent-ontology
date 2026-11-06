@@ -1,0 +1,8 @@
+# github.com/yfedoseev/office_oxide/go
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/structure	0.159s
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/tree	6.563s
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/wiki	0.150s
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/mindmap	0.012s
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/common	0.054s
+FAIL	ragflow/internal/ingestion/component/knowledge_compiler/golden [build failed]
+FAIL

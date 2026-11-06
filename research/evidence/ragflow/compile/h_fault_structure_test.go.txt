@@ -1,0 +1,160 @@
+package structure
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"os"
+	"strings"
+	"testing"
+	"time"
+
+	"gopkg.in/yaml.v3"
+	"ragflow/internal/ingestion/component/knowledge_compiler/common"
+	"ragflow/internal/tokenizer"
+)
+
+type fChat struct {
+	calls int
+	f     func(n int, r common.ChatRequest) (string, error)
+}
+
+func (c *fChat) Chat(_ context.Context, r common.ChatRequest) (*common.ChatResponse, error) {
+	c.calls++
+	s, err := c.f(c.calls, r)
+	if err != nil {
+		return nil, err
+	}
+	return &common.ChatResponse{Content: s}, nil
+}
+
+type fEmbed struct{}
+
+func (fEmbed) Encode(_ context.Context, t []string) ([][]float32, error) {
+	o := make([][]float32, len(t))
+	for i, s := range t {
+		v := make([]float32, 8)
+		for j := 0; j < len(s); j++ {
+			v[j%8] += float32(s[j])
+		}
+		o[i] = v
+	}
+	return o, nil
+}
+func (fEmbed) Dimensions() int { return 8 }
+
+type fTok struct{}
+
+func (fTok) NumTokens(s string) int { return tokenizer.NumTokensFromString(s) }
+
+func fTpl(t *testing.T) map[string]any {
+	b, err := os.ReadFile("../../../knowledge_compile/templates/knowledge_graph.yaml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var d struct {
+		Config map[string]any `yaml:"config"`
+	}
+	if err := yaml.Unmarshal(b, &d); err != nil {
+		t.Fatal(err)
+	}
+	return d.Config
+}
+
+const fDoc = "Jane Doe of Acme promised Globex a 10% service credit on the call."
+
+func isEdge(r common.ChatRequest) bool { return strings.Contains(r.SystemPrompt, "## Known Entities") }
+
+func fRun(t *testing.T, label string, c *fChat, chunks []common.Chunk) {
+	p := common.Param{}.Defaults()
+	p.LLMID = "stub"
+	ctx := common.WithRetryDelay(context.Background(), time.Millisecond)
+	out, err := Run(ctx, common.Deps{Chat: c, Embed: fEmbed{}, Tokenizer: fTok{}, ModelContextLen: 8000}, p,
+		common.Inputs{Chunks: chunks, DocID: "d", VariantSpecific: map[string]any{"parser_config": fTpl(t)}})
+	var rows []string
+	for _, r := range out.Products {
+		rows = append(rows, fmt.Sprintf("%v:%v%v->%v/%v", r.Meta["kind"], r.Meta["name"], r.Meta["from"], r.Meta["to"], r.Meta["entity_type"]))
+	}
+	es := "<nil>"
+	if err != nil {
+		es = err.Error()
+	}
+	fmt.Printf("%s | calls=%d rows=%d err=%s\n    %s\n", label, c.calls, len(rows), es, strings.Join(rows, " ; "))
+}
+
+func oneChunk() []common.Chunk { return []common.Chunk{{ID: "c1", Text: fDoc}} }
+
+func threeBatches() []common.Chunk {
+	big := strings.Repeat("The supplier shall deliver the goods to the buyer within thirty days. ", 200)
+	return []common.Chunk{{ID: "c1", Text: "ONE " + big}, {ID: "c2", Text: "TWO " + big}, {ID: "c3", Text: "THREE " + big}}
+}
+
+const goodNode = `{"items":[{"type":"org","name":"Globex","description":"d","source_chunk_ids":["c1"]}]}`
+
+func TestFStructure(t *testing.T) {
+	fRun(t, "S1 keys differ ({entities:[...]})", &fChat{f: func(int, common.ChatRequest) (string, error) {
+		return `{"entities":[{"type":"org","name":"Globex","description":"d"}]}`, nil
+	}}, oneChunk())
+	fRun(t, "S2a top-level array, 1 elem", &fChat{f: func(int, common.ChatRequest) (string, error) {
+		return `[{"type":"org","name":"Globex","description":"d"}]`, nil
+	}}, oneChunk())
+	fRun(t, "S2b top-level array, 2 elem", &fChat{f: func(int, common.ChatRequest) (string, error) {
+		return `[{"type":"org","name":"Globex","description":"d"},{"type":"person","name":"Jane","description":"d"}]`, nil
+	}}, oneChunk())
+	fRun(t, "S3 prose only, always", &fChat{f: func(int, common.ChatRequest) (string, error) {
+		return "Sure! The entities in the text are Globex and Jane.", nil
+	}}, oneChunk())
+	fRun(t, "S4 truncated mid-item (output limit)", &fChat{f: func(_ int, r common.ChatRequest) (string, error) {
+		if isEdge(r) {
+			return `{"items":[]}`, nil
+		}
+		return `{"items":[{"type":"org","name":"Globex","description":"full"},{"type":"person","name":"Jane Do`, nil
+	}}, oneChunk())
+	fRun(t, "S5 all items empty", &fChat{f: func(int, common.ChatRequest) (string, error) { return `{"items":[]}`, nil }}, oneChunk())
+	fRun(t, "S6 batch 2 of 3 always non-JSON", &fChat{f: func(_ int, r common.ChatRequest) (string, error) {
+		if strings.Contains(r.UserPrompt, "TWO ") {
+			return "not json", nil
+		}
+		if isEdge(r) {
+			return `{"items":[]}`, nil
+		}
+		return goodNode, nil
+	}}, threeBatches())
+	fRun(t, "S7a overflow error WITH status 400", &fChat{f: func(int, common.ChatRequest) (string, error) {
+		return "", errors.New("error, status 400: the request exceeds the available context size")
+	}}, oneChunk())
+	fRun(t, "S7b overflow error WITHOUT status", &fChat{f: func(int, common.ChatRequest) (string, error) {
+		return "", errors.New("the request exceeds the available context size")
+	}}, oneChunk())
+	fRun(t, "S8 entity ok, relation stage fails", &fChat{f: func(_ int, r common.ChatRequest) (string, error) {
+		if isEdge(r) {
+			return "", errors.New("error, status 400: bad")
+		}
+		return goodNode, nil
+	}}, oneChunk())
+	fRun(t, "S9 same name two types / name variants", &fChat{f: func(_ int, r common.ChatRequest) (string, error) {
+		if isEdge(r) {
+			return `{"items":[]}`, nil
+		}
+		return `{"items":[{"type":"person","name":"Mercury","description":"a person"},{"type":"org","name":"Mercury","description":"a company"},{"type":"org","name":"Globex","description":"d"},{"type":"org","name":"Globex Inc","description":"d"},{"type":"org","name":"글로벡스","description":"d"}]}`, nil
+	}}, oneChunk())
+	// dataset-merge orphan filter
+	p := common.Param{}.Defaults()
+	p.LLMID = "stub"
+	c := &fChat{f: func(_ int, r common.ChatRequest) (string, error) {
+		if isEdge(r) {
+			return `{"items":[{"type":"owns","source":"Globex","target":"Ghost Entity","description":"e"},{"type":"owns","source":"Globex","target":"Jane","description":"e"}]}`, nil
+		}
+		return `{"items":[{"type":"org","name":"Globex","description":"d"},{"type":"person","name":"Jane","description":"d"},{"type":"alien","name":"Fabricated Corp","description":"d"}]}`, nil
+	}}
+	out, _ := Run(context.Background(), common.Deps{Chat: c, Embed: fEmbed{}, Tokenizer: fTok{}, ModelContextLen: 8000}, p, common.Inputs{Chunks: oneChunk(), DocID: "d", VariantSpecific: map[string]any{"parser_config": fTpl(t)}})
+	f := common.FilterOrphanRelations(out.Products)
+	var a, b []string
+	for _, r := range out.Products {
+		a = append(a, fmt.Sprint(r.Meta["name"], r.Meta["from"], "->", r.Meta["to"]))
+	}
+	for _, r := range f {
+		b = append(b, fmt.Sprint(r.Meta["name"], r.Meta["from"], "->", r.Meta["to"]))
+	}
+	fmt.Println("S10 orphan filter before", len(a), a, "\n    after", len(b), b)
+}

@@ -1,0 +1,13 @@
+version = "2026-11-06.1"
+
+[types.Customer]
+description = "A company that buys from us, named in the documents."
+
+[types.Promise]
+description = "Something promised to a customer."
+props = { due_on = "date" }
+
+[links.promised_to]
+from = "Promise"
+to = "Customer"
+description = "The promise was made to the customer."

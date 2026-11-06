@@ -1,0 +1,8 @@
+{"session_id":"s1","request_id":"r1","state":null,
+ "sources":[{"id":"docs1","display_name":"docs","route":"extraction","access":{"documents":{"files":[{"doc_id":"d1","path":"/data/doc.md","media_type":"markdown","title":"call notes"}]}},"fingerprint":"fp"}],
+ "input":{"start":{"workflow":"Track promises to customers","goals":["What was promised to Globex?"]}},
+ "limits":{"max_usd":1.0,"max_steps":3,"max_wall_secs":60},
+ "models":{"endpoint":{"provider":"anthropic","call_timeout_secs":30},
+   "draft":{"name":"stub-d","price":"free","reasoning":false},
+   "extract":{"name":"stub-e","price":"free","reasoning":false},
+   "verify":{"name":"stub-v","price":"free","reasoning":false}}}

@@ -1,0 +1,14 @@
+en 5 KB ctx 8000 outcome {'kind': 'ingested'} sections 2 calls {'entity': 1, 'link': 2, 'verify': 2} max_tokens_sent [1000] facts 1 rejected 0
+en 15 KB ctx 8000 outcome {'kind': 'ingested'} sections 5 calls {'entity': 1, 'link': 5, 'verify': 5} max_tokens_sent [1000] facts 1 rejected 0
+en 25 KB ctx 8000 outcome {'kind': 'ingested'} sections 8 calls {'entity': 1, 'link': 8, 'verify': 8} max_tokens_sent [1000] facts 1 rejected 0
+en 35 KB ctx 8000 outcome {'kind': 'ingested'} sections 11 calls {'entity': 1, 'link': 11, 'verify': 11} max_tokens_sent [1000] facts 1 rejected 0
+en 45 KB ctx 8000 outcome {'kind': 'ingested'} sections 14 calls {'entity': 1, 'link': 14, 'verify': 14} max_tokens_sent [1000] facts 1 rejected 0
+en 60 KB ctx 8000 outcome {'kind': 'ingested'} sections 18 calls {'entity': 2, 'link': 18, 'verify': 18} max_tokens_sent [1000] facts 1 rejected 0
+en 120 KB ctx 8000 outcome {'kind': 'ingested'} sections 36 calls {'entity': 3, 'link': 36, 'verify': 36} max_tokens_sent [1000] facts 1 rejected 0
+ko 5 KB ctx 8000 outcome {'kind': 'ingested'} sections 3 calls {'entity': 1, 'link': 3} max_tokens_sent [1000] facts 0 rejected 0
+ko 15 KB ctx 8000 outcome {'kind': 'ingested'} sections 7 calls {'entity': 1, 'link': 7} max_tokens_sent [1000] facts 0 rejected 0
+ko 25 KB ctx 8000 outcome {'kind': 'ingested'} sections 11 calls {'entity': 1, 'link': 11} max_tokens_sent [1000] facts 0 rejected 0
+ko 35 KB ctx 8000 outcome {'kind': 'ingested'} sections 15 calls {'entity': 1, 'link': 15} max_tokens_sent [1000] facts 0 rejected 0
+ko 45 KB ctx 8000 outcome {'kind': 'ingested'} sections 20 calls {'entity': 1, 'link': 20} max_tokens_sent [1000] facts 0 rejected 0
+ko 60 KB ctx 8000 outcome {'kind': 'ingested'} sections 27 calls {'entity': 2, 'link': 27} max_tokens_sent [1000] facts 0 rejected 0
+ko 120 KB ctx 8000 outcome {'kind': 'ingested'} sections 53 calls {'entity': 3, 'link': 53} max_tokens_sent [1000] facts 0 rejected 0

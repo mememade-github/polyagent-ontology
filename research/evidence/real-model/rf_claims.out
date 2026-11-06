@@ -1,0 +1,272 @@
+=== RUN   TestRealClaims
+  CALL prompt=773 out=1500 done=length sec=201
+  RAW {   "items": [     {       "type": "claim",       "name": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",       "description": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Initech will receive a free onboarding workshop from Jane Doe, scheduled for 2027-01-15.",       "description": "Initech will receive a free onboarding workshop from Jane Doe, scheduled for 2027-01-15.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe agreed to provide Initech with a free onboarding workshop.",       "description": "Jane Doe agreed to provide Initech with a free onboarding workshop.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",       "description": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe agreed to give Initech a free onboarding workshop.",       "description": "Jane Doe agreed to give Initech a free onboarding workshop.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe will provide Initech with a free onboarding workshop.",       "description": "Jane Doe will provide Initech with a free onboarding workshop.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",       "description": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",       "description": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe agreed to give Initech a free onboarding workshop.",       "description": "Jane Doe agreed to give Initech a free onboarding workshop.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe will provide Initech with a free onboarding workshop.",       "description": "Jane Doe will provide Initech with a free onboarding workshop.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",       "description": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     },     {       "type": "claim",       "name": "Jane Doe will provide Initech with a free onboarding workshop.",       "description": "Jane Doe will provide Initech with a free onboarding workshop.",       "source_chunk_ids": [         "c3"       ],       "evidence": [         {           "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",           "chunk_id": "c3"         }       ]     }, 
+CLAIMS batch 0
+  {
+   "c3": [
+    {
+     "name": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+     "description": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Initech will receive a free onboarding workshop from Jane Doe, scheduled for 2027-01-15.",
+     "description": "Initech will receive a free onboarding workshop from Jane Doe, scheduled for 2027-01-15.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe agreed to provide Initech with a free onboarding workshop.",
+     "description": "Jane Doe agreed to provide Initech with a free onboarding workshop.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",
+     "description": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe agreed to give Initech a free onboarding workshop.",
+     "description": "Jane Doe agreed to give Initech a free onboarding workshop.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe will provide Initech with a free onboarding workshop.",
+     "description": "Jane Doe will provide Initech with a free onboarding workshop.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",
+     "description": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",
+     "description": "Jane Doe will provide Initech with a free onboarding workshop on 2027-01-15.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe agreed to give Initech a free onboarding workshop.",
+     "description": "Jane Doe agreed to give Initech a free onboarding workshop.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe will provide Initech with a free onboarding workshop.",
+     "description": "Jane Doe will provide Initech with a free onboarding workshop.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",
+     "description": "Jane Doe agreed to give Initech a free onboarding workshop on 2027-01-15.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    },
+    {
+     "name": "Jane Doe will provide Initech with a free onboarding workshop.",
+     "description": "Jane Doe will provide Initech with a free onboarding workshop.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c3"
+     ],
+     "evidence": [
+      {
+       "quote": "Jane Doe promised Initech a free onboarding workshop, due on 2027-01-15.",
+       "chunk_id": "c3",
+       "start": 20,
+       "end": 92
+      }
+     ]
+    }
+   ]
+  }
+  CALL prompt=748 out=547 done=stop sec=78
+  RAW {   "items": [     {       "type": "claim",       "name": "글로벡스는 전액 환불을 요구했지만 회사는 환불을 약속하지 않았다.",       "description": "글로벡스는 전액 환불을 요청했지만 회사는 이를 약속하지 않았다.",       "source_chunk_ids": ["c4"],       "evidence": [         {           "quote": "글로벡스는 전액 환불을 요구했지만 회사는 환불을 약속하지 않았다.",           "chunk_id": "c4"         }       ]     },     {       "type": "claim",       "name": "Bob Lee는 Globex의 재발급 기간 동안 우선 지원을 약속했다.",       "description": "Bob Lee는 Globex의 재발급 기간 동안 우선 지원을 약속했다.",       "source_chunk_ids": ["c5"],       "evidence": [         {           "quote": "Bob Lee는 Globex의 재발급 기간 동안 우선 지원을 약속했다.",           "chunk_id": "c5"         }       ]     },     {       "type": "claim",       "name": "후리는 가격 인하를 요청했으나 어떤 약속도 받지 못했다.",       "description": "후리는 가격 인하를 요청했으나 어떤 약속도 받지 못했다.",       "source_chunk_ids": ["c6"],       "evidence": [         {           "quote": "후리는 가격 인하를 요청했으나 어떤 약속도 받지 못했다.",           "chunk_id": "c6"         }       ]     },     {       "type": "claim",       "name": "이니텍에는 전담 매니저를 배정하기로 약속했고 기한은 2027-02-01이다.",       "description": "이니텍에는 전담 매니저를 배정하기로 약속했고 기한은 2027-02-01이다.",       "source_chunk_ids": ["c7"],       "evidence": [         {           "quote": "이니텍에는 전담 매니저를 배정하기로 약속했고 기한은 2027-02-01이다.",           "chunk_id": "c7"         }       ]     }   ] }
+CLAIMS batch 1
+  {
+   "c4": [
+    {
+     "name": "글로벡스는 전액 환불을 요구했지만 회사는 환불을 약속하지 않았다.",
+     "description": "글로벡스는 전액 환불을 요청했지만 회사는 이를 약속하지 않았다.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c4"
+     ],
+     "evidence": [
+      {
+       "quote": "글로벡스는 전액 환불을 요구했지만 회사는 환불을 약속하지 않았다.",
+       "chunk_id": "c4",
+       "start": 15,
+       "end": 107
+      }
+     ]
+    }
+   ],
+   "c5": [
+    {
+     "name": "Bob Lee는 Globex의 재발급 기간 동안 우선 지원을 약속했다.",
+     "description": "Bob Lee는 Globex의 재발급 기간 동안 우선 지원을 약속했다.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c5"
+     ]
+    }
+   ],
+   "c6": [
+    {
+     "name": "후리는 가격 인하를 요청했으나 어떤 약속도 받지 못했다.",
+     "description": "후리는 가격 인하를 요청했으나 어떤 약속도 받지 못했다.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c6"
+     ],
+     "evidence": [
+      {
+       "quote": "후리는 가격 인하를 요청했으나 어떤 약속도 받지 못했다.",
+       "chunk_id": "c6",
+       "start": 15,
+       "end": 92
+      }
+     ]
+    }
+   ],
+   "c7": [
+    {
+     "name": "이니텍에는 전담 매니저를 배정하기로 약속했고 기한은 2027-02-01이다.",
+     "description": "이니텍에는 전담 매니저를 배정하기로 약속했고 기한은 2027-02-01이다.",
+     "type": "claim",
+     "source_chunk_ids": [
+      "c7"
+     ],
+     "evidence": [
+      {
+       "quote": "이니텍에는 전담 매니저를 배정하기로 약속했고 기한은 2027-02-01이다.",
+       "chunk_id": "c7",
+       "start": 21,
+       "end": 113
+      }
+     ]
+    }
+   ]
+  }
+--- PASS: TestRealClaims (278.71s)
+PASS
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/tree	278.731s

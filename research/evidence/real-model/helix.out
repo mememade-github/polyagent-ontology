@@ -1,0 +1,12 @@
+done
+## gold gold.md ctx 8192 sec=19 status done
+  outcome {'kind': 'ingested'} sections 8 counts {} resolved {'created': 3} usage {"usd_micros": 0, "input_tokens": 575, "output_tokens": 86, "replayed": false, "phases": {"entity": {"calls": 1, "replayed": 0, "usd_micros": 0, "input_tokens": 575, "output_tokens": 86}, "link": {"calls": 0, "replayed": 0, "usd_micros": 0, "input_tokens": 0, "output_tokens": 0}, "verify": {"calls":
+  calls [('entities', 575, 86, 19)]
+  section calls []
+  section calls []
+  section calls []
+  section calls []
+  section calls []
+  section calls []
+  section calls []
+  section calls []

@@ -1,0 +1,91 @@
+package tree
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"strings"
+	"testing"
+	"time"
+
+	"ragflow/internal/ingestion/component/knowledge_compiler/common"
+)
+
+type fChat struct {
+	calls int
+	f     func(r common.ChatRequest) string
+}
+
+func (c *fChat) Chat(_ context.Context, r common.ChatRequest) (*common.ChatResponse, error) {
+	c.calls++
+	return &common.ChatResponse{Content: c.f(r)}, nil
+}
+
+type fEmbed struct{}
+
+func (fEmbed) Encode(_ context.Context, t []string) ([][]float32, error) {
+	o := make([][]float32, len(t))
+	for i, s := range t {
+		v := make([]float32, 8)
+		for j := 0; j < len(s); j++ {
+			v[j%8] += float32(s[j])
+		}
+		o[i] = v
+	}
+	return o, nil
+}
+func (fEmbed) Dimensions() int { return 8 }
+
+const fDoc = "Jane Doe of Acme promised Globex a 10% service credit on the call."
+
+func fRunC(label, reply string, mode EvidenceGateMode) {
+	c := &fChat{f: func(common.ChatRequest) string { return reply }}
+	ctx := common.WithRetryDelay(context.Background(), time.Millisecond)
+	out := extractClaimsForBatch(ctx, common.Deps{Chat: c}, "s", "prompt", []claimEntry{{id: "c1", text: fDoc}, {id: "c2", text: "Payment is due in 30 days."}}, mode)
+	j, _ := json.Marshal(out)
+	fmt.Printf("%s [%s] | calls=%d %s\n", label, mode, c.calls, j)
+}
+
+func TestFClaims(t *testing.T) {
+	q := `"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1"}]`
+	for _, m := range []EvidenceGateMode{EvidenceGateSoft, EvidenceGateHard} {
+		fRunC("T1 prose only", "Sure, here are claims.", m)
+		fRunC("T2 keys differ", `{"claims":[{"name":"x"}]}`, m)
+		fRunC("T3 truncated inside quote", `{"items":[{"name":"Jane promised credit","source_chunk_ids":["c1"],`+q+`},{"name":"Jane prom","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Glo`, m)
+		fRunC("T4 false claim, real quote", `{"items":[{"name":"Globex refused the credit and sued Jane","source_chunk_ids":["c1"],`+q+`}]}`, m)
+		fRunC("T5 one-char quote", `{"items":[{"name":"Globex is bankrupt","source_chunk_ids":["c1"],"evidence":[{"quote":"a","chunk_id":"c1"}]}]}`, m)
+		fRunC("T6 quote from c2 cited as c1", `{"items":[{"name":"p","source_chunk_ids":["c1"],"evidence":[{"quote":"Payment is due","chunk_id":"c1"}]}]}`, m)
+		fRunC("T7 no ids and no evidence", `{"items":[{"name":"orphan claim"}]}`, m)
+		fRunC("T8 evidence as plain strings", `{"items":[{"name":"p","source_chunk_ids":["c1"],"evidence":["promised Globex"]}]}`, m)
+	}
+}
+
+func TestFTreeAllFail(t *testing.T) {
+	var chunks []common.Chunk
+	for i := 0; i < 8; i++ {
+		v := make([]float32, 8)
+		v[i%8] = 1
+		chunks = append(chunks, common.Chunk{ID: fmt.Sprintf("c%d", i), Text: fmt.Sprintf("Sentence number %d about the contract.", i), Vector: v})
+	}
+	p := common.Param{}.Defaults()
+	p.LLMID = "s"
+	ctx := common.WithRetryDelay(context.Background(), time.Millisecond)
+	for _, label := range []string{"allprose", "claimsprose_summarygood"} {
+		label := label
+		c := &fChat{f: func(r common.ChatRequest) string {
+			if label == "allprose" {
+				return "plain text"
+			}
+			if r.JSONMode {
+				return "plain text"
+			}
+			return "summary text"
+		}}
+		out, err := Run(ctx, common.Deps{Chat: c, Embed: fEmbed{}, ModelContextLen: 8000}, p, common.Inputs{Chunks: chunks, DocID: "d"})
+		kinds := map[string]int{}
+		for _, r := range out.Products {
+			kinds[fmt.Sprint(r.Meta["kind"])]++
+		}
+		fmt.Println("T9", label, "calls", c.calls, "err", err, "kinds", kinds, strings.Repeat("", 0))
+	}
+}

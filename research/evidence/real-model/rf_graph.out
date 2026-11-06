@@ -1,0 +1,15 @@
+=== RUN   TestRealGraph
+  CALL prompt=908 out=158 done=stop sec=29
+  RAW {   "items": [     {       "type": "person",       "name": "Jane Doe",       "description": "Promised Initech a free onboarding workshop, due on 2027-01-15.",       "source_chunk_ids": ["c3"]     },     {       "type": "person",       "name": "Bob Lee",       "description": "Promised Globex priority support for the renewal period.",       "source_chunk_ids": ["c5"]     },     {       "type": "person",       "name": "후리",       "description": "Requested a price reduction but did not receive any promise.",       "source_chunk_ids": ["c6"]     }   ] }
+  CALL prompt=767 out=81 done=stop sec=32
+  RAW {   "items": [     {       "type": "caused_by",       "source": "Bob Lee",       "target": "후리",       "description": "Bob Lee는 후리가 가격 인하를 요청했으나 받지 못했다는 사실을 약속했다.",       "source_chunk_ids": ["c6"]     }   ] }
+  CALL prompt=308 out=16 done=stop sec=9
+  RAW {   "duplicated": false,   "merged": null }
+GRAPH err <nil> rows 4
+  ROW entity name=Jane Doe type=person/<nil> <nil>-><nil> chunks=[c3]
+  ROW entity name=Bob Lee type=person/<nil> <nil>-><nil> chunks=[c5]
+  ROW entity name=후리 type=person/<nil> <nil>-><nil> chunks=[c6]
+  ROW relation name=<nil> type=<nil>/caused_by Bob Lee->후리 chunks=[c6]
+--- PASS: TestRealGraph (69.42s)
+PASS
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/structure	69.443s

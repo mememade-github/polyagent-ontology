@@ -1,0 +1,54 @@
+=== RUN   TestFStructure
+S1 keys differ ({entities:[...]}) | calls=1 rows=0 err=<nil>
+    
+S2a top-level array, 1 elem | calls=1 rows=0 err=<nil>
+    
+S2b top-level array, 2 elem | calls=6 rows=0 err=knowledge_compiler: LLM response is not parseable JSON (100 bytes)
+    
+S3 prose only, always | calls=6 rows=0 err=knowledge_compiler: LLM response is not parseable JSON (51 bytes)
+    
+S4 truncated mid-item (output limit) | calls=2 rows=2 err=<nil>
+    entity:Globex<nil>-><nil>/org ; entity:Jane Do<nil>-><nil>/person
+S5 all items empty | calls=1 rows=0 err=<nil>
+    
+S6 batch 2 of 3 always non-JSON | calls=8 rows=0 err=knowledge_compiler: LLM response is not parseable JSON (8 bytes)
+    
+S7a overflow error WITH status 400 | calls=1 rows=0 err=error, status 400: the request exceeds the available context size
+    
+S7b overflow error WITHOUT status | calls=6 rows=0 err=the request exceeds the available context size
+    
+S8 entity ok, relation stage fails | calls=2 rows=0 err=error, status 400: bad
+    
+S9 same name two types / name variants | calls=2 rows=4 err=<nil>
+    entity:Mercury<nil>-><nil>/person ; entity:Globex<nil>-><nil>/org ; entity:Globex Inc<nil>-><nil>/org ; entity:글로벡스<nil>-><nil>/org
+S10 orphan filter before 5 [Globex<nil>-><nil> Jane<nil>-><nil> Fabricated Corp<nil>-><nil> <nil>Globex->Ghost Entity <nil>Globex->Jane] 
+    after 4 [Globex<nil>-><nil> Jane<nil>-><nil> Fabricated Corp<nil>-><nil> <nil>Globex->Jane]
+--- PASS: TestFStructure (0.30s)
+=== RUN   TestFillKnownNodes
+--- PASS: TestFillKnownNodes (0.00s)
+PASS
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/structure	0.325s
+=== RUN   TestFClaims
+T1 prose only [soft] | calls=6 null
+T2 keys differ [soft] | calls=1 null
+T3 truncated inside quote [soft] | calls=1 {"c1":[{"name":"Jane promised credit","description":"Jane promised credit","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1","start":17,"end":38}]},{"name":"Jane prom","description":"Jane prom","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Glo","chunk_id":"c1","start":17,"end":29}]}]}
+T4 false claim, real quote [soft] | calls=1 {"c1":[{"name":"Globex refused the credit and sued Jane","description":"Globex refused the credit and sued Jane","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1","start":17,"end":38}]}]}
+T5 one-char quote [soft] | calls=1 {"c1":[{"name":"Globex is bankrupt","description":"Globex is bankrupt","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"a","chunk_id":"c1","start":1,"end":2}]}]}
+T6 quote from c2 cited as c1 [soft] | calls=1 {"c1":[{"name":"p","description":"p","type":"claim","source_chunk_ids":["c1"]}]}
+T7 no ids and no evidence [soft] | calls=1 {}
+T8 evidence as plain strings [soft] | calls=1 null
+T1 prose only [hard] | calls=6 null
+T2 keys differ [hard] | calls=1 null
+T3 truncated inside quote [hard] | calls=1 {"c1":[{"name":"Jane promised credit","description":"Jane promised credit","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1","start":17,"end":38}]},{"name":"Jane prom","description":"Jane prom","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Glo","chunk_id":"c1","start":17,"end":29}]}]}
+T4 false claim, real quote [hard] | calls=1 {"c1":[{"name":"Globex refused the credit and sued Jane","description":"Globex refused the credit and sued Jane","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1","start":17,"end":38}]}]}
+T5 one-char quote [hard] | calls=1 {"c1":[{"name":"Globex is bankrupt","description":"Globex is bankrupt","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"a","chunk_id":"c1","start":1,"end":2}]}]}
+T6 quote from c2 cited as c1 [hard] | calls=1 {}
+T7 no ids and no evidence [hard] | calls=1 {}
+T8 evidence as plain strings [hard] | calls=1 null
+--- PASS: TestFClaims (0.09s)
+=== RUN   TestFTreeAllFail
+T9 allprose calls 14 err <nil> kinds map[entity:1 root:1 summary:1] 
+T9 claimsprose_summarygood calls 14 err <nil> kinds map[entity:1 root:1 summary:1] 
+--- PASS: TestFTreeAllFail (0.27s)
+PASS
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/tree	0.378s

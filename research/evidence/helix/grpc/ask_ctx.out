@@ -1,0 +1,12 @@
+ctx None maxout None calls 3 status failed no_answer max_tokens_sent 16000
+ctx None maxout 1000 calls 0 status budget_exhausted None max_tokens_sent None
+ctx None maxout 4000 calls 3 status failed no_answer max_tokens_sent 4000
+ctx None maxout 16000 calls 3 status failed no_answer max_tokens_sent 16000
+ctx 2000 maxout None calls 3 status failed no_answer max_tokens_sent 16000
+ctx 8000 maxout None calls 3 status failed no_answer max_tokens_sent 16000
+ctx 16000 maxout None calls 3 status failed no_answer max_tokens_sent 16000
+ctx 32000 maxout None calls 3 status failed no_answer max_tokens_sent 16000
+ctx 40000 maxout None calls 3 status failed no_answer max_tokens_sent 16000
+ctx 65536 maxout None calls 3 status failed no_answer max_tokens_sent 16000
+ctx 65536 maxout 4000 calls 3 status failed no_answer max_tokens_sent 4000
+ctx 8000 maxout 1000 calls 0 status budget_exhausted None max_tokens_sent None

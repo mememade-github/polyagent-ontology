@@ -1,0 +1,35 @@
+MODE="" calls=3 jsonmode=true
+  ROW {"chunks":["c1"],"etype":"person","from":null,"kind":"entity","name":"Jane Doe","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"Globex","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"alien_type","from":null,"kind":"entity","name":"BadType Inc","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"Fabricated Corp","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"BadChunk Ltd","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"RealQuote Co","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"FakeQuote Co","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":null,"from":"Jane Doe","kind":"relation","name":null,"rtype":"owns","to":"Globex"}
+  ROW {"chunks":["c1"],"etype":null,"from":"Jane Doe","kind":"relation","name":null,"rtype":"alien_rel","to":"Globex"}
+  ROW {"chunks":["c1"],"etype":null,"from":"Jane Doe","kind":"relation","name":null,"rtype":"owns","to":"Ghost Entity"}
+MODE="hard" calls=2 jsonmode=true
+  ROW {"chunks":["c1"],"etype":"person","from":null,"kind":"entity","name":"Jane Doe","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"Globex","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"alien_type","from":null,"kind":"entity","name":"BadType Inc","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"Fabricated Corp","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"BadChunk Ltd","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":"org","from":null,"kind":"entity","name":"RealQuote Co","rtype":null,"to":null}
+  ROW {"chunks":["c1"],"etype":null,"from":"Jane Doe","kind":"relation","name":null,"rtype":"owns","to":"Globex"}
+  ROW {"chunks":["c1"],"etype":null,"from":"Jane Doe","kind":"relation","name":null,"rtype":"alien_rel","to":"Globex"}
+  ROW {"chunks":["c1"],"etype":null,"from":"Jane Doe","kind":"relation","name":null,"rtype":"owns","to":"Ghost Entity"}
+--- PASS: TestHInject (0.10s)
+ctx=8000 nodeCalls=9 edgeCalls=9 maxNode=14146 maxEdge=14007 nodeOver10k=1 sysTok=486
+ctx=4096 nodeCalls=21 edgeCalls=21 maxNode=14146 maxEdge=14007 nodeOver10k=1 sysTok=486
+ctx=2000 nodeCalls=41 edgeCalls=41 maxNode=14146 maxEdge=14007 nodeOver10k=1 sysTok=486
+ctx=0 nodeCalls=8 edgeCalls=8 maxNode=14146 maxEdge=14007 nodeOver10k=1 sysTok=486
+ctx=65536 nodeCalls=2 edgeCalls=2 maxNode=28215 maxEdge=28076 nodeOver10k=2 sysTok=486
+--- PASS: TestHBudget (0.73s)
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/structure	0.849s
+MODE=soft {"c1":[{"name":"verbatim","description":"verbatim","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1","start":17,"end":38}]},{"name":"fake quote","description":"fake quote","type":"claim","source_chunk_ids":["c1"]},{"name":"no evidence","description":"no evidence","type":"claim","source_chunk_ids":["c1"]}]}
+MODE=hard {"c1":[{"name":"verbatim","description":"verbatim","type":"claim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1","start":17,"end":38}]},{"name":"no evidence","description":"no evidence","type":"claim","source_chunk_ids":["c1"]}]}
+chunkTok=2551 calls=[10823 10823]
+promptOnlyTok=[578]
+--- PASS: TestHClaims (0.13s)
+ok  	ragflow/internal/ingestion/component/knowledge_compiler/tree	0.151s

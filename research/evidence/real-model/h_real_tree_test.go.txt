@@ -1,0 +1,68 @@
+package tree
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"strings"
+	"testing"
+	"time"
+
+	"ragflow/internal/ingestion/component/knowledge_compiler/common"
+)
+
+type rChat struct{ calls []string }
+
+func (c *rChat) Chat(ctx context.Context, r common.ChatRequest) (*common.ChatResponse, error) {
+	msgs := []map[string]string{{"role": "system", "content": r.SystemPrompt}, {"role": "user", "content": r.UserPrompt}}
+	body := map[string]any{"model": "qwen3b-t8", "stream": false, "messages": msgs, "options": map[string]any{"num_ctx": 8192, "num_predict": 1500, "temperature": 0.1}}
+	if r.JSONMode {
+		body["format"] = "json"
+	}
+	b, _ := json.Marshal(body)
+	t := time.Now()
+	resp, err := (&http.Client{Timeout: 600 * time.Second}).Post("http://__INTERNAL_IP__:11434/api/chat", "application/json", bytes.NewReader(b))
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	raw, _ := io.ReadAll(resp.Body)
+	var d struct {
+		Message struct{ Content string `json:"content"` } `json:"message"`
+		PromptEval int `json:"prompt_eval_count"`
+		Eval       int `json:"eval_count"`
+		Done       string `json:"done_reason"`
+	}
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("status %d: %s", resp.StatusCode, raw)
+	}
+	_ = json.Unmarshal(raw, &d)
+	fmt.Printf("  CALL prompt=%d out=%d done=%s sec=%.0f\n", d.PromptEval, d.Eval, d.Done, time.Since(t).Seconds())
+	fmt.Printf("  RAW %s\n", strings.ReplaceAll(d.Message.Content, "\n", " "))
+	return &common.ChatResponse{Content: d.Message.Content}, nil
+}
+
+func goldChunks() []common.Chunk {
+	b, _ := os.ReadFile(os.Getenv("GOLD"))
+	var out []common.Chunk
+	for i, s := range strings.Split(string(b), "\n## ") {
+		out = append(out, common.Chunk{ID: fmt.Sprintf("c%d", i), Text: s})
+	}
+	return out
+}
+
+func TestRealClaims(t *testing.T) {
+	var es []claimEntry
+	for _, c := range goldChunks() {
+		es = append(es, claimEntry{id: c.ID, text: c.Text})
+	}
+	for i, batch := range packClaimBatches(es) {
+		out := extractClaimsForBatch(context.Background(), common.Deps{Chat: &rChat{}}, "real", claimExtractionPrompt, batch, EvidenceGateSoft)
+		j, _ := json.MarshalIndent(out, "  ", " ")
+		fmt.Printf("CLAIMS batch %d\n  %s\n", i, j)
+	}
+}

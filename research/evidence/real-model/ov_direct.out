@@ -1,0 +1,29 @@
+{"model":"qwen3b-t8","created_at":"2026-11-06T07:50:03.450830342Z","message":{"role":"assistant","content":"It seems like you're repeating the same phrase multiple times, which is not a clear or useful message"},"done":true,"done_reason":"length","total_duration":191882226422,"load_duration":8188356202,"prompt_eval_count":4098,"prompt_eval_cached_count":0,"prompt_eval_duration":173689790000,"eval_count":20,"eval_duration":9752255000}
+HTTP 200
+time=2026-11-06T07:46:51.656Z level=INFO source=llama_server.go:457 msg="starting llama-server" cmd="/usr/lib/ollama/llama-server --model /root/.ollama/models/blobs/sha256-5ee4f07cdb9beadbbb
+common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+llama_model_loader: - kv  16:                       qwen2.context_length u32              = 32768
+llama_context: constructing llama_context
+llama_context: n_seq_max             = 1
+llama_context: n_ctx                 = 8192
+llama_context: n_ctx_seq             = 8192
+llama_context: n_batch               = 1024
+llama_context: n_ubatch              = 1024
+llama_context: causal_attn           = 1
+llama_context: flash_attn            = auto
+llama_context: kv_unified            = false
+llama_context: freq_base             = 1000000.0
+llama_context: freq_scale            = 1
+llama_context: n_rs_seq              = 0
+llama_context: n_outputs_max         = 1
+llama_context: n_outputs_max_per_seq = 1
+llama_context: n_ctx_seq (8192) < n_ctx_train (32768) -- the full capacity of the model will not be utilized
+llama_context:        CPU  output buffer size =     0.58 MiB
+srv    load_model: context checkpoints enabled, max = 32, min spacing = 8192
+time=2026-11-06T07:46:59.989Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=11923 keep=4 new=4098
+slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 0 | stop processing: n_tokens = 4117, truncated = 0
+slot      release: id  0 | task 472 | stop processing: n_tokens = 778, truncated = 0
+slot      release: id  0 | task 660 | stop processing: n_tokens = 778, truncated = 0
+time=2026-11-06T07:46:59.989Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=11923 keep=4 new=4098
+slot      release: id  0 | task 0 | stop processing: n_tokens = 4117, truncated = 0

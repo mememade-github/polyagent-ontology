@@ -1,0 +1,21 @@
+ING done
+EXTRACT done {"entities": 2, "mentions": 5, "facts": 1, "reviews": 3, "unresolved": 0, "rejected": 2, "attributes": 1, "attribute_reviews": 0, "prop_conflicts": 0, "created": 2, "identifiers_unverified": 0, "attri
+ctx 8192 event_json {"event":"started","model":"qwen3b-t8","provider":"ollama"}
+ctx 8192 event_json {"event":"tool_call","call_id":"load_profile","tool":"load_profile","input":{}}
+ctx 8192 event_json {"event":"tool_result","call_id":"load_profile","summary":"load_profile: 4 of 4 reads","evidence_id":"e1"}
+ctx 8192 event_json {"event":"finished"}
+ctx 8192 result_json {"status":"budget_exhausted","queries":[],"usage":{"input":0,"cache_read":0,"cache_write":0,"output":0,"usd":0.0}}
+ctx 8192 sec=0
+ctx 32768 event_json {"event":"started","model":"qwen3b-t8","provider":"ollama"}
+ctx 32768 event_json {"event":"tool_call","call_id":"load_profile","tool":"load_profile","input":{}}
+ctx 32768 event_json {"event":"tool_result","call_id":"load_profile","summary":"load_profile: 4 of 4 reads","evidence_id":"e1"}
+ctx 32768 event_json {"event":"finished"}
+ctx 32768 result_json {"status":"failed","reason":"model_timeout","queries":[],"usage":{"input":0,"cache_read":0,"cache_write":0,"output":0,"usd":0.0}}
+ctx 32768 sec=280
+ctx 65536 event_json {"event":"started","model":"qwen3b-t8","provider":"ollama"}
+ctx 65536 event_json {"event":"tool_call","call_id":"load_profile","tool":"load_profile","input":{}}
+ctx 65536 event_json {"event":"tool_result","call_id":"load_profile","summary":"load_profile: 4 of 4 reads","evidence_id":"e1"}
+ctx 65536 event_json {"event":"tool_call","call_id":"call_0","tool":"find_entities","input":{"by":"name","value":"Globex"}}
+ctx 65536 event_json {"event":"tool_call","call_id":"call_1","tool":"helix_query","input":{"query":{"count":{"input":{"nodes_where":{"predicate":{"eq":{"left":{"property":"name"},"right":{"constant":{"string":"Globex"}}}}}}}}}}
+ctx 65536 event_json {"event":"tool_result","call_id":"call_0","summary":"find_entities: 1 found","evidence_id":"e2"}
+ctx 65536 event_json {"event":"tool_result","call_id":"call_1","summary":"helix_query: failed","error":"`nodes_where` needs an `eq` on `$label` with a string, alone or in its top-level `and`, to read one label's index: `union` sources to read several"}

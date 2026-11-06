@@ -1,0 +1,116 @@
+{
+ "sub1": {
+  "q": "zzzz Doe promised Globex a 10% service credit",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "sub2": {
+  "q": "zzzz zzzz promised Globex a 10% service credit",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "sub3": {
+  "q": "zzzz zzzz zzzz Globex a 10% service credit",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "sub4": {
+  "q": "zzzz zzzz zzzz zzzz a 10% service credit",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "sub5": {
+  "q": "zzzz zzzz zzzz zzzz zzzz 10% service credit",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "sub6": {
+  "q": "zzzz zzzz zzzz zzzz zzzz zzzz service credit",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "sub7": {
+  "q": "zzzz zzzz zzzz zzzz zzzz zzzz zzzz credit",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "char1": {
+  "q": "Jane Doe promised Globex a 10% service credXt",
+  "verdict": "accept",
+  "reason": null,
+  "span": {
+   "end": 72,
+   "section": 1,
+   "start": 26
+  }
+ },
+ "char2": {
+  "q": "Jane Doe promised Globex a 10% service creXXt",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "char3": {
+  "q": "Jane Doe promised Globex a 10% service crXXXt",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "char4": {
+  "q": "Jane Doe promised Globex a 10% service cXXXXt",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "char6": {
+  "q": "Jane Doe promised Globex a 10% serviceXXXXXXt",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "char8": {
+  "q": "Jane Doe promised Globex a 10% serviXXXXXXXXt",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "char10": {
+  "q": "Jane Doe promised Globex a 10% serXXXXXXXXXXt",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "char14": {
+  "q": "Jane Doe promised Globex a 10%XXXXXXXXXXXXXXt",
+  "verdict": "reject",
+  "reason": "quote_not_in_source",
+  "span": null
+ },
+ "short_one_word": {
+  "q": "Globex",
+  "verdict": "accept",
+  "reason": null,
+  "span": {
+   "end": 50,
+   "section": 1,
+   "start": 44
+  }
+ },
+ "typo_mid": {
+  "q": "Jane Doe promisd Globex a 10% servce credit",
+  "verdict": "accept",
+  "reason": null,
+  "span": {
+   "end": 72,
+   "section": 1,
+   "start": 26
+  }
+ }
+}

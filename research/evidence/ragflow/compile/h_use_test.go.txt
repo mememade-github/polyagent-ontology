@@ -1,0 +1,33 @@
+package agentic_rag
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"testing"
+
+	"ragflow/internal/tokenizer"
+)
+
+func TestHUse(t *testing.T) {
+	for _, r := range []string{"not json", `{"supported":"no"}`, `{"supported":false,"reason":"x"}`, `{"Supported":false}`, "", "No, the answer is not supported."} {
+		s := parseClaimSupport(r)
+		fmt.Printf("verify %q -> supported=%v parsed=%v\n", r, s.supported, s.parsed)
+	}
+	for _, r := range []string{"The answer is Globex [ID:1].", `{"answer":"Globex"}`, `{"answer":"Globex [ID:1]"}`, `{"answerable":true,"answer":"Fabricated fact [ID:999]"}`} {
+		a := parseClaimAnswer(r)
+		fmt.Printf("answer %q -> answerable=%v handles=%d\n", r, a.answerable, claimHandleCount(a.answer))
+	}
+	quote := strings.Repeat("The supplier shall deliver the goods within thirty days. ", 6)
+	for _, spec := range [][2]int{{4, 3}, {10, 5}, {10, 15}, {10, 38}} {
+		var cs []claimHit
+		for i := 0; i < spec[0]; i++ {
+			for j := 0; j < spec[1]; j++ {
+				cs = append(cs, claimHit{docID: "d", chunkID: fmt.Sprintf("c%d", i), name: fmt.Sprintf("Claim %d-%d: the supplier delivers goods within thirty days to the buyer", i, j), quote: quote})
+			}
+		}
+		capd := capClaimPage(cs, claimJudgeCap())
+		p := claimAnswerPrompt(claimEvidenceBlock(context.Background(), capd))
+		fmt.Printf("chunks=%d perChunk=%d claims=%d afterCap=%d answerPromptTokens=%d\n", spec[0], spec[1], len(cs), len(capd), tokenizer.NumTokensFromString(p))
+	}
+}

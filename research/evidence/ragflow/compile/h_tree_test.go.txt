@@ -1,0 +1,51 @@
+package tree
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"strings"
+	"sync"
+	"testing"
+
+	"ragflow/internal/ingestion/component/knowledge_compiler/common"
+	"ragflow/internal/tokenizer"
+)
+
+type hChat struct {
+	mu   sync.Mutex
+	toks []int
+	resp string
+}
+
+func (c *hChat) Chat(_ context.Context, r common.ChatRequest) (*common.ChatResponse, error) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.toks = append(c.toks, tokenizer.NumTokensFromString(r.SystemPrompt)+tokenizer.NumTokensFromString(r.UserPrompt))
+	return &common.ChatResponse{Content: c.resp}, nil
+}
+
+func TestHClaims(t *testing.T) {
+	doc := "Jane Doe of Acme promised Globex a 10% service credit on the call."
+	resp := `{"items":[
+ {"type":"claim","name":"verbatim","source_chunk_ids":["c1"],"evidence":[{"quote":"promised Globex a 10%","chunk_id":"c1"}]},
+ {"type":"claim","name":"fake quote","source_chunk_ids":["c1"],"evidence":[{"quote":"guaranteed a full refund","chunk_id":"c1"}]},
+ {"type":"claim","name":"no evidence","source_chunk_ids":["c1"]}]}`
+	for _, m := range []EvidenceGateMode{EvidenceGateSoft, EvidenceGateHard} {
+		c := &hChat{resp: resp}
+		o := ExtractClaimsForChunks(context.Background(), common.Deps{Chat: c}, "s", []common.Chunk{{ID: "c1", Text: doc}}, m, "")
+		j, _ := json.Marshal(o)
+		fmt.Printf("MODE=%s %s\n", m, j)
+	}
+	long := strings.Repeat("The supplier shall deliver the goods to the buyer within thirty days of the order date. ", 150)
+	var chunks []common.Chunk
+	for i := 0; i < 8; i++ {
+		chunks = append(chunks, common.Chunk{ID: fmt.Sprintf("c%d", i), Text: long})
+	}
+	c := &hChat{resp: `{"items":[]}`}
+	ExtractClaimsForChunks(context.Background(), common.Deps{Chat: c, ModelContextLen: 8000}, "s", chunks, EvidenceGateSoft, "")
+	fmt.Printf("chunkTok=%d calls=%v\n", tokenizer.NumTokensFromString(long), c.toks)
+	c = &hChat{resp: `{"items":[]}`}
+	ExtractClaimsForChunks(context.Background(), common.Deps{Chat: c}, "s", []common.Chunk{{ID: "x", Text: "short"}}, EvidenceGateSoft, "")
+	fmt.Printf("promptOnlyTok=%v\n", c.toks)
+}

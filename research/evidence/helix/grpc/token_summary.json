@@ -1,0 +1,13 @@
+{
+ "note": "cl100k counts recomputed from Stub request logs of go2.py and go6.py",
+ "ask_first_call_stub": {
+  "model": "stub",
+  "messages_tokens": 4772,
+  "tool_count": 12,
+  "tool_tokens": 15332
+ },
+ "extract_entity_calls_context8000": {
+  "count": 20,
+  "max_message_tokens": 21727
+ }
+}

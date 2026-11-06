@@ -1,0 +1,11 @@
+version = "2026-11-06.1"
+ontology = "2026-11-06.1"
+
+[extractions.calls]
+documents = "all"
+links = ["promised_to"]
+
+[extractions.calls.types.Customer]
+
+[extractions.calls.types.Promise]
+props = ["due_on"]

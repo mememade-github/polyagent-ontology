@@ -1,0 +1,68 @@
+# =============================================================================
+# Polyagent DevContainer — Docker Compose (base variant)
+# =============================================================================
+# See [DevContainer lifecycle](../REFERENCE.md#devcontainer-lifecycle) for configuration and operations.
+# =============================================================================
+
+services:
+  polyagent-devcontainer:
+    container_name: ${CONTAINER_NAME:-polyagent-dev}
+    image: ${IMAGE_NAME:-polyagent-devcontainer}:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PROJECT_NODE_VERSION=${PROJECT_NODE_VERSION:-}
+
+    volumes:
+      - ${HOST_WORKSPACE_PATH:-..}:/workspaces:cached
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Persistence — single source for BOTH entry paths.
+      # devcontainer.json does not re-declare these, so plain `docker compose up`
+      # and VS Code "Reopen in Container" share the same COMPOSE_PROJECT_NAME-scoped
+      # volumes and preserve auth tokens + history identically across rebuild.
+      # Antigravity keeps tokens, settings and conversations in ~/.gemini and
+      # plugin/MCP secrets in ~/.config/antigravity.
+      - claude-config:/home/vscode/.claude
+      - codex-config:/home/vscode/.codex
+      - gemini-config:/home/vscode/.gemini
+      - antigravity-secrets:/home/vscode/.config/antigravity
+      - command-history:/commandhistory
+
+    # =========================================================================
+    # DNS — do not depend on Docker Desktop's internal DNS
+    # Avoids Docker Desktop DNS (192.168.65.x) resolution failures on Windows/WSL2
+    # =========================================================================
+    dns:
+      - ${DNS_PRIMARY:-8.8.8.8}
+      - 8.8.4.4
+      - 1.1.1.1
+
+    environment:
+      - TZ=${TZ:-UTC}
+
+    stdin_open: true
+    tty: true
+    # tini as PID 1 (zombie reaping) — parity with devcontainer.json "init": true
+    # so plain `docker compose up` matches the VS Code "Reopen in Container" path.
+    init: true
+
+    healthcheck:
+      test: ["CMD-SHELL", "claude --version >/dev/null 2>&1 && SKIP_CODEX_UPDATE=1 codex --version >/dev/null 2>&1 && agy --version >/dev/null 2>&1 && { test -d /workspaces/.git || test -f /workspaces/AGENTS.md || test -f /workspaces/CLAUDE.md || test -f /workspaces/README.md || test -d /workspaces/.devcontainer; }"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+    # command comes from the Dockerfile CMD ["sleep", "infinity"]
+    # ENTRYPOINT always runs setup-env.sh, then execs CMD
+
+# Named volumes (declared at the project level; created with the
+# COMPOSE_PROJECT_NAME prefix). These are the single persistence source for
+# both entry paths — change COMPOSE_PROJECT_NAME in .env to isolate instances.
+volumes:
+  claude-config:
+  codex-config:
+  gemini-config:
+  antigravity-secrets:
+  command-history:

@@ -1,0 +1,48 @@
+Extract verified facts from documents into Helix
+
+Usage: extract [OPTIONS] --ontology <ONTOLOGY> --load <LOAD> --verifier-model <VERIFIER_MODEL> <FILES>...
+
+Arguments:
+  <FILES>...  Documents to ingest: Markdown (.md, .markdown) or plain text (.txt, .text)
+
+Options:
+      --ontology <ONTOLOGY>
+          Ontology TOML file
+      --helix-url <HELIX_URL>
+          Helix instance to write to [env: HELIX_URL=] [default: http://localhost:6969]
+      --load <LOAD>
+          The load the documents go into
+      --set <SET>
+          The document set the documents belong to, recorded on each [default: documents]
+      --helix-timeout <HELIX_TIMEOUT>
+          Seconds to wait for any one Helix request [default: 120]
+      --dry-run
+          Read from Helix but write nothing; reports show what each document would write given what is stored, not given documents earlier in the same dry run
+      --extractor-model <EXTRACTOR_MODEL>
+          Anthropic model for the entity and link passes [default: claude-opus-5-5]
+      --extractor-effort <EXTRACTOR_EFFORT>
+          The extractor's effort: low, medium, high, xhigh or max [default: high]
+      --verifier-model <VERIFIER_MODEL>
+          Anthropic model that verifies facts
+      --verifier-effort <VERIFIER_EFFORT>
+          The verifier's effort: low, medium, high, xhigh or max; high when unset
+      --anthropic-base-url <ANTHROPIC_BASE_URL>
+          Anthropic API base URL, for a proxy [env: ANTHROPIC_BASE_URL=] [default: https://api.anthropic.com]
+      --responses <RESPONSES>
+          Model response store. Re-running unchanged input repeats no paid call [default: .extraction/responses.redb]
+      --accept <ACCEPT>
+          Confidence at or above which a fact is accepted [default: 0.9]
+      --review <REVIEW>
+          Confidence at or above which a fact goes to review instead of being rejected [default: 0.6]
+      --max-calls <MAX_CALLS>
+          Calls in flight at once to each model, across all documents [default: 16]
+      --documents <DOCUMENTS>
+          Documents extracting at once. Writes still happen one at a time [default: 4]
+      --links-per-call <LINKS_PER_CALL>
+          Most links one link-pass call sees; a section with more is split across calls [default: 325]
+      --max-section-bytes <MAX_SECTION_BYTES>
+          Largest section, in bytes, sent to one link-pass call [default: 4000]
+      --gleanings <GLEANINGS>
+          Further link passes per section asking for facts the earlier passes missed [default: 0]
+  -h, --help
+          Print help
