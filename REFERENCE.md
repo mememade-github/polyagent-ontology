@@ -5,7 +5,7 @@
 
 ## Privilege boundary
 
-This template is **not** a security sandbox. The container mounts the
+This DevContainer is **not** a security sandbox. The container mounts the
 host's `/var/run/docker.sock` and the in-container user is in the
 `docker` group, which Docker's official documentation describes as
 equivalent to host root: anyone inside the container can launch
@@ -21,7 +21,7 @@ DevContainer inside a VM or on a dedicated machine.
 
 ## Configuration (`.devcontainer/.env`)
 
-Template build and startup configuration lives in `.devcontainer/.env`;
+DevContainer build and startup configuration lives in `.devcontainer/.env`;
 [Quick start](README.md#quick-start) covers initial setup
 (compose defaults apply when `.env` is absent).
 
@@ -171,13 +171,13 @@ See [Persistent volumes](#persistent-volumes) for volume deletion behavior.
 
 ### Tool versioning policy: rolling, not pinned
 
-The template intentionally pulls latest releases at build/run time:
+The DevContainer intentionally pulls latest releases at build/run time:
 - **Claude Code**: `curl https://claude.ai/install.sh | bash` (latest at build).
 - **Codex CLI**: `npm install -g --prefix ~/.npm-global @openai/codex`
   into `~/.npm-global` (latest published, unpinned). The image installs a
   PATH-first `codex` launcher (`/usr/local/bin/codex-launcher`) that updates
   through the same explicit prefix, then re-execs the real
-  `~/.npm-global/bin/codex` binary. The template does not persistently mutate
+  `~/.npm-global/bin/codex` binary. The DevContainer does not persistently mutate
   npm's global prefix.
 - **Antigravity CLI**: the official installer is downloaded to a file and run
   with Bash (latest at build; the installer checks the manifest sha512).
@@ -222,7 +222,7 @@ To skip startup refresh, pass `SKIP_CLAUDE_UPDATE=1`, `SKIP_CODEX_UPDATE=1`, or
 | wip-manager | Multi-session task tracker | When task spans sessions |
 
 Current Codex supports in-process subagents and project
-`.codex/agents/*.toml`. The template mirrors these Claude role bodies as Codex
+`.codex/agents/*.toml`. This repository mirrors these Claude role bodies as Codex
 skills for portable discovery; evaluator runs still use a fresh
 `codex exec --ephemeral` process to carry the exact Contract/diff-only input
 boundary in interactive and non-interactive flows.
@@ -282,12 +282,12 @@ Codex project trust and hook review are covered in
 
 | Skill | Description |
 |-------|-------------|
-| llm-wiki | Karpathy's LLM Wiki pattern, source of the `research/` knowledge space |
 | /refine | Autonomous iterative refinement loop |
 | /status | Workspace status |
 | /verify | Pre-commit verification |
 | karpathy-guidelines | Reference handle for the Karpathy 4 rules (`SKILL.md`) |
 | typesafe-ai | TypeSafe workflow skill from [typesafe-ai/skills](https://github.com/typesafe-ai/skills), commit `65a39f393687675ce170e6094757de20370365b9`; MIT; vendored with one local delta: an offline snapshot of the HTTP API reference at `reference/api.md` and the SKILL.md sentence that names it; generated mirror for Codex |
+| llm-wiki | Karpathy's LLM Wiki pattern, source of the `research/` knowledge space |
 
 ### TypeSafe (optional)
 
@@ -308,7 +308,7 @@ Two tiers, split by cost:
 `completion-checker.sh` is environment-independent: it works in fresh clones,
 CI, and temp checkouts, and does not require docker or a canonical checkout
 path. The acceptance suite is the deep oracle; run it after structural changes
-to the template (hooks, mirror, devcontainer) and before releases.
+to the DevContainer (hooks, mirror, devcontainer) and before releases.
 
 ## Polyagent parity
 
@@ -359,9 +359,9 @@ inside the `gemini-config` volume.
 
 ### Container prerequisites
 
-| Feature | Requirement | Template configuration |
-|---------|-------------|------------------------|
-| Terminal sandbox (`--sandbox`) | Host permission for kernel namespaces | Off by default in this template |
+| Feature | Requirement | DevContainer configuration |
+|---------|-------------|----------------------------|
+| Terminal sandbox (`--sandbox`) | Host permission for kernel namespaces | Off by default in this DevContainer |
 | Browser | Google Chrome | Not installed |
 | Voice | Microphone | No microphone device configured |
 | Remote control | Eligible account and paired external device | Supplied separately by the user |

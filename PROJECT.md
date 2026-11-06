@@ -6,7 +6,7 @@
 
 ## Overview
 
-The research target is structuring general documents and building ontologies with a local LLM under 10k context and low inference ability. Research knowledge lives in `research/`, an independent LLM Wiki space with its own rules in `research/wiki/SCHEMA.md`. The rest of the repository follows the knowledge rules in `CLAUDE.md` and `.claude/`.
+Research on structuring general documents and building ontologies with a local LLM below 10k tokens of context and with low reasoning ability. Research knowledge lives in `research/`, an independent LLM Wiki space with its own rules in `research/wiki/SCHEMA.md`. The rest of the repository follows the knowledge rules in `CLAUDE.md` and `.claude/`.
 
 Workspace-scoped environment for running Claude Code, Codex CLI, and Antigravity CLI in parity on the same project. One ground truth (`.claude/`) feeds per-vendor mirrors (`.agents/rules`, `.agents/skills`, `.codex/`). New vendors are added by mirroring, not by rewriting governance.
 
@@ -33,7 +33,7 @@ Sync: `bash scripts/sync-agents-mirror.sh` — `.claude/` → `.agents/rules`, `
 
 ## Environment
 
-- **Template configuration**: `.devcontainer/.env` (build and startup values)
+- **DevContainer configuration**: `.devcontainer/.env` (build and startup values)
 - **Persistent volumes**: `~/.claude` (Claude auth), `~/.codex` (Codex auth), `~/.gemini` (Antigravity auth, settings, conversations), `~/.config/antigravity` (Antigravity plugin/MCP secrets), `/commandhistory` (shell history)
 - **Editor workspace settings**: `.vscode/` is tracked for VS Code convenience settings; it is not an agent vendor.
 

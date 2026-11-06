@@ -1,28 +1,8 @@
 # polyagent-ontology
 
-> **연구 중입니다.** 결론이 확정되지 않았고 내용은 바뀔 수 있습니다.
+> **Research in progress.** Conclusions are provisional and content may change.
 
-일반 문서를 구조화해 온톨로지를 자동 구축하는 방법을 연구하는 프로젝트입니다. 컨텍스트 10k 토큰 미만, 추론 능력이 낮은 로컬 LLM을 대상으로 합니다. 연구 지식은 독립 공간인 [`research/`](research/README.md)에 있습니다.
-
-## 연관 프로젝트
-
-이 프로젝트는 아래 프로젝트의 공식 자료가 아닙니다. 각 자료의 권리는 해당 권리자에게 있습니다.
-
-| 프로젝트 | 관계 |
-|---|---|
-| [mememade-github/polyagent-devcontainer](https://github.com/mememade-github/polyagent-devcontainer) | 이 저장소의 기반 템플릿 |
-| [NVIDIA/auto-ontology](https://github.com/NVIDIA/auto-ontology) | 연구 대상 |
-| [HelixDB/helix-foundry](https://github.com/HelixDB/helix-foundry), `ghcr.io/helixdb/ontology-agent` | 연구 대상 |
-| [infiniflow/ragflow](https://github.com/infiniflow/ragflow), arXiv 2610.41172 | 연구 대상 |
-| [morluto/rea](https://github.com/morluto/rea) | 분석 도구 |
-| [Karpathy, LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) | `research/`의 지식 패턴. 스킬 `.claude/skills/llm-wiki`의 원문 |
-| [Ollama](https://github.com/ollama/ollama), `qwen2.5:3b` | 소규모 실험 실행 |
-
-## 라이선스
-
-[MIT](LICENSE). 인용·기록된 제3자 자료는 MIT로 재허락되지 않습니다.
-
-## DevContainer
+Research on structuring general documents to build ontologies automatically with local LLMs below 10k tokens of context and with low reasoning ability. Research knowledge lives in the independent [`research/`](research/README.md) space.
 
 DevContainer base for running multiple AI coding agents (Claude Code · Codex CLI · Antigravity CLI) in parity on the same project. The container is workspace-scoped, not a security sandbox — see [REFERENCE.md § Privilege boundary](REFERENCE.md#privilege-boundary) for the docker.sock / docker-group implications.
 
@@ -95,9 +75,19 @@ Codex compatibility and project trust details are covered in [Codex sandbox bypa
 
 For the optional TypeSafe API key, see [REFERENCE.md §TypeSafe (optional)](REFERENCE.md#typesafe-optional).
 
-## Starting another project
+## Related projects
 
-Start a new project from the [base template](https://github.com/mememade-github/polyagent-devcontainer), not from this repository.
+This project is not official material from the projects below. Rights to each material remain with its respective rights holders.
+
+| Project | Relationship |
+|---------|--------------|
+| [mememade-github/polyagent-devcontainer](https://github.com/mememade-github/polyagent-devcontainer) | Base template for this repository |
+| [NVIDIA/auto-ontology](https://github.com/NVIDIA/auto-ontology) | Research subject |
+| [HelixDB/helix-foundry](https://github.com/HelixDB/helix-foundry), `ghcr.io/helixdb/ontology-agent` | Research subject |
+| [infiniflow/ragflow](https://github.com/infiniflow/ragflow), arXiv 2610.41172 | Research subject |
+| [morluto/rea](https://github.com/morluto/rea) | Analysis tool |
+| [Karpathy, LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) | Knowledge pattern for `research/`; source of the `.claude/skills/llm-wiki` skill |
+| [Ollama](https://github.com/ollama/ollama), `qwen2.5:3b` | Small-scale experiment runtime |
 
 ## Vendor parity sync
 
@@ -122,3 +112,7 @@ Antigravity configuration that the sync never touches.
 | Codex re-auth needed | `docker volume ls \| grep codex-config` |
 | Antigravity re-auth needed or a rule is ignored | See [REFERENCE troubleshooting](REFERENCE.md#troubleshooting) |
 | `.agents/` drift | `bash scripts/sync-agents-mirror.sh` |
+
+## License
+
+[MIT](LICENSE). Quoted or recorded third-party materials are not relicensed under MIT.
