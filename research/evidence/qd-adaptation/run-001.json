@@ -1,0 +1,1541 @@
+{
+  "checks": {
+    "positive_duplicate": true,
+    "same_cell": true,
+    "invalid_and_false": true,
+    "oversized": true,
+    "exception": true,
+    "verify_exhausted": true,
+    "deferred_random": true,
+    "deferred_coverage": true,
+    "controls": true,
+    "overlap": true,
+    "all_reject": true
+  },
+  "passed": true,
+  "runs": {
+    "positive_duplicate": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 64,
+      "calls": [
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        }
+      ],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "1",
+          "general"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "1"
+        }
+      ],
+      "active": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        }
+      ],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "same_cell": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 64,
+      "calls": [
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        }
+      ],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "1",
+          "general"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "C",
+                "relation": "holds",
+                "object": "D",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "C",
+            "relation": "holds",
+            "object": "D",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        }
+      ],
+      "active": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "C",
+                "relation": "holds",
+                "object": "D",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "C",
+            "relation": "holds",
+            "object": "D",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        }
+      ],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "invalid_and_false": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 64,
+      "calls": [
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        }
+      ],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "1",
+          "general"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "rejected",
+          "extraction": {
+            "items": [
+              {
+                "subject": "X",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "X",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "reason": "span_grounding"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "rejected",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "reason": "false_verifier"
+        }
+      ],
+      "active": [],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "oversized": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 64,
+      "calls": [],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "1",
+          "general"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "50c6d63470fd9251eb1056e4bd7a1b1614e853e7e38ead5f80bcd6d1a5f77358",
+          "unit": "1",
+          "unit_sha256": "50c6d63470fd9251eb1056e4bd7a1b1614e853e7e38ead5f80bcd6d1a5f77358",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "rejected",
+          "reason": "oversized"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "50c6d63470fd9251eb1056e4bd7a1b1614e853e7e38ead5f80bcd6d1a5f77358",
+          "unit": "1",
+          "unit_sha256": "50c6d63470fd9251eb1056e4bd7a1b1614e853e7e38ead5f80bcd6d1a5f77358",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "rejected",
+          "reason": "oversized"
+        }
+      ],
+      "active": [],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "exception": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 1,
+      "calls": [
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "failed",
+          "error_type": "RuntimeError"
+        }
+      ],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "rejected",
+          "reason": "RuntimeError"
+        }
+      ],
+      "active": [],
+      "pending": [
+        {
+          "unit": "1",
+          "lens": "general",
+          "reason": "call_cap"
+        }
+      ],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "verify_exhausted": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 1,
+      "calls": [
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        }
+      ],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "rejected",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "reason": "call_cap"
+        }
+      ],
+      "active": [],
+      "pending": [
+        {
+          "unit": "1",
+          "lens": "general",
+          "reason": "call_cap"
+        }
+      ],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "deferred_random": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "random",
+      "seed": 7,
+      "cap": 64,
+      "calls": [],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "1",
+          "general"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "deferred_context"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "deferred_context"
+        }
+      ],
+      "active": [],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "deferred_coverage": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 64,
+      "calls": [],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "1",
+          "general"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "deferred_context"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "deferred_context"
+        }
+      ],
+      "active": [],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "control_random": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "2",
+          "general"
+        ],
+        [
+          "2",
+          "qualifier"
+        ],
+        [
+          "3",
+          "general"
+        ],
+        [
+          "3",
+          "qualifier"
+        ]
+      ],
+      "selector": "random",
+      "seed": 7,
+      "cap": 12,
+      "calls": [
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        }
+      ],
+      "order": [
+        [
+          "2",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "3",
+          "qualifier"
+        ],
+        [
+          "3",
+          "general"
+        ],
+        [
+          "1",
+          "general"
+        ],
+        [
+          "2",
+          "qualifier"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "2",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [
+              "condition",
+              "negation"
+            ],
+            true
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "3",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [
+              "condition"
+            ],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "3",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [
+              "condition"
+            ],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "2",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [
+              "condition",
+              "negation"
+            ],
+            true
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        }
+      ],
+      "active": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "2",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [
+              "condition",
+              "negation"
+            ],
+            true
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        }
+      ],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "control_coverage": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "2",
+          "general"
+        ],
+        [
+          "2",
+          "qualifier"
+        ],
+        [
+          "3",
+          "general"
+        ],
+        [
+          "3",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 12,
+      "calls": [
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1351,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1418,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1168,
+          "predict": 30,
+          "status": "returned_valid_schema"
+        }
+      ],
+      "order": [
+        [
+          "2",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "3",
+          "general"
+        ],
+        [
+          "1",
+          "general"
+        ],
+        [
+          "3",
+          "qualifier"
+        ],
+        [
+          "2",
+          "qualifier"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "2",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [
+              "condition",
+              "negation"
+            ],
+            true
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "3",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [
+              "condition"
+            ],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "1",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "3",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [
+              "condition"
+            ],
+            false
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "2",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [
+              "condition",
+              "negation"
+            ],
+            true
+          ],
+          "outcome": "duplicate",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          },
+          "duplicate_of": "2"
+        }
+      ],
+      "active": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "unit": "2",
+          "unit_sha256": "4f08bf36f66dd73ea7f8515a3dfdb7c4a26ffa7d87c6e8b11be0db3765d51916",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [
+              "condition",
+              "negation"
+            ],
+            true
+          ],
+          "outcome": "active_provisional",
+          "extraction": {
+            "items": [
+              {
+                "subject": "A",
+                "relation": "holds",
+                "object": "B",
+                "concept": "Holding"
+              }
+            ]
+          },
+          "claim": {
+            "subject": "A",
+            "relation": "holds",
+            "object": "B",
+            "concept": "Holding",
+            "quote": "A holds B. C holds D."
+          }
+        }
+      ],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    },
+    "all_reject": {
+      "pool": [
+        [
+          "1",
+          "general"
+        ],
+        [
+          "1",
+          "qualifier"
+        ]
+      ],
+      "selector": "coverage",
+      "seed": 7,
+      "cap": 64,
+      "calls": [
+        {
+          "bound": 1409,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        },
+        {
+          "bound": 1342,
+          "predict": 600,
+          "status": "returned_valid_schema"
+        }
+      ],
+      "order": [
+        [
+          "1",
+          "qualifier"
+        ],
+        [
+          "1",
+          "general"
+        ]
+      ],
+      "history": [
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "8aa2224358287518f5a14a641acac4125c60347944c08e07d7947306ebeb5e48",
+          "unit": "1",
+          "unit_sha256": "8aa2224358287518f5a14a641acac4125c60347944c08e07d7947306ebeb5e48",
+          "lens": "qualifier",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "empty",
+          "extraction": {
+            "items": []
+          }
+        },
+        {
+          "source": "synthetic.txt",
+          "source_sha256": "8aa2224358287518f5a14a641acac4125c60347944c08e07d7947306ebeb5e48",
+          "unit": "1",
+          "unit_sha256": "8aa2224358287518f5a14a641acac4125c60347944c08e07d7947306ebeb5e48",
+          "lens": "general",
+          "parent": null,
+          "cell": [
+            [],
+            false
+          ],
+          "outcome": "empty",
+          "extraction": {
+            "items": []
+          }
+        }
+      ],
+      "active": [],
+      "pending": [],
+      "quality": "unmeasured; gate is a proxy",
+      "scientific_trial_ready": false
+    }
+  },
+  "actual_calls": 39,
+  "real_model_calls": 0,
+  "semantic_quality": "not tested",
+  "hashes": {
+    "prototype/onto.py": "400e86746580509e8d79ac038769f2d990a29c7938f6e98267925e5178c7a575",
+    "prototype/qd/demo.py": "eb6a3a431357353274f67424a099e96f493d25a6900aae667410ff91ab545971",
+    "prototype/qd/controller.py": "a46aefba779744bf205f32c2ac434eec9934135b9dc1de2b38e9fa7007a3ebf6",
+    "evidence/qd-adaptation/protocol.md": "ace4e402d240df3b18b58f69cf66b074a33e4af86d88fa12fbc3a003246db06f"
+  }
+}

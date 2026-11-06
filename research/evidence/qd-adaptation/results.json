@@ -1,0 +1,120 @@
+{
+  "run_id": "run-001",
+  "status": "mechanical_pass",
+  "checks_passed": 11,
+  "checks_total": 11,
+  "callback_attempts": 39,
+  "real_model_calls": 0,
+  "quality_outcome": "unmeasured",
+  "scientific_outcome": "not run; token/time driver and independent labels absent",
+  "per_fixture": {
+    "positive_duplicate": {
+      "calls": 4,
+      "active": 1,
+      "pending": 0,
+      "outcomes": [
+        "active_provisional",
+        "duplicate"
+      ]
+    },
+    "same_cell": {
+      "calls": 4,
+      "active": 2,
+      "pending": 0,
+      "outcomes": [
+        "active_provisional",
+        "active_provisional"
+      ]
+    },
+    "invalid_and_false": {
+      "calls": 3,
+      "active": 0,
+      "pending": 0,
+      "outcomes": [
+        "rejected",
+        "rejected"
+      ]
+    },
+    "oversized": {
+      "calls": 0,
+      "active": 0,
+      "pending": 0,
+      "outcomes": [
+        "rejected",
+        "rejected"
+      ]
+    },
+    "exception": {
+      "calls": 1,
+      "active": 0,
+      "pending": 1,
+      "outcomes": [
+        "rejected"
+      ]
+    },
+    "verify_exhausted": {
+      "calls": 1,
+      "active": 0,
+      "pending": 1,
+      "outcomes": [
+        "rejected"
+      ]
+    },
+    "deferred_random": {
+      "calls": 0,
+      "active": 0,
+      "pending": 0,
+      "outcomes": [
+        "deferred_context",
+        "deferred_context"
+      ]
+    },
+    "deferred_coverage": {
+      "calls": 0,
+      "active": 0,
+      "pending": 0,
+      "outcomes": [
+        "deferred_context",
+        "deferred_context"
+      ]
+    },
+    "control_random": {
+      "calls": 12,
+      "active": 1,
+      "pending": 0,
+      "outcomes": [
+        "active_provisional",
+        "duplicate",
+        "duplicate",
+        "duplicate",
+        "duplicate",
+        "duplicate"
+      ]
+    },
+    "control_coverage": {
+      "calls": 12,
+      "active": 1,
+      "pending": 0,
+      "outcomes": [
+        "active_provisional",
+        "duplicate",
+        "duplicate",
+        "duplicate",
+        "duplicate",
+        "duplicate"
+      ]
+    },
+    "all_reject": {
+      "calls": 2,
+      "active": 0,
+      "pending": 0,
+      "outcomes": [
+        "empty",
+        "empty"
+      ]
+    }
+  },
+  "protocol_sha256": "ace4e402d240df3b18b58f69cf66b074a33e4af86d88fa12fbc3a003246db06f",
+  "run_sha256": "0f8230644d85736f764c463f459e9d3451f03dba17992e67f17b7a29338f091e",
+  "lock_verified": true
+}

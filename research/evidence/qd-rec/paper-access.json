@@ -1,0 +1,68 @@
+{
+  "collected_at_utc": "2026-11-06T20:17:53.204441+00:00",
+  "resources": [
+    {
+      "url": "https://arxiv.org/html/2610.23470v2",
+      "local_path": "__SCRATCH__/paper/qd-rec/2610.23470v2.html",
+      "bytes": 1946797,
+      "sha256": "dc5028e0384400a4f1d6fe2184d6a6f213a8f76168bed688d0d8cc444979e625",
+      "head_status_at_collection": 200,
+      "final_url": "https://arxiv.org/html/2610.23470v2",
+      "read": true
+    },
+    {
+      "url": "https://arxiv.org/html/2610.40589v1",
+      "local_path": "__SCRATCH__/paper/qd-rec/2610.40589v1.html",
+      "bytes": 148343,
+      "sha256": "24fac1ee7f3811a9ea4831b000660b620201d73567d1b4a05215af5dd5063bd0",
+      "head_status_at_collection": 200,
+      "final_url": "https://arxiv.org/html/2610.40589v1",
+      "read": true
+    },
+    {
+      "url": "https://arxiv.org/pdf/2610.23470v2",
+      "local_path": "__SCRATCH__/paper/qd-rec/2610.23470v2.pdf",
+      "bytes": 4691252,
+      "sha256": "b5657f44ea0751b556700bc83fbc7354246457510b055ee6e0866d0e836796cb",
+      "head_status_at_collection": 200,
+      "final_url": "https://arxiv.org/pdf/2610.23470v2",
+      "read": false
+    },
+    {
+      "local_path": "__SCRATCH__/paper/qd-rec/2610.23470v2.txt",
+      "derived_from": "2610.23470v2.html",
+      "bytes": 113772,
+      "sha256": "f722d190241c3c50d6c036caab7e68f93cb2d04d574fb931f8ef507734c5e247",
+      "note": "Python stdlib HTMLParser extraction: block boundaries to lines; whitespace collapsed; math may repeat presentation and annotation."
+    },
+    {
+      "local_path": "__SCRATCH__/paper/qd-rec/2610.40589v1.txt",
+      "derived_from": "2610.40589v1.html",
+      "bytes": 61032,
+      "sha256": "ce04c503aa0bf005c9d7331aa0dba6cb5c33d3dccab6a1e94f296e9240cf42df",
+      "note": "Python stdlib HTMLParser extraction: block boundaries to lines; whitespace collapsed; math may repeat presentation and annotation."
+    }
+  ],
+  "read_scope": {
+    "2610.23470v2": [
+      "Sections 3-4, 5.1-5.2 (Table 2 selected rows; cost; Table 3 note), 6, Appendix B/C selected text"
+    ],
+    "2610.40589v1": [
+      "Sections 1-2, 4-5, 7.1-7.2"
+    ]
+  },
+  "failures": [
+    {
+      "operation": "pdftotext -layout",
+      "exit_code": 127,
+      "reason": "pdftotext not installed; downloaded PDF not read; switched to HTML"
+    },
+    {
+      "operation": "python alias probe",
+      "exit_code": 127,
+      "reason": "python command not installed; used python3"
+    }
+  ],
+  "full_text_redistributed": false,
+  "product_execution": false
+}

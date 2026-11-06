@@ -89,3 +89,15 @@
 - [동결 규약](../evidence/prototype/protocol.md)을 결과보다 먼저 보존한다. 작은 개발 표본의 precision/recall, 안정성, 호출 수는 일반 성능이 아니다. 의미 링크와 endpoint 투영, 코드 결정과 LLM 의존 결정, 실행 실패와 빈 출력을 분리한다. 실측 결과와 실패는 [프로토타입 결과](concepts/prototype-results.md)에 기록했다.
 - 공개본에는 `prototype/*.py`, `prototype/README.md`와 선별된 `evidence/prototype/*.json`, `*.md`만 허용한다. 입력·참조 원문, 사실/출력 덤프, 캐시·pyc·private prompt, Acme JSON/SQL 및 Helix 샘플 문서 본문은 넣지 않는다.
 - `evidence/ao/stub_llm.py`, `evidence/rea/approval/approved.json`은 캡처 프롬프트 중복이 확인돼 공개본에서 추가 제외한다. 해당 원시 근거는 공개 저장소에 없으며 인용은 기록만이다. 기존 제외·치환과 정제 후 해시 재계산은 유지한다.
+
+## QDA 적응 범위 규약 (2026-11-06)
+
+- `QDA-*`의 고유 홈 행은 `concepts/qd-rec-adaptation.md`만이다. `[설계]`와 `[기록]`은 선택·전달 절차의 표기이며 의미 품질 증거가 아니다.
+- 새 `evidence/qd-adaptation/`는 exclusive-create 불변 기록이다. protocol+lock은 실행 전 생성; 실패도 별도 run ID로 남긴다. source 원장의 backtick 경로·comma bytes·16자리 SHA256은 빌더 재계산 형식을 따른다. 결과 자기 해시는 금지한다.
+- 고정 pool·gate·cap의 기계 검증과 독립 semantic gold 평가를 분리한다. QDA Stub는 모델 효과를 입증하지 않는다. 기존 raw/역사 진술은 보존하고 skills는 등록하지 않는다. 공개 허용 목록/검사는 후속 B에서 검토하며 이번 추가는 공개 승인 자체가 아니다.
+
+QDA review-summary는 원 procedure pending-review를 역사 기록으로 대체한다. future-analysis-addendum과 addendum-lock은 Stub 이후의 새 정의이며 과거 preregistration이 아니다. independent-calculation은 전달 보고의 faithful copy로, adversarial script는 scratch에 남는다.
+
+QDA 공개 정책은 `E:qd-adaptation/publication-policy.json`이다. `evidence/qd-rec/`는 paper-access/repository-snapshot JSON만, `prototype/qd/`는 controller/demo만, `evidence/qd-adaptation/`는 정책에 열거한 검토 기록만 허용한다. 논문 전문·파생 텍스트·upstream 코드 복사본은 제외한다. 기존 제외·치환 규칙을 보존한다.
+
+위의 후속 B 대기는 과거 단계 상태다. 현재 사용자가 B 재빌드를 명시 승인했으며 publication-policy allowlist 적용과 공개 검사를 수행했다. 부모 최종 독립 평가는 별도다.

@@ -1,0 +1,29 @@
+{
+  "artifact_id": "qda-review-summary/v1",
+  "created_at": "2026-11-06T22:44:07.685513+00:00",
+  "supersedes": "procedure.json pending-review status only; original raw retained as historical",
+  "mechanical_verdict": "PASS mechanical fixed-rule stub checks; unchanged",
+  "calculation": {
+    "artifact": "independent-calculation.json",
+    "demo_checks": 11,
+    "adversarial_cases": 32,
+    "adversarial_assertions": 268,
+    "must_fix_count": 0,
+    "script_publication": "adversarial script and detailed execution artifacts remain scratch; public report alone is not a full script-independent rerun"
+  },
+  "manuscript_review": {
+    "provenance": "manager transcription of actual fresh reviewer; modifier did not observe original roles firsthand",
+    "scope": "reviewer read only concept manuscript, no execution or code verification",
+    "verdict": "revise then proceed for mechanical Stub draft; scientific trial not ready",
+    "requests": {
+      "1": "future-analysis-addendum.md section 1",
+      "2": "future-analysis-addendum.md section 2",
+      "3": "future-analysis-addendum.md section 3",
+      "4": "future-analysis-addendum.md section 4",
+      "5": "future-analysis-addendum.md section 5"
+    }
+  },
+  "future_target_access": false,
+  "parent_final_independent_evaluation": "pending",
+  "actual_model": "untested"
+}

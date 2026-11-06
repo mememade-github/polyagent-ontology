@@ -1,0 +1,184 @@
+{
+  "collected_at_utc": "2026-11-06T20:17:53.204441+00:00",
+  "repository": "https://github.com/SakanaAI/QD-Rec",
+  "clone_path": "__SCRATCH__/upstream/QD-Rec",
+  "commit": "3a04ed170583e14ca08e689e8bff8fddf267dc8e",
+  "shallow": "true",
+  "status_porcelain": "",
+  "clone_options": [
+    "--depth",
+    "1",
+    "--filter=blob:limit=1m",
+    "--no-checkout"
+  ],
+  "sparse_patterns": [
+    "/*",
+    "!/assets/"
+  ],
+  "product_execution": false,
+  "dependency_install": false,
+  "model_calls": 0,
+  "dataset_downloads": false,
+  "disk_available_bytes": {
+    "/workspaces": 12521115648,
+    "/tmp": 883163172864
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6494,
+      "sha256": "daee2542a5d67246d202288654b411759400648b5ac60d45dd56308a30238025"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11340,
+      "sha256": "9ca36914e28c7be5ba427a67ddccbe60bd5c0129b5f23a28ed4bb7eadb9edbf9"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 421,
+      "sha256": "ef7de5597c4fd2422af988d52d3c9ec5b1fc676e8c28934704319786e6943e29"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 496591,
+      "sha256": "3d48dc8fd257126e4ec3cb51b9529e90709bc6491e19f764cd3db58b68630808"
+    },
+    {
+      "path": "shared/qd_loop.py",
+      "bytes": 11658,
+      "sha256": "a6d232117cc81abaac6e2e795e8231bdab506c8881da1fac491f3a858ec0684a"
+    },
+    {
+      "path": "shared/bandit.py",
+      "bytes": 4770,
+      "sha256": "b31111a5a1140ad7e2b974caa01c35fe5e45e6a5ada8dad74bb60563efd2d5cd"
+    },
+    {
+      "path": "shared/archive_records.py",
+      "bytes": 8776,
+      "sha256": "8979ff5e2c396e0c55ccf7cd59fe95e5059a674fa463e60f5314533cfcc95e8f"
+    },
+    {
+      "path": "shared/archive_format.py",
+      "bytes": 5852,
+      "sha256": "a215b559667c9c63b8e7b2b33ddd0af689d4a1aac086a5f41626cd6aabeb83f7"
+    },
+    {
+      "path": "shared/batch_dedup.py",
+      "bytes": 1980,
+      "sha256": "d6ce79ab7eb7cc44dd1f3498c686e4615d2d3742f6ecd9d783b8311cf0d9e5ed"
+    },
+    {
+      "path": "shared/embeddings.py",
+      "bytes": 2501,
+      "sha256": "9d8d3ba28c3ec984f79a6bd42dbe2ba66bcf338ccf614fc057791f76d691b847"
+    },
+    {
+      "path": "shared/evaluation_budget.py",
+      "bytes": 958,
+      "sha256": "def6ba0efa8b30d9dfb3a96948aff8d33d56ec7540ab66b2cd644e715017bd17"
+    },
+    {
+      "path": "shared/llm.py",
+      "bytes": 9666,
+      "sha256": "ee02b16fe2dda5cf50880d7ab40566d9c3e736aeff1c2cc835de5c4e5f0e5f39"
+    },
+    {
+      "path": "shared/lineage.py",
+      "bytes": 2725,
+      "sha256": "1c3742c55a57498ea4f91f12555bfdc1f1eff3c4480feb84646892460f52f4b0"
+    },
+    {
+      "path": "shared/view_archive.py",
+      "bytes": 7639,
+      "sha256": "a0d4eb14099e9408638bfb9404845ccfdc6a762d2474d7a7e128671edfac128e"
+    },
+    {
+      "path": "apps/papers/config.py",
+      "bytes": 1755,
+      "sha256": "c0c24a754db8c93ad0690c3e0e997ebd0da0087b0291dc303d4de08e7ca1d3a2"
+    },
+    {
+      "path": "apps/papers/items.py",
+      "bytes": 1827,
+      "sha256": "75946209a409d6302034592aa38bd005c4b33605ffbe40b61acf4111c19ee7eb"
+    },
+    {
+      "path": "apps/papers/proposer.py",
+      "bytes": 4005,
+      "sha256": "d684fb86450ca7f043195cb929c423c9a8674829ea9ea315f4538fb9f8096dba"
+    },
+    {
+      "path": "apps/papers/evaluation.py",
+      "bytes": 5208,
+      "sha256": "09ee95121d7fd9e93074901c96f418d7b5447c598a4fa75eaba11e467785fd73"
+    },
+    {
+      "path": "apps/papers/qd_rec.py",
+      "bytes": 3662,
+      "sha256": "56cd43c6f25bfda360409e4b5ff39f8bd4a9c6af27c0e88e808f9b6273ad589a"
+    },
+    {
+      "path": "apps/papers/prompts.py",
+      "bytes": 7072,
+      "sha256": "0bee3b75ad9ca2a4703f83362634f2115a754a227328d73053558b4583699f7d"
+    },
+    {
+      "path": "apps/papers/seed.py",
+      "bytes": 5752,
+      "sha256": "50080a6b5b2ea8e12fd6201233143cfbec78f407cbc812443ad8f4372b488179"
+    },
+    {
+      "path": "apps/papers/create_embeddings.py",
+      "bytes": 3816,
+      "sha256": "445be1d40368dd6fe7ce7a6e167b2389b57e11389fc6913bc988356fa75c0bb5"
+    },
+    {
+      "path": "apps/papers/download_corpus.py",
+      "bytes": 4756,
+      "sha256": "ba71e9a56446726402931c4e1a876b1781660376d74ba271fbe24162eb89887f"
+    },
+    {
+      "path": "apps/books/items.py",
+      "bytes": 2464,
+      "sha256": "bf622385db048ff7103f23ecf0853c176fe2e947262b903a6b6c3ad289495816"
+    },
+    {
+      "path": "apps/books/qd_rec.py",
+      "bytes": 2956,
+      "sha256": "c96c6c2da7ad7c54a7141985737aa6aff8efa03704205a331bfd8b8b05819bd0"
+    },
+    {
+      "path": "apps/books/evaluation.py",
+      "bytes": 3235,
+      "sha256": "854bcd3c08394e02cb92b584ad3ca4d958d48275dd1e4d4326e1fdf491356c17"
+    },
+    {
+      "path": "apps/books/download.sh",
+      "bytes": 1358,
+      "sha256": "abb9127f6d3345e1dabc308ad1173f35015018b926afd0c91d9331bc57847010"
+    },
+    {
+      "path": "apps/customers/config.py",
+      "bytes": 2321,
+      "sha256": "b639194561a0d8c2b0d435f07376f2f3a62b13c444017f1c05ee33b6a9b42acd"
+    },
+    {
+      "path": "apps/customers/items.py",
+      "bytes": 3581,
+      "sha256": "b677debf80edc2ba9269d3413580c7838034084f4792bd498729700302846252"
+    },
+    {
+      "path": "apps/customers/download_personas.py",
+      "bytes": 3745,
+      "sha256": "5c26bd0c9a3be36b75c4b4391d4d7257ef8db2fa38771e1507548b49a40caacd"
+    },
+    {
+      "path": "apps/companies/items.py",
+      "bytes": 3818,
+      "sha256": "4189a6009e0c2db3041f81ee78e7fbc9679e1043415c5f7a1faf35bdece2b87d"
+    }
+  ],
+  "note": "Hashes identify source bytes, not execution or proof of behavioral claims. .env files were not read."
+}

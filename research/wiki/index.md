@@ -17,6 +17,7 @@
 - [NVIDIA/auto-ontology](products/auto-ontology.md): DB 카탈로그 기반 compile과 text-to-SQL, knockout, 문서 입력 (42행)
 - [HelixDB/helix-foundry와 ontology-agent 이미지](products/helix-foundry.md): Go 오케스트레이션과 이미지 바이너리, 판정 주입 실험 (17행)
 - [arXiv 2610.41172와 RAGFlow](products/paper-ragflow.md): 논문 진술, RAGFlow 코드 대조 (16행)
+- [SakanaAI/QD-Rec](products/qd-rec.md): 품질·다양성 추천 코드, 논문 수치, 온톨로지·실험 agent 적용 추론과 한계 (27행; 제품 미실행)
 
 ## 개념
 
@@ -45,6 +46,7 @@
 - [소스: evidence/real-model](sources/evidence-real-model.md)
 - [소스: evidence/skeleton](sources/evidence-skeleton.md)
 - [소스: 업스트림 클론과 논문 텍스트](sources/upstream-and-paper.md)
+- [소스: QD-Rec 코드와 관련 논문](sources/qd-rec.md): 고정 커밋, 파일·논문 해시, arXiv 2610.40589 비교 근거
 
 ## 새 접근 구축
 
@@ -54,3 +56,8 @@
 
 - [프로토타입 실측 결과](concepts/prototype-results.md): 동결 점수·열 이름 가정 오류·실패·안정성
 - [소스: evidence/prototype](sources/evidence-prototype.md): 공개 측정 metadata 크기·해시 원장
+
+- [QD 적응 초안](concepts/qd-rec-adaptation.md): QDA-01~05, 제한 scheduler·provisional archive·Stub 기계 검증과 미래 반증 규칙
+- [소스: QD 적응](sources/qd-rec-adaptation.md): 실행 전 lock·절차 입력 digest·코드/결과 해시
+
+QD 적응 검토 후 정의: [적응 초안](concepts/qd-rec-adaptation.md), [검토·계산·addendum 원장](sources/qd-rec-adaptation.md). 실모델 미검증.

@@ -101,6 +101,30 @@ results.md가 관련된 새 항목: [C-17](contradictions.md#C-17) 잠금 문장
 
 실행 원본 ontology.json을 대조해 ProductUsage의 관측 복합 키 후보 `(account_id, month)`를 [결과](concepts/prototype-results.md)에 정정했다. 선언 키 부재와 후보 키 부재는 다르다. SCHEMA의 대기 문구를 결과 링크로 갱신했으며 코드·동결 규약·수치는 유지했다.
 
+## [2026-11-06] ingest | QD-Rec 코드·논문과 실험 agent 관계
+
+관리자 지시에 따라 [QD-Rec](products/qd-rec.md) 27개 홈 행과 [소스 원장](sources/qd-rec.md)을 추가했다. 지정 경로에 depth 1·부분 클론을 받아 커밋 `3a04ed170583e14ca08e689e8bff8fddf267dc8e`를 고정했다. shared 루프·bandit·archive와 도메인 코드를 읽고, arXiv 2610.23470v2의 선택 수치와 2610.40589v1의 역할·판정 구조를 대조했다. 기본 모델과 논문 조건 차이는 [C-27](contradictions.md#C-27)에 기록했다. 수집 metadata는 `E:qd-rec/`에 두었다. PDF 추출 도구 부재 후 HTML로 읽었다. 제품 실행·데이터/모델 다운로드·의존성 설치는 하지 않았으며 적용 가능성은 추론으로 표시했다. 기존 연구 원문·SCHEMA·스킬·research/는 수정하지 않았고 commit/push·컨테이너 생성도 하지 않았다.
+
+## [2026-11-06] lint | QD-Rec 인용·해시·독립 검수
+
+변경 페이지의 로컬 링크·앵커 206개, 코드 해시 31개, 논문/파생 파일 해시 5개, QD 홈 행 27개의 열·고유 ID와 로그 append-only를 검사해 통과했다. 독립 Codex 평가에서 문서 검수는 4/5였고, 남은 1개는 검수 읽기 범위가 Git ref/shallow 파일을 제외한 탓이었다. 별도 fresh 평가에서 실제 HEAD·shallow=true·깨끗한 upstream 상태와 31개 해시를 확인해 해당 공백을 해소했다(보충 검사 1/1). 첫 평가의 tomllib 부재는 표준 텍스트 검사로 우회 재검증했다. 두 평가는 저장소 밖 ephemeral 문맥에서 수행했으며 임시 runner는 기존 독립 실행·보고 검증 로직을 유지하고 빈 임시 디렉터리 정리만 rmdir로 바꿨다. 검사 보고서는 수집 스크래치패드의 `qd-rec-review/`에 있다. 이는 문서 검수이며 QD-Rec 실행·성능 재현이 아니다.
+
+## [2026-11-06] ingest | QD 적응 A1/A2/A3 초안
+
+[QDA 초안](concepts/qd-rec-adaptation.md)과 [소스 원장](sources/qd-rec-adaptation.md)을 추가했다. protocol SHA256 `ace4e402d240df3b18b58f69cf66b074a33e4af86d88fa12fbc3a003246db06f`를 실행 전에 lock했다. run-001은 scripted synthetic Stub 11검사 통과, callback39·실모델0이다. 독립 proposal/challenge는 관리자 요약임을 표시하고 입력 digest·접근 문맥을 procedure.json에 기록했다. fresh Modify는 독립 평가를 수행하지 않았다. 실제 tokenizer·총 token/서버 시간 driver·독립 heldout gold·품질 비교는 미실행이다. 초기 python 명령 부재는 python3로 재시도했으며 테스트 실패 run은 없었다. B 빌드·commit/push 없음. 기존 raw/onto.py/skills는 유지하고 WIP를 보존한다.
+
+## [2026-11-06] ingest | QDA manuscript 수정
+
+독립 계산 보고의 11+32 case/268 assertions, must-fix0을 보존했다. fresh manuscript 검토 5건을 미래 addendum으로 반영하고 현재 시각·해시를 잠갔다. 과거 raw와 mechanical verdict는 보존했다. 실제 모델 미검증, corpus/gold/driver 부재, 부모 최종 Evaluate 대기.
+
+## [2026-11-06] lint | QDA 공개본 검증
+
+지정 빌더 221파일 생성 후 check_wiki 통과: 링크1644/broken0, canonical16 해시170/mismatch0. 별도 linked64 메타 해시2, code/protocol/lock5 및 원 procedure/results/run 불변 대조 통과. 전체 Unicode40/byte40 sliding private-prompt 검사(73311/73579 source offsets), secret/IP/session scan은 hits0. 원 전문·upstream 복사본은 strict allowlist로 제외했다. 최초 검사는 외부 README URL을 local로 오인해 실패했고 공개 빌더 URL query 수정 후 통과했다. 이 기록 추가 후 최종 재빌드·재검사를 수행한다. 부모 최종 독립 Evaluate·commit/push는 아직 수행하지 않았다.
+
+## [2026-11-06] lint | 외부 Markdown URL 검사 오류 수정
+
+최초 공개 lint는 GitHub README.md의 HTTP URL을 로컬 경로로 오인해 1건 실패했다. 지정 check_wiki.py에서 URL scheme을 구분하도록 수정했고 원래 URL을 유지했다. 별도 작은 fixture에서 외부 URL 제외와 실제 누락 로컬 파일 검출을 모두 확인했다. 재빌드 결과 로컬 링크 1,644건·깨짐 0, 16자리 해시 170건·불일치 0. 공개 221파일에서 private sys.txt의 모든 40자 슬라이딩 위치(문자 73,311/바이트 73,579)와 비밀값·내부 IP·세션 경로를 검사해 검출 0건이었다. 이는 해당 검사 범위의 결과다.
+
 ## [2026-11-06] lint | 저장소 수록본 정제
 
 [SCHEMA](SCHEMA.md)의 "저장소에 없는 Raw" 기준으로 파일을 제외하고 식별자를 치환했다. 그래서 `sources/`의 해시 값이 수집 당시와 달라졌다.

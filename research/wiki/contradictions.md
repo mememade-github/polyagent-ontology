@@ -206,6 +206,14 @@ lint에서 찾은 항목이다. 양쪽을 원문 위치와 함께 남기고, 어
 - 새 실행: `Extract`도 OpenAI 호환에서 21,727토큰을 전송했다([LC-31](knowledge-lifecycle.md#LC-31)). Ollama는 호출 전에 거부한다([LC-30](knowledge-lifecycle.md#LC-30)). `Ask`의 Ollama 8192는 호출 0회로 끝난다([LC-03](knowledge-lifecycle.md#LC-03)). 프로바이더와 경로마다 다르다.
 - 첫 실모델 실행은 실험에서 CPU 제한을 건 상태에서 280초 `model_timeout`이었고, 제한을 푼 뒤 같은 문서가 204초에 끝났다(기록만, 원인 단정 없음).
 
+## <a id="C-27"></a>C-27 QD-Rec 기본 모델과 논문 보고 조건
+
+- 종류: 실행 기본값과 논문 실험 조건 차이. 코드 오류나 논문 수치 반박으로 단정하지 않는다.
+- 코드·문서: QD:apps/papers/config.py:27-32와 QD:README.md:24-38,140은 proposer/judge 기본값을 `openai/gpt-6-luna`로 둔다.
+- 논문: arXiv 2610.23470v2 §5.1(QDP:182)은 Sonnet 5/Haiku 4.5 proposer와 `gpt-5.6-terra` judge를 보고한다(도서 품질은 인간 평점).
+- 처리·갱신: 두 조건을 모두 보존한다. 기본 명령 실행을 논문 결과 재현으로 간주하지 않는다. 이 세션은 어느 조건도 실행하지 않았다.
+- 영향 페이지: [QD-14](products/qd-rec.md#QD-14), [QD-18](products/qd-rec.md#QD-18), [소스 원장](sources/qd-rec.md).
+
 ---
 [index](index.md) · [coverage](coverage.md)
 - 갱신(results.md 수집): I:62의 "정규화 후 비교"가 다루지 못한 퍼지 경로가 추가됐다(R:23-24, [QV-22](concepts/quote-validation.md#QV-22)). F:194의 "불일치 시 거부"는 정확히는 임계값 미만 거부로 읽히나, 임계값 값의 raw는 없다

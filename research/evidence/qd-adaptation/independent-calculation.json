@@ -1,0 +1,489 @@
+{
+  "artifact_id": "qda-independent-calculation-20261106",
+  "version": 1,
+  "access_scope": {
+    "task_evidence": [
+      "prototype/qd/controller.py",
+      "prototype/qd/demo.py",
+      "prototype/onto.py",
+      "evidence/qd-adaptation/protocol.md",
+      "evidence/qd-adaptation/lock.json"
+    ],
+    "governance": [
+      "AGENTS.md supplied by user",
+      ".agents/rules/behavioral-core.md",
+      ".agents/rules/devcontainer-patterns.md",
+      "PROJECT.md",
+      ".agents/skills/karpathy-guidelines/SKILL.md",
+      ".agents/skills/status/SKILL.md"
+    ],
+    "status": "git status/worktree/upstream and marker ages only; no WIP narratives or other reviewer outputs"
+  },
+  "hashes": {
+    "prototype/qd/controller.py": "a46aefba779744bf205f32c2ac434eec9934135b9dc1de2b38e9fa7007a3ebf6",
+    "prototype/qd/demo.py": "eb6a3a431357353274f67424a099e96f493d25a6900aae667410ff91ab545971",
+    "prototype/onto.py": "400e86746580509e8d79ac038769f2d990a29c7938f6e98267925e5178c7a575",
+    "evidence/qd-adaptation/protocol.md": "ace4e402d240df3b18b58f69cf66b074a33e4af86d88fa12fbc3a003246db06f",
+    "evidence/qd-adaptation/lock.json": "af3daa4a1dda19e11b079e2ac914ffd5d0258de12e34cf0268e4b6c521e59dc0"
+  },
+  "unverified": [
+    "real model behavior",
+    "semantic precision/recall/coverage",
+    "actual tokenizer accounting",
+    "real CPU/server wall time limits",
+    "scientific quality hypothesis"
+  ],
+  "issues": [],
+  "verdict": "PASS mechanical fixed-rule stub checks",
+  "demo": {
+    "artifact": "demo-independent-v1.json",
+    "passed": true,
+    "checks": {
+      "positive_duplicate": true,
+      "same_cell": true,
+      "invalid_and_false": true,
+      "oversized": true,
+      "exception": true,
+      "verify_exhausted": true,
+      "deferred_random": true,
+      "deferred_coverage": true,
+      "controls": true,
+      "overlap": true,
+      "all_reject": true
+    },
+    "actual_calls": 39
+  },
+  "independent_adversarial": {
+    "script": "adversarial-v1.py",
+    "artifact": "adversarial-results-v1.json",
+    "passed": true,
+    "cases": 32,
+    "assertions": 268,
+    "actual_calls": 68,
+    "results": {
+      "positive_full_gates": {
+        "calls": 2,
+        "active": 1,
+        "pending": 1,
+        "outcomes": [
+          "active_provisional"
+        ],
+        "reasons": [
+          null
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "extraction_exception": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "RuntimeError"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "verification_exception": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "TimeoutError"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "verification_cap_exhaustion": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "call_cap"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "zero_cap": {
+        "calls": 0,
+        "active": 0,
+        "pending": 2,
+        "outcomes": [],
+        "reasons": [],
+        "max_bound_plus_reserved": null
+      },
+      "verifier_string": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "schema type mismatch"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "verifier_integer": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "schema type mismatch"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "verifier_missing": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "missing required property"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "verifier_extra": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "unexpected property"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "verifier_list": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "schema type mismatch"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "verifier_null": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "schema type mismatch"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "schema_missing_items": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "missing required property"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "schema_items_null": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "schema type mismatch"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "schema_missing_field": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "missing required property"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "schema_extra_field": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "unexpected property"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "schema_nonstring": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "schema type mismatch"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "schema_too_many": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "too many items"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "span_absent": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "span_grounding"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "span_empty": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "span_grounding"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "false_verifier": {
+        "calls": 2,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "false_verifier"
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "fixed_fact_success": {
+        "calls": 2,
+        "active": 1,
+        "pending": 1,
+        "outcomes": [
+          "active_provisional"
+        ],
+        "reasons": [
+          null
+        ],
+        "max_bound_plus_reserved": 2039
+      },
+      "fixed_fact_mismatch": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "rejected"
+        ],
+        "reasons": [
+          "fixed_fact_mismatch"
+        ],
+        "max_bound_plus_reserved": 2039
+      },
+      "duplicate_ignores_concept": {
+        "calls": 4,
+        "active": 1,
+        "pending": 0,
+        "outcomes": [
+          "active_provisional",
+          "duplicate"
+        ],
+        "reasons": [
+          null,
+          null
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "distinct_same_cell": {
+        "calls": 4,
+        "active": 2,
+        "pending": 0,
+        "outcomes": [
+          "active_provisional",
+          "active_provisional"
+        ],
+        "reasons": [
+          null,
+          null
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "context_coverage": {
+        "calls": 0,
+        "active": 0,
+        "pending": 0,
+        "outcomes": [
+          "deferred_context",
+          "deferred_context"
+        ],
+        "reasons": [
+          null,
+          null
+        ],
+        "max_bound_plus_reserved": null
+      },
+      "context_random": {
+        "calls": 0,
+        "active": 0,
+        "pending": 0,
+        "outcomes": [
+          "deferred_context",
+          "deferred_context"
+        ],
+        "reasons": [
+          null,
+          null
+        ],
+        "max_bound_plus_reserved": null
+      },
+      "extract_bound_3799": {
+        "calls": 1,
+        "active": 0,
+        "pending": 1,
+        "outcomes": [
+          "empty"
+        ],
+        "reasons": [
+          null
+        ],
+        "max_bound_plus_reserved": 3799
+      },
+      "extract_bound_3800": {
+        "calls": 0,
+        "active": 0,
+        "pending": 0,
+        "outcomes": [
+          "rejected",
+          "rejected"
+        ],
+        "reasons": [
+          "oversized",
+          "oversized"
+        ],
+        "max_bound_plus_reserved": null
+      },
+      "verify_bound_3799": {
+        "calls": 2,
+        "active": 1,
+        "pending": 1,
+        "outcomes": [
+          "active_provisional"
+        ],
+        "reasons": [
+          null
+        ],
+        "max_bound_plus_reserved": 3799
+      },
+      "verify_bound_3800": {
+        "calls": 2,
+        "active": 0,
+        "pending": 0,
+        "outcomes": [
+          "rejected",
+          "empty"
+        ],
+        "reasons": [
+          "oversized",
+          null
+        ],
+        "max_bound_plus_reserved": 3319
+      },
+      "pool_random": {
+        "calls": 12,
+        "active": 1,
+        "pending": 0,
+        "outcomes": [
+          "active_provisional",
+          "duplicate",
+          "duplicate",
+          "duplicate",
+          "duplicate",
+          "duplicate"
+        ],
+        "reasons": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "max_bound_plus_reserved": 2018
+      },
+      "pool_coverage": {
+        "calls": 12,
+        "active": 1,
+        "pending": 0,
+        "outcomes": [
+          "active_provisional",
+          "duplicate",
+          "duplicate",
+          "duplicate",
+          "duplicate",
+          "duplicate"
+        ],
+        "reasons": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "max_bound_plus_reserved": 2018
+      }
+    }
+  },
+  "total_actual_calls": 107,
+  "real_model_calls": 0,
+  "original_files_unchanged": {
+    "prototype/qd/controller.py": true,
+    "prototype/qd/demo.py": true,
+    "prototype/onto.py": true,
+    "evidence/qd-adaptation/protocol.md": true,
+    "evidence/qd-adaptation/lock.json": true
+  },
+  "must_fix_count": 0,
+  "scope_note": "Only frozen mechanical hypothesis was tested. No inference about semantic quality, ontology improvement, or real model trials. No repository edits, API/model/container/install operations. Independent calculation role, not the separately required isolated final evaluator."
+}

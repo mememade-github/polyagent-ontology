@@ -1,0 +1,62 @@
+{
+  "recorded_at": "2026-11-06T22:39:11.481779+00:00",
+  "kind": "procedural summaries, not verbatim skill/paper or independent re-execution",
+  "inputs": {
+    "contract.json": "66e23cc328cfeb8e64c9c9a8b5539546d5d8c274628f495fff56ca3d38a48e14",
+    "audit-result.txt": "e31621690dd7e49cf0c7ee7c2a269a71b783adb6451d432c4afcc20da8aeb88f",
+    "proposal-inputs.md": "f1a8320e4953114ecb4ce94d06d25bab676a7c65fcb1353412d814569e8064ec",
+    "challenge.md": "40e025b753b61beee8c5c4964aa0af135bfa008b17b88bb9777dc2a4a10c37fe"
+  },
+  "proposal_context": "Manager digest reports two fresh read-only proposers: QD product, onto.py, shared/qd_loop.py only; no competing proposal or parent conversation. P1 bounded archive selected mechanically; P2 fixed Fact retained as competing explanation. This modifier did not observe their original sessions.",
+  "challenge_context": "Manager digest reports fresh challenger received candidate specification/device limits only, no PI conversation/files/execution; MODIFY judgment and four fixes incorporated.",
+  "modify_context": "Fresh Modify role received contract/audit/proposal/challenge and specified source files; no recursive refine. First python command unavailable, retried python3 before protocol authoring; no prototype executed before lock.",
+  "review_context": "Independent final evaluation and later manuscript-only reviewer pending; not claimed complete.",
+  "omitted": [
+    "real model",
+    "independent semantic heldout labels",
+    "numerical prediction",
+    "real token/time driver",
+    "HPC",
+    "physical safety experiments",
+    "public build B",
+    "commit/push"
+  ],
+  "management_gates": [
+    "disk >=2GB",
+    "zero external/model/download/install/container",
+    "immutable new evidence",
+    "WIP retained",
+    "A only"
+  ],
+  "upstream_head": "3a04ed170583e14ca08e689e8bff8fddf267dc8e",
+  "upstream_files": {
+    "shared/qd_loop.py": {
+      "bytes": 11658,
+      "sha256": "a6d232117cc81abaac6e2e795e8231bdab506c8881da1fac491f3a858ec0684a"
+    },
+    "shared/bandit.py": {
+      "bytes": 4770,
+      "sha256": "b31111a5a1140ad7e2b974caa01c35fe5e45e6a5ada8dad74bb60563efd2d5cd"
+    },
+    "shared/archive_records.py": {
+      "bytes": 8776,
+      "sha256": "8979ff5e2c396e0c55ccf7cd59fe95e5059a674fa463e60f5314533cfcc95e8f"
+    },
+    "apps/papers/qd_rec.py": {
+      "bytes": 3662,
+      "sha256": "56cd43c6f25bfda360409e4b5ff39f8bd4a9c6af27c0e88e808f9b6273ad589a"
+    },
+    "apps/papers/proposer.py": {
+      "bytes": 4005,
+      "sha256": "d684fb86450ca7f043195cb929c423c9a8674829ea9ea315f4538fb9f8096dba"
+    },
+    "shared/embeddings.py": {
+      "bytes": 2501,
+      "sha256": "9d8d3ba28c3ec984f79a6bd42dbe2ba66bcf338ccf614fc057791f76d691b847"
+    },
+    "shared/llm.py": {
+      "bytes": 9666,
+      "sha256": "ee02b16fe2dda5cf50880d7ab40566d9c3e736aeff1c2cc835de5c4e5f0e5f39"
+    }
+  }
+}
