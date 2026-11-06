@@ -1,0 +1,16 @@
+{"event":"turn_started","contract_version":"4.7.0","model":{"provider":"openai_compatible","name":"qwen3b-c64"}}
+{"event":"usage","usage":{"input":264,"cache_read":28901,"cache_write":0,"output":16,"usd":0.0}}
+{"event":"tool_call","name":"get_draft","args_summary":"every item"}
+{"event":"tool_result","name":"get_draft","ok":true,"summary":"{\"items\":[],\"rev\":0,\"unknown\":[]}"}
+{"event":"usage","usage":{"input":294,"cache_read":58081,"cache_write":0,"output":119,"usd":0.0}}
+{"event":"tool_call","name":"describe","args_summary":"accounts file"}
+{"event":"tool_result","name":"describe","ok":true,"summary":"e1: accounts file: 3 rows, 4 fields"}
+{"event":"usage","usage":{"input":540,"cache_read":87369,"cache_write":0,"output":1164,"usd":0.0}}
+{"event":"usage","usage":{"input":600,"cache_read":117947,"cache_write":0,"output":1276,"usd":0.0}}
+{"event":"tool_call","name":"check_draft","args_summary":"the findings"}
+{"event":"tool_result","name":"check_draft","ok":true,"summary":"<data-b3374fa1613e3cb08f89c989e58a6195>"}
+{"event":"usage","usage":{"input":700,"cache_read":148681,"cache_write":0,"output":1635,"usd":0.0}}
+{"event":"usage","usage":{"input":760,"cache_read":179873,"cache_write":0,"output":1953,"usd":0.0}}
+{"event":"warning","text":"the model stopped 3 times without finish or ask_user; the turn ends with the draft as it stands"}
+{"event":"turn_finished","status":"done"}
+{"rules":{"count":0,"evaluated":0},"status":"done","state":{"brief":{"workflow":"Track promises made to customers","goals":["What was promised to each customer?","When is each promise due?"]},"draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]},"decisions":{},"log":[],"evidence":{"e1":{"tool":"describe","summary":"accounts file: 3 rows, 4 fields","rev":0}},"feedback":[]},"draft":{"ontology_toml":"version = \"draft\"\n","mappings_toml":"version = \"draft\"\nontology = \"draft\"\n","draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]}},"bundle":null,"summary":null,"usage":{"input":760,"cache_read":179873,"cache_write":0,"output":1953,"usd":0.0}}

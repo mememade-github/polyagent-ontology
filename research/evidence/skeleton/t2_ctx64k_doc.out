@@ -1,0 +1,16 @@
+{"event":"turn_started","contract_version":"4.7.0","model":{"provider":"openai_compatible","name":"qwen3b-c64"}}
+{"event":"usage","usage":{"input":29131,"cache_read":0,"cache_write":0,"output":16,"usd":0.0}}
+{"event":"tool_call","name":"get_draft","args_summary":"every item"}
+{"event":"tool_result","name":"get_draft","ok":true,"summary":"{\"items\":[],\"rev\":0,\"unknown\":[]}"}
+{"event":"usage","usage":{"input":29161,"cache_read":29146,"cache_write":0,"output":322,"usd":0.0}}
+{"event":"tool_call","name":"put_items","args_summary":"type.PromisedTo, type.PromisedToDate"}
+{"event":"tool_result","name":"put_items","ok":false,"summary":"error: rejected, the draft unchanged"}
+{"event":"usage","usage":{"input":29670,"cache_read":58336,"cache_write":0,"output":802,"usd":0.0}}
+{"event":"tool_call","name":"put_items","args_summary":"type.PromisedTo, type.PromisedToDate"}
+{"event":"tool_result","name":"put_items","ok":false,"summary":"INVALID_JSON: invalid input for put_items: unknown field `requires`, expected one of `id`, `toml`, `rationale`, `serves`, `evidence_ids`, `basis`"}
+{"event":"usage","usage":{"input":29991,"cache_read":88273,"cache_write":0,"output":1035,"usd":0.0}}
+{"event":"usage","usage":{"input":30051,"cache_read":118763,"cache_write":0,"output":1279,"usd":0.0}}
+{"event":"usage","usage":{"input":30111,"cache_read":149554,"cache_write":0,"output":1524,"usd":0.0}}
+{"event":"warning","text":"the model stopped 3 times without finish or ask_user; the turn ends with the draft as it stands"}
+{"event":"turn_finished","status":"done"}
+{"rules":{"count":0,"evaluated":0},"status":"done","state":{"brief":{"workflow":"Track promises made to customers","goals":["What was promised to each customer?","When is each promise due?"]},"draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]},"decisions":{},"log":[],"evidence":{},"feedback":[]},"draft":{"ontology_toml":"version = \"draft\"\n","mappings_toml":"version = \"draft\"\nontology = \"draft\"\n","draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]}},"bundle":null,"summary":null,"usage":{"input":30111,"cache_read":149554,"cache_write":0,"output":1524,"usd":0.0}}

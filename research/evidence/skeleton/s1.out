@@ -1,0 +1,6 @@
+{"event":"turn_started","contract_version":"4.7.0","model":{"provider":"ollama","name":"qwen3b-t14"}}
+{"event":"warning","text":"`qwen3b-t14` reported no usage: its output is charged as its whole budget"}
+{"event":"usage","usage":{"input":0,"cache_read":0,"cache_write":0,"output":0,"usd":0.0}}
+{"event":"warning","text":"the conversation filled the context window; `continue` resumes in a fresh one"}
+{"event":"turn_finished","status":"budget_exhausted"}
+{"rules":{"count":0,"evaluated":0},"status":"budget_exhausted","state":{"brief":{"workflow":"Track promises made to customers","goals":["What was promised to each customer?","When is each promise due?"]},"draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]},"decisions":{},"log":[],"evidence":{},"feedback":[]},"draft":{"ontology_toml":"version = \"draft\"\n","mappings_toml":"version = \"draft\"\nontology = \"draft\"\n","draft":{"rev":0,"base_version":null,"items":{},"left_out":[],"questions":[],"acknowledged":[],"lint":[]}},"bundle":null,"summary":null,"usage":{"input":0,"cache_read":0,"cache_write":0,"output":0,"usd":0.0}}

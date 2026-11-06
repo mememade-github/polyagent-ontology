@@ -85,6 +85,22 @@ results.md가 관련된 새 항목: [C-17](contradictions.md#C-17) 잠금 문장
 
 독립 검수 지적을 반영해 LC-02, 03, 07, 12, 21, 22, 24, 25, 29, 31, 32, 33, 41, 44, 45와 C-26을 고쳤다. 이전 보고의 "정답 1건"과 속도 9–13 t/s 단정은 근거와 맞지 않아 정정했다. 해시 행 없는 raw에 행을 추가하고, 토큰 수치를 E:helix/grpc/token_summary.json으로 보존했다.
 
+## [2026-11-06] ingest | 논리 구조화와 실모델 뼈대 생성
+
+관리자 판단에 따라 [논리 구조화](concepts/logical-structuring.md)와 [evidence/skeleton](sources/evidence-skeleton.md)을 추가했다. Helix 초안은 네 조건 모두 항목 0이었다. Auto-Ontology는 테이블 DB에서 Term을 만들었고 문서 테이블에서는 `Documents`만 만들었다. 이전 문제 정의는 철회했고 새 문제 정의는 기록하지 않았다.
+
+## [2026-11-06] ingest | 새 접근 범위·논문·동결 규약
+
+사용자가 새 설계·구현·실측을 승인해 이전 as-is 범위 제외를 대체했다. 역사 표는 보존했다. [논문](sources/papers-20261106.md) 13건은 조정자의 선택 독해 메모를 근거로 정리했고 다운로드 파일의 전체 SHA256을 대조했다. 전문 독해·재현은 주장하지 않는다. [설계](concepts/paper-informed-design.md)는 출처·한계를 연결한 새 통합 선택이며 효과와 신규성은 미입증이다. 동결 규약을 바이트 그대로 보존했다. 결과는 대기 중이다. WIP는 권위 원본으로 유지한다. 공개 빌더의 추가 누출 제외·코드/측정 허용 범위를 갱신했으며 재빌드는 아직 실행하지 않았다.
+
+## [2026-11-06] ingest | 동결 프로토타입 실측·공개 metadata
+
+[실측 결과](concepts/prototype-results.md)와 [소스 해시 원장](sources/evidence-prototype.md)을 추가했다. 준비 신호 이후 measurements/evaluation/stability/hashes 네 payload를 그대로 수집했다. [설계](concepts/paper-informed-design.md)의 pending 상태와 gold 공개 범위 오류를 정정했다. STRICT 사전 열 이름 가정 오류를 공개하고 주 점수·프로토콜을 보존했다. Acme 문서 의미 유도 부진, gold 두 실패, 이전 length실패·튜닝 이력도 포함했다. 새 추론·공개 재빌드·독립 검수·commit/push는 이 문서 역할에서 하지 않았다.
+
+## [2026-11-06] lint | 관측 키와 결과 상태 기술 정정
+
+실행 원본 ontology.json을 대조해 ProductUsage의 관측 복합 키 후보 `(account_id, month)`를 [결과](concepts/prototype-results.md)에 정정했다. 선언 키 부재와 후보 키 부재는 다르다. SCHEMA의 대기 문구를 결과 링크로 갱신했으며 코드·동결 규약·수치는 유지했다.
+
 ## [2026-11-06] lint | 저장소 수록본 정제
 
 [SCHEMA](SCHEMA.md)의 "저장소에 없는 Raw" 기준으로 파일을 제외하고 식별자를 치환했다. 그래서 `sources/`의 해시 값이 수집 당시와 달라졌다.

@@ -1,0 +1,29 @@
+{
+  "types": {
+    "left": 10,
+    "right": 10,
+    "intersection": 10,
+    "union": 10,
+    "jaccard": 1.0
+  },
+  "links": {
+    "left": 13,
+    "right": 13,
+    "intersection": 13,
+    "union": 13,
+    "jaccard": 1.0
+  },
+  "facts": {
+    "left": 3,
+    "right": 3,
+    "intersection": 3,
+    "union": 3,
+    "jaccard": 1.0
+  },
+  "full_ontology_equal": true,
+  "full_facts_equal": true,
+  "gold_facts_equal": true,
+  "gold_ontologies_equal": true,
+  "application_cache_hits": 0,
+  "note": "Separate fresh output directories, actual HTTP calls repeated. Server model/KV cache warming permitted; identical failures do not imply correctness."
+}

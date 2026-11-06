@@ -15,7 +15,7 @@ Auto-Ontology 실험 스크립트와 Stub이다. 원시 출력은 없다. `knock
 | `evidence/ao/knockout.py` | 3,647 | `f37236ad9eb84062` |
 | `evidence/ao/run_pipeline.py` | 729 | `0847e74546ed4c67` |
 | `evidence/ao/seed.py` | 1,585 | `13f5327524bc0a7e` |
-| `evidence/ao/stub_llm.py` | 5,113 | `7711eb8d89c14e82` |
+| `evidence/ao/stub_llm.py` | (저장소 미포함) | - |
 
 ## 이 소스를 인용하는 요소
 

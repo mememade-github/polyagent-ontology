@@ -1,6 +1,6 @@
 # Index
 
-세 참조 시스템의 as-is 위키이다. 모든 `[실행/Stub]`은 코드 동작의 증거이고 모델 품질의 증거가 아니다. 규약은 [SCHEMA](SCHEMA.md), 이력은 [log](log.md).
+세 참조 시스템의 as-is와 사용자 승인 이후 새 접근을 구분한 위키이다. 모든 `[실행/Stub]`은 코드 동작의 증거이고 모델 품질의 증거가 아니다. 규약은 [SCHEMA](SCHEMA.md), 이력은 [log](log.md).
 
 ## 시작 지점
 
@@ -20,6 +20,7 @@
 
 ## 개념
 
+- [논리 구조화](concepts/logical-structuring.md): 시스템별 논리 구조와 결정 주체, 실제 모델의 뼈대 생성 (12행)
 - [인용 대조 (quote validation)](concepts/quote-validation.md): Helix 변형 관찰, `locate_quote` 디컴파일 해석(정규화 내용 미입증), RAGFlow 복사 실행 (33행)
 - [엔티티 창 (entity windows)](concepts/entity-windows.md): 옵션별 창 크기와 호출 수 (11행)
 - [근거 위치 (evidence spans)](concepts/evidence-spans.md): 시스템별 근거 위치 (5행)
@@ -42,4 +43,14 @@
 - [소스: evidence/rea (interim.md 제외)](sources/evidence-rea.md)
 - [소스: results.md](sources/results.md)
 - [소스: evidence/real-model](sources/evidence-real-model.md)
+- [소스: evidence/skeleton](sources/evidence-skeleton.md)
 - [소스: 업스트림 클론과 논문 텍스트](sources/upstream-and-paper.md)
+
+## 새 접근 구축
+
+- [논문 근거와 설계 선택](concepts/paper-informed-design.md): PD 홈 행, 선택 근거와 실측 한계
+- [논문 13건 선택 독해·접근 원장](sources/papers-20261106.md): PR 홈 행, 읽은 절·URL·해시·재배포 제한
+- [동결 측정 규약](../evidence/prototype/protocol.md): 두 독립 실행과 의미 평가 기준
+
+- [프로토타입 실측 결과](concepts/prototype-results.md): 동결 점수·열 이름 가정 오류·실패·안정성
+- [소스: evidence/prototype](sources/evidence-prototype.md): 공개 측정 metadata 크기·해시 원장

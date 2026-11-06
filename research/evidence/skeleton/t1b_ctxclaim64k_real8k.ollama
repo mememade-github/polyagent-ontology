@@ -1,0 +1,90 @@
+time=2026-11-06T11:03:14.277Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=29131 keep=4 new=4098
+slot   operator(): id  0 | task 740 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 740 | stop processing: n_tokens = 4344, truncated = 0
+time=2026-11-06T11:04:04.399Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=29175 keep=4 new=4098
+slot   operator(): id  0 | task 988 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 988 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:05:31.859Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=29035 keep=4 new=4098
+slot   operator(): id  0 | task 1008 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1008 | stop processing: n_tokens = 4117, truncated = 0
+time=2026-11-06T11:05:39.446Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=29035 keep=4 new=4098
+slot   operator(): id  0 | task 1029 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1029 | stop processing: n_tokens = 4116, truncated = 0
+time=2026-11-06T11:05:45.593Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=29035 keep=4 new=4098
+slot   operator(): id  0 | task 1049 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1049 | stop processing: n_tokens = 4136, truncated = 0
+time=2026-11-06T11:05:52.331Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=29099 keep=4 new=4098
+slot   operator(): id  0 | task 1089 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1089 | stop processing: n_tokens = 4135, truncated = 0
+time=2026-11-06T11:06:57.574Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1131 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1131 | stop processing: n_tokens = 4132, truncated = 0
+time=2026-11-06T11:07:03.404Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1167 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1167 | stop processing: n_tokens = 4132, truncated = 0
+time=2026-11-06T11:07:08.546Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1203 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1203 | stop processing: n_tokens = 4135, truncated = 0
+time=2026-11-06T11:07:14.271Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1242 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1242 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:18.567Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1259 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1259 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:22.688Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1276 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1276 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:25.570Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1293 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1293 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:29.050Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1310 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1310 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:32.592Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1327 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1327 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:36.609Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1344 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1344 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:40.592Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1361 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1361 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:45.514Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1378 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1378 | stop processing: n_tokens = 4132, truncated = 0
+time=2026-11-06T11:07:52.290Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1414 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1414 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:07:59.073Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1431 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1431 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:03.285Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1448 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1448 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:08.346Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1465 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1465 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:12.510Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1482 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1482 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:17.335Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1499 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1499 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:22.161Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1516 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1516 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:26.648Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1533 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1533 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:30.876Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1550 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1550 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:35.944Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28920 keep=4 new=4098
+slot   operator(): id  0 | task 1567 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1567 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:41.180Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28952 keep=4 new=4098
+slot   operator(): id  0 | task 1584 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1584 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:46.423Z level=WARN source=llama_server.go:334 msg="truncating input prompt" limit=4098 prompt=28987 keep=4 new=4098
+slot   operator(): id  0 | task 1601 | new prompt, n_ctx_slot = 8192, n_keep = 4, task.n_tokens = 4098
+slot      release: id  0 | task 1601 | stop processing: n_tokens = 4113, truncated = 0

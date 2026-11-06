@@ -1,0 +1,20 @@
+slot      release: id  0 | task 1601 | stop processing: n_tokens = 4113, truncated = 0
+time=2026-11-06T11:08:50.439Z level=WARN source=server.go:112 msg="requested context size too large for model" num_ctx=65536 n_ctx_train=32768
+print_info: n_ctx_train           = 32768
+print_info: n_ctx_orig_yarn       = 32768
+llama_context: n_ctx                 = 32768
+llama_context: n_ctx_seq             = 32768
+srv    load_model: initializing, n_slots = 1, n_ctx_slot = 32768, kv_unified = 'false'
+slot   load_model: id  0 | task -1 | new slot, n_ctx = 32768
+slot   operator(): id  0 | task 0 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 29131
+slot      release: id  0 | task 0 | stop processing: n_tokens = 29146, truncated = 0
+slot   operator(): id  0 | task 45 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 29176
+slot      release: id  0 | task 45 | stop processing: n_tokens = 29481, truncated = 0
+slot   operator(): id  0 | task 352 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 29699
+slot      release: id  0 | task 352 | stop processing: n_tokens = 30178, truncated = 0
+slot   operator(): id  0 | task 833 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 30258
+slot      release: id  0 | task 833 | stop processing: n_tokens = 30490, truncated = 0
+slot   operator(): id  0 | task 1067 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 30550
+slot      release: id  0 | task 1067 | stop processing: n_tokens = 30793, truncated = 0
+slot   operator(): id  0 | task 1312 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 30851
+slot      release: id  0 | task 1312 | stop processing: n_tokens = 31095, truncated = 0

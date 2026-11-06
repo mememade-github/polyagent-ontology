@@ -1,0 +1,551 @@
+{
+  "frozen_protocol_sha256": "dbc2b8673b7b5afe247278954479f2cc3182e31672925968611757caa644d1dd",
+  "runs": {
+    "measured-run1": {
+      "type_tp": 8,
+      "predicted_types": 10,
+      "reference_types": 9,
+      "type_precision": 0.8,
+      "type_recall": 0.8888888888888888,
+      "strict_link_tp": 5,
+      "predicted_links": 13,
+      "reference_links": 11,
+      "strict_link_precision": 0.38461538461538464,
+      "strict_link_recall": 0.45454545454545453,
+      "endpoint_tp": 10,
+      "endpoint_predictions": 13,
+      "endpoint_precision": 0.7692307692307693,
+      "endpoint_recall": 0.9090909090909091,
+      "missing_types": [
+        "Commitment"
+      ],
+      "missing_links": [
+        "attended_by",
+        "conversation_with",
+        "discussed",
+        "promised_to",
+        "requested_by",
+        "usage_of"
+      ],
+      "decision_provenance": {
+        "code": 13,
+        "hybrid": 10
+      },
+      "type_mapping": [
+        {
+          "prediction": "table:Account:195c04bb7c6a167a",
+          "reference": "Account",
+          "source": "acme.sqlite::accounts",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:Contact:881206314b23d33c",
+          "reference": "Contact",
+          "source": "acme.sqlite::contacts",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:Subscription:bfc30f21875a4f32",
+          "reference": "Subscription",
+          "source": "acme.sqlite::subscriptions",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:Invoice:4e5f636a9da1eac0",
+          "reference": "Invoice",
+          "source": "acme.sqlite::invoices",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:TicketOpened:b771cdc853f9b6c7",
+          "reference": "Ticket",
+          "source": "support.log::ticket opened",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:ProductUsage:c6c1fbfe1281cf7d",
+          "reference": "MonthlyUsage",
+          "source": "product_usage.jsonl",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "category:Role:94408b3017fefc53",
+          "reference": null,
+          "source": "acme.sqlite::contacts.role",
+          "basis": "unmatched by frozen protocol"
+        },
+        {
+          "prediction": "category:Plan:50b8b17b1854a685",
+          "reference": "Plan",
+          "source": "acme.sqlite::subscriptions.plan",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "category:Category:f229ed2c700dc5da",
+          "reference": null,
+          "source": "support.log::ticket opened.category",
+          "basis": "unmatched by frozen protocol"
+        },
+        {
+          "prediction": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "reference": "Conversation",
+          "source": "documents",
+          "basis": "frozen alias and source/granularity correspondence"
+        }
+      ],
+      "link_mapping": [
+        {
+          "from": "table:Contact:881206314b23d33c",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "acme.sqlite::contacts.['account_id']",
+          "reference": "contact_at",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:Subscription:bfc30f21875a4f32",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "acme.sqlite::subscriptions.['account_id']",
+          "reference": "subscription_of",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:Invoice:4e5f636a9da1eac0",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "acme.sqlite::invoices.['account_id']",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:Invoice:4e5f636a9da1eac0",
+          "to": "table:Subscription:bfc30f21875a4f32",
+          "via": "acme.sqlite::invoices.['subscription_id']",
+          "reference": "invoice_for",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:TicketOpened:b771cdc853f9b6c7",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "support.log::ticket opened.['account_id']",
+          "reference": "ticket_for",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:TicketOpened:b771cdc853f9b6c7",
+          "to": "table:Contact:881206314b23d33c",
+          "via": "support.log::ticket opened.['requester_id']",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:ProductUsage:c6c1fbfe1281cf7d",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "product_usage.jsonl.['account_id']",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:Contact:881206314b23d33c",
+          "to": "category:Role:94408b3017fefc53",
+          "via": "acme.sqlite::contacts.role",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:Subscription:bfc30f21875a4f32",
+          "to": "category:Plan:50b8b17b1854a685",
+          "via": "acme.sqlite::subscriptions.plan",
+          "reference": "on_plan",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:TicketOpened:b771cdc853f9b6c7",
+          "to": "category:Category:f229ed2c700dc5da",
+          "via": "support.log::ticket opened.category",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "mentions",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "to": "table:Contact:881206314b23d33c",
+          "via": "mentions",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "to": "table:TicketOpened:b771cdc853f9b6c7",
+          "via": "mentions",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        }
+      ],
+      "facts": 3,
+      "ontology_sha256": "998e6786b6a391fe1483a768e3bd80ed283596d86ab4bc4e218e0acab6568bf2"
+    },
+    "measured-run2": {
+      "type_tp": 8,
+      "predicted_types": 10,
+      "reference_types": 9,
+      "type_precision": 0.8,
+      "type_recall": 0.8888888888888888,
+      "strict_link_tp": 5,
+      "predicted_links": 13,
+      "reference_links": 11,
+      "strict_link_precision": 0.38461538461538464,
+      "strict_link_recall": 0.45454545454545453,
+      "endpoint_tp": 10,
+      "endpoint_predictions": 13,
+      "endpoint_precision": 0.7692307692307693,
+      "endpoint_recall": 0.9090909090909091,
+      "missing_types": [
+        "Commitment"
+      ],
+      "missing_links": [
+        "attended_by",
+        "conversation_with",
+        "discussed",
+        "promised_to",
+        "requested_by",
+        "usage_of"
+      ],
+      "decision_provenance": {
+        "code": 13,
+        "hybrid": 10
+      },
+      "type_mapping": [
+        {
+          "prediction": "table:Account:195c04bb7c6a167a",
+          "reference": "Account",
+          "source": "acme.sqlite::accounts",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:Contact:881206314b23d33c",
+          "reference": "Contact",
+          "source": "acme.sqlite::contacts",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:Subscription:bfc30f21875a4f32",
+          "reference": "Subscription",
+          "source": "acme.sqlite::subscriptions",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:Invoice:4e5f636a9da1eac0",
+          "reference": "Invoice",
+          "source": "acme.sqlite::invoices",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:TicketOpened:b771cdc853f9b6c7",
+          "reference": "Ticket",
+          "source": "support.log::ticket opened",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "table:ProductUsage:c6c1fbfe1281cf7d",
+          "reference": "MonthlyUsage",
+          "source": "product_usage.jsonl",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "category:Role:94408b3017fefc53",
+          "reference": null,
+          "source": "acme.sqlite::contacts.role",
+          "basis": "unmatched by frozen protocol"
+        },
+        {
+          "prediction": "category:Plan:50b8b17b1854a685",
+          "reference": "Plan",
+          "source": "acme.sqlite::subscriptions.plan",
+          "basis": "frozen alias and source/granularity correspondence"
+        },
+        {
+          "prediction": "category:Category:f229ed2c700dc5da",
+          "reference": null,
+          "source": "support.log::ticket opened.category",
+          "basis": "unmatched by frozen protocol"
+        },
+        {
+          "prediction": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "reference": "Conversation",
+          "source": "documents",
+          "basis": "frozen alias and source/granularity correspondence"
+        }
+      ],
+      "link_mapping": [
+        {
+          "from": "table:Contact:881206314b23d33c",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "acme.sqlite::contacts.['account_id']",
+          "reference": "contact_at",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:Subscription:bfc30f21875a4f32",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "acme.sqlite::subscriptions.['account_id']",
+          "reference": "subscription_of",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:Invoice:4e5f636a9da1eac0",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "acme.sqlite::invoices.['account_id']",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:Invoice:4e5f636a9da1eac0",
+          "to": "table:Subscription:bfc30f21875a4f32",
+          "via": "acme.sqlite::invoices.['subscription_id']",
+          "reference": "invoice_for",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:TicketOpened:b771cdc853f9b6c7",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "support.log::ticket opened.['account_id']",
+          "reference": "ticket_for",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:TicketOpened:b771cdc853f9b6c7",
+          "to": "table:Contact:881206314b23d33c",
+          "via": "support.log::ticket opened.['requester_id']",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:ProductUsage:c6c1fbfe1281cf7d",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "product_usage.jsonl.['account_id']",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:Contact:881206314b23d33c",
+          "to": "category:Role:94408b3017fefc53",
+          "via": "acme.sqlite::contacts.role",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "table:Subscription:bfc30f21875a4f32",
+          "to": "category:Plan:50b8b17b1854a685",
+          "via": "acme.sqlite::subscriptions.plan",
+          "reference": "on_plan",
+          "basis": "column value/FK relation"
+        },
+        {
+          "from": "table:TicketOpened:b771cdc853f9b6c7",
+          "to": "category:Category:f229ed2c700dc5da",
+          "via": "support.log::ticket opened.category",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "to": "table:Account:195c04bb7c6a167a",
+          "via": "mentions",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "to": "table:Contact:881206314b23d33c",
+          "via": "mentions",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        },
+        {
+          "from": "genre:MeetingOrCall:2246d71b9c65ca73",
+          "to": "table:TicketOpened:b771cdc853f9b6c7",
+          "via": "mentions",
+          "reference": null,
+          "basis": "no strict semantic correspondence"
+        }
+      ],
+      "facts": 3,
+      "ontology_sha256": "998e6786b6a391fe1483a768e3bd80ed283596d86ab4bc4e218e0acab6568bf2"
+    }
+  },
+  "fact_audit": {
+    "selection": "min(20,N) facts sorted by SHA256 of canonical doc,section,sentence,subject,relation,object; N=3 so all facts",
+    "auditor": "coordinator, separate from code modifier; no second human audit",
+    "correct": 2,
+    "audited": 3,
+    "precision": 0.6666666666666666,
+    "rows": [
+      {
+        "fact_sha256": "88cf72eb46546125b72884533763f44769549c69fc9543f161413b2fc0901a9e",
+        "source": "docs/calls/Pinecrest QBR 2026-09-15.md",
+        "line": 23,
+        "source_sha256": "7f90b63f9ad9653c9524938ae2eedff79541e8ae318ff6bc678693a50e641ff2",
+        "quote_present": true,
+        "proposition_supported": false,
+        "reason": "금액을 인용 행위의 주체로 잘못 추출했다. 원문의 인용 주체와 일치하지 않는다."
+      },
+      {
+        "fact_sha256": "b97a50065359d1b862cb69396170a083d23aa3da1324214f07de177ba7590b6c",
+        "source": "docs/reference/Acme Corp plans and pricing 2026.md",
+        "line": 29,
+        "source_sha256": "43de20f971d4dce47916aed7b58478928c7cdffa7d5f477e56588c5c2b57d665",
+        "quote_present": true,
+        "proposition_supported": true,
+        "reason": "승인이 필요하다는 대상과 관계가 원문 절에서 직접 확인된다."
+      },
+      {
+        "fact_sha256": "c5cfb1b65f32e4254c1fc884f22231d86adfe866e805a842c8fe678fc918ab15",
+        "source": "docs/calls/Brightmoor renewal call 2026-10-21.md",
+        "line": 14,
+        "source_sha256": "e62bf657fdf6b44042b3bb09b8ef6a89a69a3d6b07672dad5f3208c13a30edfb",
+        "quote_present": true,
+        "proposition_supported": true,
+        "reason": "계정의 요금제 간 좌석 분할 금지라는 주체·부정·대상이 원문 설명과 일치한다. 원문 전체에 발화자도 보존되어 있다."
+      }
+    ]
+  },
+  "gold": {
+    "measured-gold1": {
+      "status": "failed",
+      "facts": 1,
+      "positive_tp": 1,
+      "positive_total": 4,
+      "trap_false_promises": 0,
+      "traps_total": 2,
+      "dated_positive_tp": 0,
+      "dated_positive_total": 3,
+      "positives": [
+        {
+          "id": "G1",
+          "extracted": false,
+          "expected_due": "2026-12-01",
+          "due_preserved": false,
+          "units": []
+        },
+        {
+          "id": "G2",
+          "extracted": false,
+          "expected_due": "2027-01-15",
+          "due_preserved": false,
+          "units": []
+        },
+        {
+          "id": "G3",
+          "extracted": true,
+          "expected_due": null,
+          "due_preserved": null,
+          "units": [
+            "docs/gold.md::6"
+          ]
+        },
+        {
+          "id": "G4",
+          "extracted": false,
+          "expected_due": "2027-02-01",
+          "due_preserved": false,
+          "units": []
+        }
+      ],
+      "traps": [
+        {
+          "id": "T1",
+          "false_promise": false
+        },
+        {
+          "id": "T2",
+          "false_promise": false
+        }
+      ],
+      "source_sha256": "d4301b300b8e4a6c0b9255d48c4e69189b5b525e1496ce84c9cd8be0d12c4532"
+    },
+    "measured-gold2": {
+      "status": "failed",
+      "facts": 1,
+      "positive_tp": 1,
+      "positive_total": 4,
+      "trap_false_promises": 0,
+      "traps_total": 2,
+      "dated_positive_tp": 0,
+      "dated_positive_total": 3,
+      "positives": [
+        {
+          "id": "G1",
+          "extracted": false,
+          "expected_due": "2026-12-01",
+          "due_preserved": false,
+          "units": []
+        },
+        {
+          "id": "G2",
+          "extracted": false,
+          "expected_due": "2027-01-15",
+          "due_preserved": false,
+          "units": []
+        },
+        {
+          "id": "G3",
+          "extracted": true,
+          "expected_due": null,
+          "due_preserved": null,
+          "units": [
+            "docs/gold.md::6"
+          ]
+        },
+        {
+          "id": "G4",
+          "extracted": false,
+          "expected_due": "2027-02-01",
+          "due_preserved": false,
+          "units": []
+        }
+      ],
+      "traps": [
+        {
+          "id": "T1",
+          "false_promise": false
+        },
+        {
+          "id": "T2",
+          "false_promise": false
+        }
+      ],
+      "source_sha256": "d4301b300b8e4a6c0b9255d48c4e69189b5b525e1496ce84c9cd8be0d12c4532"
+    }
+  },
+  "frozen_mapping_defect": {
+    "rule": "primary frozen mapping unchanged; no favorable posthoc rescore",
+    "mismatches": [
+      {
+        "edge": "requested_by",
+        "frozen_column": "contact_id",
+        "observed_column": "requester_id",
+        "disposition": "not counted in primary frozen score despite source-supported endpoint connection"
+      },
+      {
+        "edge": "usage_of",
+        "frozen_column": "account_ref",
+        "observed_column": "account_id",
+        "disposition": "not counted in primary frozen score despite source-supported endpoint connection"
+      }
+    ],
+    "meaning": "5/11 is frozen literal mapping recall, not an unbiased estimate of semantic relation quality"
+  },
+  "uncovered": {
+    "total_units": 150,
+    "no_grounded_fact": 147,
+    "partial_or_rejected": 3,
+    "span_rejections": 5,
+    "semantic_rejections": 25
+  },
+  "interpretation": "Acme is tuned development data, gold is known regression data; not general performance or a blind heldout benchmark"
+}

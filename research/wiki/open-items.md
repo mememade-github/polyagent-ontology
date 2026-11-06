@@ -71,3 +71,5 @@
 
 ---
 [index](index.md) · [coverage](coverage.md)
+
+**갱신(2026-11-06, 뼈대):** "모델이 초안을 만들 수 있는가"([DO-03](concepts/document-only-input.md#DO-03))는 `qwen2.5:3b`, 문서 2건에서 항목 0으로 관찰됐다([LS-11](concepts/logical-structuring.md#LS-11)~[LS-14](concepts/logical-structuring.md#LS-14)). 다른 모델과 입력은 미측정이다.

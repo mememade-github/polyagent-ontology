@@ -1,0 +1,93 @@
+{
+  "inputs": [
+    {
+      "path": "db/acme.sqlite",
+      "bytes": 94208,
+      "sha256": "e44564f39dbdfeb000e9e444e7d0917011692f12a77ed5023e107ae4f672d750"
+    },
+    {
+      "path": "docs/calls/Brightmoor renewal call 2026-10-21.md",
+      "bytes": 1525,
+      "sha256": "e62bf657fdf6b44042b3bb09b8ef6a89a69a3d6b07672dad5f3208c13a30edfb"
+    },
+    {
+      "path": "docs/calls/Halvorsen expansion call 2026-10-06.md",
+      "bytes": 1368,
+      "sha256": "4c6368d8aa280b4125b2059653dd9d90e9ca709ccd58ce0a560d962ac3dc68c5"
+    },
+    {
+      "path": "docs/calls/Incident report 2026-10-07 dispatch sync.md",
+      "bytes": 2128,
+      "sha256": "824d241080eed71286c8c64ed5461144a176785760f25457b0f15e62927cf767"
+    },
+    {
+      "path": "docs/calls/Pinecrest QBR 2026-09-15.md",
+      "bytes": 1935,
+      "sha256": "7f90b63f9ad9653c9524938ae2eedff79541e8ae318ff6bc678693a50e641ff2"
+    },
+    {
+      "path": "docs/calls/Sable Solar escalation 2026-10-08.md",
+      "bytes": 1760,
+      "sha256": "9d09682943657ec5912574843dc45fca443c916994dcfa49c76c69ad22bf7ffa"
+    },
+    {
+      "path": "docs/reference/Acme Corp plans and pricing 2026.md",
+      "bytes": 2027,
+      "sha256": "43de20f971d4dce47916aed7b58478928c7cdffa7d5f477e56588c5c2b57d665"
+    },
+    {
+      "path": "logs/support.log",
+      "bytes": 81042,
+      "sha256": "90caefe889af0a420a0b8f2b60f8ed2ab75d263be71a3e47ffc6c58a0e54e72e"
+    },
+    {
+      "path": "nosql/product_usage.jsonl",
+      "bytes": 20547,
+      "sha256": "052abdbed3cd1c47c26a184d2aef824eab7a580958593cb06d308c1ba573715e"
+    }
+  ],
+  "reference_sha256": "c477ae87689f7d67bd00a4df2940450c29e46d935e739dcaaeeb91e504cdfb8c",
+  "builder_sha256": "8eb1476a6270f6af14b7858bbf66df1dd1c9ff20a1ad67dfb87234f5ef5994c7",
+  "onto_sha256": "400e86746580509e8d79ac038769f2d990a29c7938f6e98267925e5178c7a575",
+  "protocol_sha256": "dbc2b8673b7b5afe247278954479f2cc3182e31672925968611757caa644d1dd",
+  "upstream": {
+    "url": "https://github.com/HelixDB/helix-foundry",
+    "commit": "c7de40515f56a491d1b46af0bb1efa890f106700",
+    "license": "Apache-2.0",
+    "sample_inputs_not_redistributed": true
+  },
+  "raw_output_hashes": {
+    "measured-run1": {
+      "ontology.json": "30b13e19f448c246cc639371858794f33bed0b43eb20153da922340fb89d1bbb",
+      "facts.json": "0e40f48a45bd21d0725f8159015f7ae619f10b9dc26be54e31fabd1d9fc479fb",
+      "uncovered.json": "ba5dbebbf28545860acde39db01c2da39e17caafc08e5cc77d46c71262ecd042",
+      "calls.json": "d4333a612cc5d149c1dc81cebe2b75aadeae18ea8129ac90fe122771fed7d7a3",
+      "report.json": "0a1d7409feb572ddc84a420b9fa0556ebeacffcd918496a1feadc6abf291ad31"
+    },
+    "measured-run2": {
+      "ontology.json": "30b13e19f448c246cc639371858794f33bed0b43eb20153da922340fb89d1bbb",
+      "facts.json": "0e40f48a45bd21d0725f8159015f7ae619f10b9dc26be54e31fabd1d9fc479fb",
+      "uncovered.json": "ba5dbebbf28545860acde39db01c2da39e17caafc08e5cc77d46c71262ecd042",
+      "calls.json": "8b7c3b58b32af3fd2b0887776baa443f6769557f8e9fa017c7cd165367482974",
+      "report.json": "8520c24d9e3e17aaf496c2a16d66458e66734d7150e0724d32eb655cae641504"
+    },
+    "measured-gold1": {
+      "ontology.json": "91147dbde92ba2b6b356affdb3135aa82b3defee83cbb1fc4d863710e4e95391",
+      "facts.json": "c6e0be451c3533dbaea7d0adf0f77c15699b5e11251faef742984e927afe34c5",
+      "uncovered.json": "0751755ad17a0c3236f5e49e67820f748baf1469d382e9f173b6dcdd4cd39a8f",
+      "calls.json": "4e23cdd73e21b51007b68e5b70daa4cc53f28cad6db578f4a4762c376fd8febc",
+      "report.json": "bf975f398b4d9ba10ee1d1c344b152ec2a6cfd0c6eb6a1df8f7d4c935af9eff0"
+    },
+    "measured-gold2": {
+      "ontology.json": "91147dbde92ba2b6b356affdb3135aa82b3defee83cbb1fc4d863710e4e95391",
+      "facts.json": "c6e0be451c3533dbaea7d0adf0f77c15699b5e11251faef742984e927afe34c5",
+      "uncovered.json": "0751755ad17a0c3236f5e49e67820f748baf1469d382e9f173b6dcdd4cd39a8f",
+      "calls.json": "501167d05e359ddc4ad1570f59a53027aa4138c794a5217388da42d3da55d9b0",
+      "report.json": "9dcbc7ca2a986cdf976b59cec7eb5eae6ba89506501cfb1183dec6515b06d77f"
+    }
+  },
+  "evaluation_scripts_sha256": {
+    "evaluate_metrics.py": "ddbac7007c7bc93b367ad9d0f0113591ec16c4c2243b7e7864b7606362e4de52",
+    "evaluate_gold.py": "03f8e582f02e1f447e5c3c63814c8f5ac51a62ee6cfc55ff535db1c98ea07849"
+  }
+}

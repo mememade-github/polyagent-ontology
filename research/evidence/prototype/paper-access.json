@@ -1,0 +1,149 @@
+{
+  "retrieved_on": "2026-11-06",
+  "protocol_sha256": "dbc2b8673b7b5afe247278954479f2cc3182e31672925968611757caa644d1dd",
+  "sources": [
+    {
+      "id": "2503.05388v1",
+      "url": "https://arxiv.org/html/2503.05388v1",
+      "status": 200,
+      "bytes": 160143,
+      "sha256": "7c0a0b6e094740df65bbeebd2cf5b4311c38f338a58e3491dfa48a9d170cf3a1",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "§4.2",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2404.03868v2",
+      "url": "https://arxiv.org/html/2404.03868v2",
+      "status": 200,
+      "bytes": 259157,
+      "sha256": "561023f6e8e5f1dccb7ec088469b077dea786f889a88dc12a46217a85a813504",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "§3, 서론",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2505.23628v1",
+      "url": "https://arxiv.org/html/2505.23628v1",
+      "status": 200,
+      "bytes": 469018,
+      "sha256": "385136b4b3b64e9d93cece0c49683dea8b1d3d2e6b8b49227cc5bb151fe36c27",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "§3.1–3.2",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2602.00029v1",
+      "url": "https://arxiv.org/html/2602.00029v1",
+      "status": 200,
+      "bytes": 129941,
+      "sha256": "e73f686feb6df4d723bf92338af171c6aa89854588f44fc0817f03cd4d9d4353",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "§3.2.1",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2607.16201v1",
+      "url": "https://arxiv.org/html/2607.16201v1",
+      "status": 200,
+      "bytes": 134563,
+      "sha256": "120d6370812f169b759aae78485945df444df630b14bccc0ff3902c9e12dda1f",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "방법, NCS",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2608.31118v1",
+      "url": "https://arxiv.org/html/2608.31118v1",
+      "status": 200,
+      "bytes": 240498,
+      "sha256": "6810cf9f6e1571c385386f21deeb3a1e0134ad734cf7a3c2687e1c58a8d81ec1",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "초록, §6–7",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2604.23090v1",
+      "url": "https://arxiv.org/html/2604.23090v1",
+      "status": 200,
+      "bytes": 350988,
+      "sha256": "eda3c68f0d900dfe6d7a5c27f7b935c8e612c1a72680d296399370dd6c4dd369",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "서론, 결론",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2506.01232v1",
+      "url": "https://arxiv.org/html/2506.01232v1",
+      "status": 200,
+      "bytes": 286791,
+      "sha256": "559245318fc2d90b442aee20a4f1042bdf1a1881de00962607d70ebabd7d2362",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "초록, §1",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2507.14552v1",
+      "url": "https://arxiv.org/html/2507.14552v1",
+      "status": 200,
+      "bytes": 146141,
+      "sha256": "d270ae1dc018e714bc13264b75c7ee505f64912b1bca7ce99692e13e59d6ecae",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "초록, §1",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2511.07991v1",
+      "url": "https://arxiv.org/html/2511.07991v1",
+      "status": 200,
+      "bytes": 168324,
+      "sha256": "25e7a0c15d05d042c03777a25f44f02adfbecc73e63c63e34c4861d9edb819e7",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "서론",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2609.31663",
+      "url": "https://arxiv.org/pdf/2609.31663",
+      "status": 200,
+      "bytes": 906339,
+      "sha256": "8f3d968491b230acab8f66887f061c9054619663c7f9542004ec1ccd697b6eda",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "PDF pp.6–8 §4",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2604.20795",
+      "url": "https://arxiv.org/pdf/2604.20795",
+      "status": 200,
+      "bytes": 559800,
+      "sha256": "a14c1b18d96234c39bbae0973470014f717ccf061ba7e0badb16e3c05032d69e",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "PDF pp.10–12",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    },
+    {
+      "id": "2608.27101v2",
+      "url": "https://arxiv.org/html/2608.27101v2",
+      "status": 200,
+      "bytes": 122532,
+      "sha256": "ef1806fd7ec47211fae0713984b12b81114191138ff990ffe6272d7304e0b99c",
+      "scope": "selected methods/results sections, not full reading",
+      "read_sections": "§3–4.3",
+      "reading_evidence": "coordinator selective web-reading notes; no full reading or reproduction",
+      "redistribute_fulltext": false
+    }
+  ]
+}

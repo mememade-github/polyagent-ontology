@@ -1,0 +1,12 @@
+slot   operator(): id  0 | task 1558 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 29165
+slot      release: id  0 | task 1558 | stop processing: n_tokens = 29180, truncated = 0
+slot   operator(): id  0 | task 1575 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 29210
+slot      release: id  0 | task 1575 | stop processing: n_tokens = 29312, truncated = 0
+slot   operator(): id  0 | task 1679 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 29534
+slot      release: id  0 | task 1679 | stop processing: n_tokens = 30578, truncated = 0
+slot   operator(): id  0 | task 2725 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 30638
+slot      release: id  0 | task 2725 | stop processing: n_tokens = 30749, truncated = 0
+slot   operator(): id  0 | task 2838 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 30834
+slot      release: id  0 | task 2838 | stop processing: n_tokens = 31192, truncated = 0
+slot   operator(): id  0 | task 3198 | new prompt, n_ctx_slot = 32768, n_keep = 4, task.n_tokens = 31252
+slot      release: id  0 | task 3198 | stop processing: n_tokens = 31569, truncated = 0

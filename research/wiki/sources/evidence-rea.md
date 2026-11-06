@@ -55,7 +55,7 @@
 | `evidence/rea/approval/a2.out` | 7,658 | `834afe8d782cf156` |
 | `evidence/rea/approval/appr.py` | 1,870 | `47fd5b7286c563eb` |
 | `evidence/rea/approval/appr2.py` | 1,029 | `f59ecf0d551d4045` |
-| `evidence/rea/approval/approved.json` | 7,856 | `5e3e388fb419e65c` |
+| `evidence/rea/approval/approved.json` | (저장소 미포함) | - |
 | `evidence/rea/approval/bundle_mappings.toml` | 204 | `84644e4a4b3273aa` |
 | `evidence/rea/approval/bundle_ontology.toml` | 315 | `16a5911b2b412c62` |
 | `evidence/rea/approval/c1.out` | 6,437 | `24e2b8dd3fba4bc4` |

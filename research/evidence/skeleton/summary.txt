@@ -1,0 +1,4 @@
+t1_ctx8k_doc rc=0 sec=1868 "status":"budget_exhausted" calls=30
+t1b_ctxclaim64k_real8k rc=0 sec=336 "status":"budget_exhausted" calls=30
+t2_ctx64k_doc rc=0 sec=1844 "status":"done" calls=6
+t3_ctx64k_gold_table rc=0 sec=1077 "status":"done" calls=6

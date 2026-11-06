@@ -1,6 +1,6 @@
 # SCHEMA: 이 위키의 규약
 
-일반 문서를 로컬 LLM(컨텍스트 10k 미만, 약한 추론)으로 온톨로지화할 수 있는지 조사하는 작업에서, 세 참조 시스템의 as-is만 기록한다. 패턴은 `.claude/skills/llm-wiki/SKILL.md`를 따른다.
+일반 문서를 로컬 LLM(컨텍스트 10k 미만, 약한 추론)으로 온톨로지화할 수 있는지 조사하는 작업에서, 세 참조 시스템의 as-is와 사용자 승인 이후의 새 접근 설계·구현·측정을 구분해 기록한다. 패턴은 `.claude/skills/llm-wiki/SKILL.md`를 따른다.
 
 ## 3계층
 
@@ -13,7 +13,7 @@
 
 ## 저장소에 없는 Raw
 
-이 위키는 프로젝트 안의 독립 연구 공간이다. Raw 중 재배포 판단이 끝나지 않은 자료는 저장소에 넣지 않았다: 바이너리 디컴파일 출력과 주소 목록(`rea/decompiled/`, `rea/ghidra/`), 캡처한 시스템 프롬프트와 요청 로그(`rea/approval/sys.txt`, `rea/approval/c1.log.jsonl`, `rea/adjudicate/a.log.adj`), helix-foundry 샘플 `backend/sample/acme.json`에서 온 온톨로지와 매핑 TOML, 바이너리 분석 JSON(`rea/rust-*.json`), 업스트림 코드 복사본(`ragflow/validator_copy.go`).
+이 위키는 프로젝트 안의 독립 연구 공간이다. Raw 중 재배포 판단이 끝나지 않은 자료는 저장소에 넣지 않았다: 바이너리 디컴파일 출력과 주소 목록(`rea/decompiled/`, `rea/ghidra/`), 캡처한 시스템 프롬프트와 요청 로그(`rea/approval/sys.txt`, `rea/approval/c1.log.jsonl`, `rea/adjudicate/a.log.adj`, `ao/stub_llm.py`, `rea/approval/approved.json`), helix-foundry 샘플 `backend/sample/acme.json`에서 온 온톨로지와 매핑 TOML, 바이너리 분석 JSON(`rea/rust-*.json`), 업스트림 코드 복사본(`ragflow/validator_copy.go`).
 
 - 이 파일들을 가리키는 `E:` 인용과 `[디컴파일]` 행은 **기록만**으로 읽는다. 이 저장소만으로는 대조할 수 없다.
 - `sources/`의 해당 행은 `(저장소 미포함)`이다. 나머지 해시는 정제 후 파일 기준이다.
@@ -24,7 +24,7 @@
 
 ## 금지
 
-- 향후 계획, 권고, 구현 선택을 쓰지 않는다.
+- 이전 as-is 범위에서는 향후 계획·구현 선택을 제외했다. 새 접근에서는 사용자 승인에 따라 설계 선택을 근거·한계와 함께 기록한다.
 - 임의 판단을 쓰지 않는다. 시스템 간 우열을 매기지 않는다.
 - 미지를 추론으로 메우지 않는다.
 - 소스 불일치에서 한쪽을 조용히 고르지 않는다. `contradictions.md`와 영향 페이지에 기록한다.
@@ -34,7 +34,7 @@
 | 표기 | 뜻 | 증명하는 것 | 증명하지 않는 것 |
 |---|---|---|---|
 | `[실행/Stub]` | 실제 코드나 바이너리를 Stub 모델로 돌려 관찰 | 코드 동작, 전송 내용, 응답 처리 | 모델 품질, 저성능 모델의 수행 능력 |
-| `[실행/실모델]` | 실제 로컬 모델(`qwen2.5:3b`, Ollama 0.40.10, CPU)로 실행 | 그 입력에서 그 모델이 낸 출력과 코드의 처리 | 일반적 품질, 다른 모델·하드웨어. 표본이 작아 평가 수치로 쓰지 않는다 |
+| `[실행/실모델]` | 실제 로컬 모델(`qwen2.5:3b`, Ollama 0.40.10, CPU)로 실행 | 그 입력에서 그 모델이 낸 출력과 코드의 처리 | 일반적 품질, 다른 모델·하드웨어. 작은 표본의 수치는 해당 실행의 기술 통계이며 일반 성능의 근거가 아니다 |
 | `[실행]` | 모델 없이 실행 또는 저장소 상태 조회 | 그 실행의 결과 | 파이프라인 전체 |
 | `[코드]` | 소스만 읽음 | 그 위치에 그 코드가 있음 | 실행 시 동작 |
 | `[논문]` | 저자의 진술 | 저자가 그렇게 썼음 | 재현, 코드 일치 |
@@ -81,3 +81,11 @@
 
 ---
 [index](index.md)
+
+## 새 접근 근거·공개 규약 (2026-11-06)
+
+- `PD-*` 홈 행은 [설계](concepts/paper-informed-design.md), `PR-*` 홈 행은 [논문](sources/papers-20261106.md)에만 둔다. 기존 as-is 홈 행과 표는 보존한다. `[설계]`는 선택의 출처를 뜻하며 효과의 입증 등급이 아니다.
+- 논문은 선택 절 독해와 다운로드 성공을 구분한다. 전문 독해·재현을 주장하지 않는다. URL·절·HTTP 상태·SHA256은 논문 페이지와 `E:prototype/paper-access.json`에 둔다. PDF/HTML 전문은 재배포하지 않는다.
+- [동결 규약](../evidence/prototype/protocol.md)을 결과보다 먼저 보존한다. 작은 개발 표본의 precision/recall, 안정성, 호출 수는 일반 성능이 아니다. 의미 링크와 endpoint 투영, 코드 결정과 LLM 의존 결정, 실행 실패와 빈 출력을 분리한다. 실측 결과와 실패는 [프로토타입 결과](concepts/prototype-results.md)에 기록했다.
+- 공개본에는 `prototype/*.py`, `prototype/README.md`와 선별된 `evidence/prototype/*.json`, `*.md`만 허용한다. 입력·참조 원문, 사실/출력 덤프, 캐시·pyc·private prompt, Acme JSON/SQL 및 Helix 샘플 문서 본문은 넣지 않는다.
+- `evidence/ao/stub_llm.py`, `evidence/rea/approval/approved.json`은 캡처 프롬프트 중복이 확인돼 공개본에서 추가 제외한다. 해당 원시 근거는 공개 저장소에 없으며 인용은 기록만이다. 기존 제외·치환과 정제 후 해시 재계산은 유지한다.

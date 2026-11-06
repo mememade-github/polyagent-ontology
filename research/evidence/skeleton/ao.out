@@ -1,0 +1,77 @@
+INFO  [alembic.runtime.migration] Running upgrade f3a91c0e5b27 -> 99d4d343dd0b, add semantic fk join path default
+##### shop
+  File "__SCRATCH__/venv-ao/lib/python3.12/site-packages/psycopg/cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedTable: relation "frontend.configurations" does not exist
+LINE 1: SELECT value FROM frontend.configurations WHERE key = $1
+                          ^
+shop compiled_tables= 4
+sec=99
+      name       |                  d                   |  source
+-----------------+--------------------------------------+----------
+ Customers       | Individual customers                 | semantic
+ Order           | Base Order Information               | semantic
+ Order Item      | Identifier for each unique item sold | semantic
+ Product Details | product_id, product_name, list_price | semantic
+(4 rows)
+
+    term_name    |        name        | source_column
+-----------------+--------------------+---------------
+ Customers       | Customer ID        | customer_id
+ Customers       | Full Name          | full_name
+ Customers       | Region             | region
+ Order           | Order Date         | order_date
+ Order           | Order ID           | order_id
+ Order Item      | Item Identifier    | item_id
+ Order Item      | Product Identifier | product_id
+ Order Item      | Quantity Sold      | qty
+ Order Item      | Unit Price         | unit_price
+ Product Details | List Price         | list_price
+ Product Details | Product ID         | product_id
+ Product Details | Product Name       | product_name
+(12 rows)
+
+           2
+12
+NOTICE:  truncate cascades to table "catalog_schema"
+NOTICE:  truncate cascades to table "column_attribute__term"
+ERROR:  relation "semantic_layer" does not exist
+##### docs
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 47722)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 421, in handle_one_request
+    method()
+  File "__SCRATCH__/sk/aoproxy.py", line 21, in do_POST
+    self.send_response(st); self.send_header("content-type","application/json"); self.send_header("content-length",str(len(out))); self.end_headers(); self.wfile.write(out)
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+----------------------------------------
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 33496)
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/usr/lib/python3.10/http/server.py", line 433, in handle
+    self.handle_one_request()
+  File "/usr/lib/python3.10/http/server.py", line 421, in handle_one_request
+    method()
+  File "__SCRATCH__/sk/aoproxy.py", line 21, in do_POST
+    self.send_response(st); self.send_header("content-type","application/json"); self.send_header("content-length",str(len(out))); self.end_headers(); self.wfile.write(out)
+  File "/usr/lib/python3.10/socketserver.py", line 826, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+----------------------------------------
