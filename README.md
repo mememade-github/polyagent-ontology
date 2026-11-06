@@ -70,7 +70,7 @@ Codex compatibility and project trust details are covered in [Codex sandbox bypa
 | AI agents | 3 | Claude Code · Codex CLI · Antigravity CLI (`agy`) |
 | Governance roles | 2 | evaluator, wip-manager (Claude agents; Codex skill/subprocess mirrors; Antigravity built-in `self` subagents) |
 | Hooks | 4 / 4 / 4 | session-start, pre-commit-gate, pre-push-gate, refinement-gate (Antigravity runs the Claude hooks through `.agents/hooks/claude-hooks-adapter.sh`) |
-| Skills | 6 | /refine, /status, /verify, karpathy-guidelines, typesafe-ai, llm-wiki |
+| Skills | 7 | /refine, /status, /verify, karpathy-guidelines, typesafe-ai, llm-wiki, collaborative-experiment-agents |
 | Tools | 20+ | ripgrep, fd, fzf, jq, tmux, gh, docker CLI, uv |
 
 For the optional TypeSafe API key, see [REFERENCE.md §TypeSafe (optional)](REFERENCE.md#typesafe-optional).

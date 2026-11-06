@@ -10,7 +10,7 @@ Research on structuring general documents and building ontologies with a local L
 
 Workspace-scoped environment for running Claude Code, Codex CLI, and Antigravity CLI in parity on the same project. One ground truth (`.claude/`) feeds per-vendor mirrors (`.agents/rules`, `.agents/skills`, `.codex/`). New vendors are added by mirroring, not by rewriting governance.
 
-Default loadout: 2 sub-agents · 4 hooks · 6 skills (refine, status, verify, karpathy-guidelines, typesafe-ai, llm-wiki).
+Default loadout: 2 sub-agents · 4 hooks · 7 skills (refine, status, verify, karpathy-guidelines, typesafe-ai, llm-wiki, collaborative-experiment-agents).
 
 ## Tech Stack
 

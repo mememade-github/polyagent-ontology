@@ -230,7 +230,7 @@ boundary in interactive and non-interactive flows.
 consumes the mirror directly, so do not delete it as a mere convention. Mirrored
 `SKILL.md` frontmatter (`tools`, `model`, `maxTurns`, `color`) is Claude-host
 metadata that Codex ignores.
-Antigravity discovers eight mirrored skills, including the two governance roles.
+Antigravity discovers nine mirrored skills, including the two governance roles.
 `/refine` invokes a fresh built-in `self` for each role; Step 0b of the
 [refine skill](.agents/skills/refine/SKILL.md#step-0b-fresh-role-isolation) specifies
 role text and permitted evidence. Children retain rules and hooks, exclude the
@@ -278,7 +278,7 @@ These gates do not scan staged file contents.
 Codex project trust and hook review are covered in
 [Codex sandbox bypass](#codex-sandbox-bypass-devcontainer-only).
 
-### Skills (6)
+### Skills (7)
 
 | Skill | Description |
 |-------|-------------|
@@ -288,6 +288,7 @@ Codex project trust and hook review are covered in
 | karpathy-guidelines | Reference handle for the Karpathy 4 rules (`SKILL.md`) |
 | typesafe-ai | TypeSafe workflow skill from [typesafe-ai/skills](https://github.com/typesafe-ai/skills), commit `65a39f393687675ce170e6094757de20370365b9`; MIT; vendored with one local delta: an offline snapshot of the HTTP API reference at `reference/api.md` and the SKILL.md sentence that names it; generated mirror for Codex |
 | llm-wiki | Karpathy's LLM Wiki pattern, source of the `research/` knowledge space |
+| collaborative-experiment-agents | Roles, gates and controls for experimental research agents, from arXiv 2610.40589 |
 
 ### TypeSafe (optional)
 
