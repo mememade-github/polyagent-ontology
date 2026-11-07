@@ -1,0 +1,78 @@
+{
+  "kind": "Stub only; fake accounting is not model usage",
+  "checks": {
+    "missing": true,
+    "negative": true,
+    "boolean": true,
+    "output_exceeded": true,
+    "bad_duration": true,
+    "malformed_schema": true,
+    "timeout": true,
+    "dispatch_exception": true,
+    "reservation_zero": true,
+    "remaining_budget": true,
+    "all_reject": true,
+    "context_zero": true,
+    "oversize_zero": true,
+    "twelve_configurations_duplicate_first_origin": true,
+    "cap_pending_complete_deferred_ledger": true,
+    "baseline_differential_read_docs": true,
+    "arm_deadline_zero": true,
+    "synthetic_controls_supported_semantics": true,
+    "failed_control_stays_inconclusive": true,
+    "full_response_slow_drip_deadline": true,
+    "disk_floor_zero_dispatch": true,
+    "disk_rechecked_before_model": true,
+    "wall_first_metadata_through_controller": true,
+    "all_supported_span_variants": true,
+    "all_role_reversals_rejected": true
+  },
+  "passed": 25,
+  "total": 25,
+  "report_sha256": "b5020b282a4ec83b93340e5a2a9b233b9e725ac5b424b6004fbae77b64cc2729",
+  "historical_demo": {
+    "checks": {
+      "positive_duplicate": true,
+      "same_cell": true,
+      "invalid_and_false": true,
+      "oversized": true,
+      "exception": true,
+      "verify_exhausted": true,
+      "deferred_random": true,
+      "deferred_coverage": true,
+      "controls": true,
+      "overlap": true,
+      "all_reject": true
+    },
+    "passed": true,
+    "actual_scripted_calls": 39,
+    "real_model_calls": 0,
+    "sha256": "3d7f7b4baf2e8f796f08fc83cfe50920f86548d62fc718abdecd1b1b160ac1bb"
+  },
+  "spot_evidence": {
+    "disk_floor_zero_dispatch": {
+      "dispatches": 0,
+      "wall_seconds": 0,
+      "error": "disk_floor"
+    },
+    "disk_rechecked_before_model": {
+      "paths": [
+        "/api/tags"
+      ],
+      "error": "disk_floor"
+    },
+    "all_supported_span_variants": {
+      "fixture_pairs": 48,
+      "real_model_calls": 0
+    },
+    "all_role_reversals_rejected": {
+      "fixture_pairs": 48,
+      "real_model_calls": 0
+    },
+    "full_response_slow_drip_deadline": {
+      "timeout": true,
+      "elapsed": 0.2020941519876942,
+      "real_model_calls": 0
+    }
+  }
+}

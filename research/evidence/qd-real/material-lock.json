@@ -1,0 +1,177 @@
+{
+  "artifact_id": "QDR-material-v1",
+  "utc": "2026-11-07T00:57:59.860052+00:00",
+  "model_outputs_accessed": false,
+  "documents": 6,
+  "units": 12,
+  "eligible_units": 7,
+  "deferred_units": [
+    "squad-0::1",
+    "squad-0::2",
+    "squad-1::2",
+    "squad-1::3",
+    "klue-2::0"
+  ],
+  "gold_facts": 85,
+  "gold_complete": false,
+  "gold_unresolved_count": 6,
+  "gold_cells": [
+    [
+      [
+        "en"
+      ],
+      false
+    ],
+    [
+      [
+        "en"
+      ],
+      true
+    ],
+    [
+      [
+        "ko"
+      ],
+      false
+    ],
+    [
+      [
+        "ko"
+      ],
+      true
+    ]
+  ],
+  "gold_cell_count": 4,
+  "unit_metadata": [
+    {
+      "source": "squad-0",
+      "source_sha256": "dd5c8526091ce0e937a062da23833808b4e54d9ce41cdc101173265b6a718bbd",
+      "unit": "squad-0::0",
+      "tags": [
+        "en"
+      ],
+      "anchor": true,
+      "context_dependent": false
+    },
+    {
+      "source": "squad-0",
+      "source_sha256": "dd5c8526091ce0e937a062da23833808b4e54d9ce41cdc101173265b6a718bbd",
+      "unit": "squad-0::1",
+      "tags": [
+        "en"
+      ],
+      "anchor": false,
+      "context_dependent": true
+    },
+    {
+      "source": "squad-0",
+      "source_sha256": "dd5c8526091ce0e937a062da23833808b4e54d9ce41cdc101173265b6a718bbd",
+      "unit": "squad-0::2",
+      "tags": [
+        "en"
+      ],
+      "anchor": false,
+      "context_dependent": true
+    },
+    {
+      "source": "squad-0",
+      "source_sha256": "dd5c8526091ce0e937a062da23833808b4e54d9ce41cdc101173265b6a718bbd",
+      "unit": "squad-0::3",
+      "tags": [
+        "en"
+      ],
+      "anchor": true,
+      "context_dependent": false
+    },
+    {
+      "source": "squad-1",
+      "source_sha256": "6a4859b84af16a97c8e1dcf1acad6e45d077ea9ef8ecf5e9a80b9bc201a26760",
+      "unit": "squad-1::0",
+      "tags": [
+        "en"
+      ],
+      "anchor": false,
+      "context_dependent": false
+    },
+    {
+      "source": "squad-1",
+      "source_sha256": "6a4859b84af16a97c8e1dcf1acad6e45d077ea9ef8ecf5e9a80b9bc201a26760",
+      "unit": "squad-1::1",
+      "tags": [
+        "en"
+      ],
+      "anchor": false,
+      "context_dependent": false
+    },
+    {
+      "source": "squad-1",
+      "source_sha256": "6a4859b84af16a97c8e1dcf1acad6e45d077ea9ef8ecf5e9a80b9bc201a26760",
+      "unit": "squad-1::2",
+      "tags": [
+        "en"
+      ],
+      "anchor": false,
+      "context_dependent": true
+    },
+    {
+      "source": "squad-1",
+      "source_sha256": "6a4859b84af16a97c8e1dcf1acad6e45d077ea9ef8ecf5e9a80b9bc201a26760",
+      "unit": "squad-1::3",
+      "tags": [
+        "en"
+      ],
+      "anchor": false,
+      "context_dependent": true
+    },
+    {
+      "source": "klue-0",
+      "source_sha256": "55298761e7fe18da08931f1ff02360609ea178778888148336be31d5b3dd778f",
+      "unit": "klue-0::0",
+      "tags": [
+        "ko"
+      ],
+      "anchor": true,
+      "context_dependent": false
+    },
+    {
+      "source": "klue-1",
+      "source_sha256": "b5d7d6b21cf42e7fc470095771f4ac03667772ae798011c9bb4fe7e9d306973c",
+      "unit": "klue-1::0",
+      "tags": [
+        "ko"
+      ],
+      "anchor": false,
+      "context_dependent": false
+    },
+    {
+      "source": "klue-2",
+      "source_sha256": "6edaa1f43ff115aecd0b44ec3d53f2b88375b12375a908628a9500514fab050b",
+      "unit": "klue-2::0",
+      "tags": [
+        "ko"
+      ],
+      "anchor": false,
+      "context_dependent": true
+    },
+    {
+      "source": "klue-3",
+      "source_sha256": "a0b3f0afa2570b208dc4b7ea3e9b3afee529b6adc54b3de47eb94a069f490812",
+      "unit": "klue-3::0",
+      "tags": [
+        "ko"
+      ],
+      "anchor": true,
+      "context_dependent": false
+    }
+  ],
+  "private_hashes": {
+    "gold.json": "d9b576d0854137a2f99528353e3e7f4258ae27be8cb44ea16f8409825a222d91",
+    "gold-reviewed.json": "34107c34c54ed3131bddb121925f2cfe7e207a26b9acfe514c64a7a62415dbab",
+    "gold-review.json": "6f95140087405a45967ccd38233a372203a620bc75e1fca2bb8f88507594c807",
+    "annotation-input.json": "5e0542db9dec5913c8af362804aa720d47c2ea481731e51957c56490322192a1",
+    "units.json": "78ccfec165a976ab02c1c609be9c19fb75bba0ed40d39e4f412e52eff713676e",
+    "units-final.json": "3f9f79f6ef492a305f10f79120a67807b3053209e862c5faabfd7ba6b2607eb5",
+    "judge-units.json": "b66d0a9549eb277a3d6ed1afc55790cd1bc807f557ba161ec2e9c4713744102a"
+  },
+  "verdict_gate": "INCONCLUSIVE: independent complete gold not certified; diagnostic one-shot only per frozen plan"
+}

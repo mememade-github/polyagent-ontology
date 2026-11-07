@@ -1,0 +1,62 @@
+{
+  "artifact_id": "QDR-procedure-final",
+  "run_id": "qdr-20261107-001",
+  "utc": "2026-11-07T01:16:04.869650+00:00",
+  "role_contexts": [
+    {
+      "role": "manager",
+      "scope": "current authorized task and metadata selection; QD design already selected, no new independent design proposals claimed"
+    },
+    {
+      "role": "audit and implementation",
+      "scope": "separate fresh codex exec processes through run-isolated-role.sh; contract/audit/spec/code only, no target values or gold"
+    },
+    {
+      "role": "gold author",
+      "scope": "fresh no-history context; selected text plus independent references only; no arms/seeds/output"
+    },
+    {
+      "role": "gold reviewer",
+      "scope": "fresh no-history context; selected text, initial gold, author report; no outputs; complete=false retained"
+    },
+    {
+      "role": "feasibility",
+      "scope": "fresh no-history context; plan/addendum and later code/Stub, never target values/gold/outputs; R1/R2 resolved before execution"
+    },
+    {
+      "role": "analysis implementer",
+      "scope": "fresh no-history context; frozen plan and driver structure only;36synthetic checks; no target/gold/output"
+    },
+    {
+      "role": "experimenter",
+      "scope": "locked driver and private selected units; no gold fed to model;15arms+2controls once"
+    },
+    {
+      "role": "prediction judge",
+      "scope": "fresh no-history context; exactly packet,jduge-units,gold-reviewed and rules; opaque shuffle, no arm/seed/control/measurements"
+    }
+  ],
+  "actual_model_calls": 276,
+  "target_arms": 15,
+  "control_batches": 2,
+  "target_retries": 0,
+  "model_prompt_tuning_runs": 0,
+  "tuning_inputs": "authored synthetic English/Korean controls and Stub fixtures only; no target-guided prompt changes",
+  "evaluation_inputs": "fixed public dev indices;12units/7eligible/5deferred; unknown pretraining contamination",
+  "locks_unchanged": 14,
+  "science_verdict": "INCONCLUSIVE",
+  "grounds": [
+    "gold complete=false with6unresolved before model",
+    "pre and post controls failed4of12 each",
+    "one unique active claim lacked frozen gold correspondence and stayed ambiguous"
+  ],
+  "interpretation": [
+    "all pools exhausted, selector contrast uninformative",
+    "six Fact arm active occurrences are one identical opaque prediction",
+    "no confirmed true or false prediction labels; ambiguous is not false",
+    "no ontology or general performance conclusion"
+  ],
+  "operator_failure": "Initial score CLI omitted --out and exited2 before analysis output; corrected arguments used the unchanged frozen analyzer and same acquisition once.",
+  "cleanup": "ollama-t stopped and removed; existing model volume/image retained; private files retained under requested scratch",
+  "publication": "no dataset/gold/prediction/response text; only sanitized code, metadata, counts, IDs and hashes"
+}

@@ -1,0 +1,51 @@
+{
+  "boundary_checks": {
+    "creation_delay_past_absolute_deadline": {
+      "passed": true,
+      "dispatches": 0
+    },
+    "minimum_and_unchanged_defaults": {
+      "passed": true
+    },
+    "acquisition_error_True_write_failure_True_stop_timeout": {
+      "passed": true,
+      "stop_attempts": 1,
+      "timeout": 20,
+      "visible_output": "{\"acquisition_error\": {\"error_type\": \"TimeoutExpired\", \"reason\": \"unexpected failure\"}}\nTraceback (most recent call last):\n  File \"__SCRATCH__/qd-real-20261107/acquire.py\", line 32, in <module>\n    if time.monotonic()>deadline:raise RuntimeError('global deadline')\n  File \"__SCRATCH__/qd-real-20261107/acquire.py\", line 2, in persist\n    from pathlib import Path\n  File \"__SCRATCH__/qd-real-20261107/execution-fix-check.py\", line 60, in disk_open\n    if write_failure and path.name=='manifest.json':raise OSError('synthetic persist failure')\nOSError: synthetic persist failure\n{\"cleanup_stop_timeout_seconds\": 20}\n"
+    },
+    "acquisition_error_True_write_failure_True_stop_exit": {
+      "passed": true,
+      "stop_attempts": 1,
+      "timeout": 20,
+      "visible_output": "{\"acquisition_error\": {\"error_type\": \"TimeoutExpired\", \"reason\": \"unexpected failure\"}}\nTraceback (most recent call last):\n  File \"__SCRATCH__/qd-real-20261107/acquire.py\", line 32, in <module>\n    if time.monotonic()>deadline:raise RuntimeError('global deadline')\n  File \"__SCRATCH__/qd-real-20261107/acquire.py\", line 2, in persist\n    from pathlib import Path\n  File \"__SCRATCH__/qd-real-20261107/execution-fix-check.py\", line 60, in disk_open\n    if write_failure and path.name=='manifest.json':raise OSError('synthetic persist failure')\nOSError: synthetic persist failure\n{\"cleanup_stop_exit\": 3, \"stderr\": \"synthetic\"}\n"
+    },
+    "acquisition_error_False_write_failure_True_stop_ok": {
+      "passed": true,
+      "stop_attempts": 1,
+      "timeout": 20,
+      "visible_output": "{\"completed\": \"pre-controls\", \"status\": \"valid\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-onto\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-original-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-original-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-fact-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-fact-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-original-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-original-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-fact-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-fact-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-onto\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-original-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-fact-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-fact-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-onto\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-original-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"post-controls\", \"status\": \"valid\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"cleanup_stop_exit\": 0, \"stderr\": \"synthetic\"}\n"
+    },
+    "acquisition_error_False_write_failure_False_stop_ok": {
+      "passed": true,
+      "stop_attempts": 1,
+      "timeout": 20,
+      "visible_output": "{\"completed\": \"pre-controls\", \"status\": \"valid\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-onto\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-original-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-original-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-fact-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"7-fact-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-original-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-original-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-fact-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-fact-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"11-onto\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-original-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-fact-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-fact-coverage\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-onto\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"19-original-random\", \"status\": \"complete\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"completed\": \"post-controls\", \"status\": \"valid\", \"attempts\": 0, \"actual_tokens\": 0, \"wall_seconds\": 0}\n{\"acquisition_complete\": true, \"completed_arms\": 15, \"wall_seconds\": 0, \"abort\": null}\n{\"cleanup_stop_exit\": 0, \"stderr\": \"synthetic\"}\n"
+    },
+    "acquisition_error_True_write_failure_False_stop_ok": {
+      "passed": true,
+      "stop_attempts": 1,
+      "timeout": 20,
+      "visible_output": "{\"acquisition_error\": {\"error_type\": \"TimeoutExpired\", \"reason\": \"unexpected failure\"}}\n{\"acquisition_complete\": false, \"completed_arms\": 0, \"wall_seconds\": 0, \"abort\": {\"error_type\": \"TimeoutExpired\", \"reason\": \"unexpected failure\"}}\n{\"cleanup_stop_exit\": 0, \"stderr\": \"synthetic\"}\n"
+    }
+  },
+  "real_model_calls": 0,
+  "real_docker_calls": 0,
+  "target_data_reads": 0,
+  "code_sha256": {
+    "__RESEARCH__/prototype/qd/scientific.py": "7c1413b2dd041e1f03b54d3632386db6e6976e2b1eab7c706ced9b47e4ba7f59",
+    "__SCRATCH__/qd-real-20261107/acquire.py": "2f7eec0c3c5a3b6f50b3eb47d53530029d004cdffa2ec6b3f304962d7221b2d6"
+  },
+  "historical_passed": 25,
+  "historical_total": 25,
+  "raw_sha256": "25091c59459121b3d1c71d350eed6ca9d6b4e91ea0c78d208d4c1d43a2780b69"
+}

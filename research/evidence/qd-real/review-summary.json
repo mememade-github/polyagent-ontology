@@ -1,0 +1,52 @@
+{
+  "artifact_id": "QDR-manuscript-review-response",
+  "utc": "2026-11-07T01:22:19.620733+00:00",
+  "review": {
+    "inputsha256": "d7260f012492e4889dfb559755d9065dce9b3b39c9d4144580ad01ec6e88697d",
+    "verdict": "revise",
+    "confidence": 0.98,
+    "scope": {
+      "type": "fresh manuscript-only review",
+      "sole_input": "__RESEARCH__/evidence/qd-real/results.md",
+      "method": "Read only the named manuscript; recompute arithmetic from its displayed resource table. No code, raw data, linked sources, other JSON, wiki, model reruns, or internet were inspected or used.",
+      "limitations": "Confidence concerns the internal manuscript assessment only. Numerical truth, source completeness, raw token accounting, controls, gold validity, judging, locks, blinding, logs, acquisition history, and absence of reruns cannot be independently authenticated from this one file. This is not a raw-data or code audit.",
+      "findings": [
+        "Invalid gold and controls are explicitly separated from scientific PASS/FAIL: Hq-Fact, Hq-original, and Honto remain INCONCLUSIVE.",
+        "The 15 quality rows consistently report six occurrences of one unresolved Fact claim, with T=0 and F=0; nine other arms have no active predictions. One sentence nevertheless overstates the unresolved claim as not false, as recorded in issue 1.",
+        "Fact precision is correctly presented as N/A and the frozen zero as an empty-resolved-label sentinel. Empty-arm zero is explicitly identified as a scoring convention. Confirmed 0/4 cells is not asserted as final recall.",
+        "Pool exhaustion and identical paired outputs are described as uninformative selector contrast, with no pooled winner or general QD/ontology conclusion.",
+        "All 15 displayed input-plus-output token sums are correct. Rows sum to 244 calls, 43,571 input tokens, 6,441 output tokens, and 50,012 total tokens. Whole-acquisition 47,413+6,929=54,342 is internally correct; its residual is 32 control calls and 4,330 control tokens, but the underlying control accounting is not independently available.",
+        "Displayed arm wall times sum to 548.644227 seconds, versus the stated 548.644230 seconds. The 0.000003-second difference is within the 0.0000075-second cumulative rounding bound for 15 rows rounded to six decimals, so it is not a demonstrated inconsistency.",
+        "API tokens, reserved token capacity, wall time including queue/controller, summed server duration, and CPU time are distinguished. The per-arm displayed consumption is within the stated applicable caps. Their provenance and actual measurement cannot be verified here.",
+        "The manuscript expressly limits documentation and final manuscript review independence, disclaims private-artifact auditing, and leaves parent publication, privacy checks, independent evaluation, and registration pending."
+      ]
+    },
+    "issues": [
+      {
+        "number": 1,
+        "must_fix": true,
+        "severity": "semantic overstatement",
+        "location": "Opening summary, third paragraph",
+        "excerpt": "It is not false: confirmed T=0, F=0, unresolved U=1.",
+        "problem": "An unresolved ambiguous claim has not been established as either true or false. F=0 means no confirmed false label; it does not establish that the claim is not false. The categorical sentence conflicts with the same paragraph's ambiguous/U=1 status.",
+        "requested_change": "Replace the sentence with: \"It is not confirmed true or false: confirmed T=0, F=0, unresolved U=1.\" Preserve the N/A precision and unresolved status."
+      }
+    ],
+    "unresolved_obligations": [
+      "Revise issue 1 before manuscript acceptance; this review has not modified the manuscript.",
+      "Maintain INCONCLUSIVE scientific verdicts and unresolved truth status. A wording correction does not repair the incomplete gold or failed controls.",
+      "The truth of reported measurements and procedural attestations remains outside this manuscript-only review; no raw-data or code audit has been performed or implied.",
+      "The manuscript itself reports parent publication build, privacy checks, independent evaluation, and registration as pending; this review does not discharge those obligations."
+    ]
+  },
+  "response": {
+    "issue": 1,
+    "action": "wording clarified only; no truth label, criterion, score, acquisition or measurement change",
+    "replacement": "It is not confirmed true or false: confirmed T=0, F=0, unresolved U=1.",
+    "before_sha256": "d7260f012492e4889dfb559755d9065dce9b3b39c9d4144580ad01ec6e88697d",
+    "after_sha256": "7f6644d3cd5cac7b0f9da197ba1685c66e2a897cccaeb4686cda8bfb383e44e5",
+    "original_draft_preserved_private": true,
+    "status": "implemented; reviewer closure pending"
+  },
+  "private_review_sha256": "4e1a367900282107388b9eb8ee94b0f6a9a1c1e9f2aba12ee7a9dd8925790aa1"
+}

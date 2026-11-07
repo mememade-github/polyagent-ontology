@@ -61,3 +61,11 @@
 - [소스: QD 적응](sources/qd-rec-adaptation.md): 실행 전 lock·절차 입력 digest·코드/결과 해시
 
 QD 적응 검토 후 정의: [적응 초안](concepts/qd-rec-adaptation.md), [검토·계산·addendum 원장](sources/qd-rec-adaptation.md). 실모델 미검증.
+
+- [QD 실제 자료](concepts/qd-real-data.md): QDR-D 홈 행, bounded search·라이선스·자료 잠금·불완전 gold (2026-11-07)
+- [QD 실제 절차](concepts/qd-real-procedure.md): QDR-P 홈 행, 역할 경계·고정 비교·실행 전 gate와 Stub (2026-11-07)
+
+**results.md 갱신:** 위 실모델 미검증 표시는 과거 QDA 단계 기록이다.
+
+- [QD 실제 결과](concepts/qd-real-results.md): QDR-R 홈 행, 세 가설 INCONCLUSIVE·15 seed/arm 행·통제/gold 한계
+- [소스: QD 실제 실행](sources/qd-real.md): 공개 metadata와 scientific/controller/analyzer 해시 원장

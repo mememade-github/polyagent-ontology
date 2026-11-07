@@ -101,3 +101,10 @@ QDA review-summary는 원 procedure pending-review를 역사 기록으로 대체
 QDA 공개 정책은 `E:qd-adaptation/publication-policy.json`이다. `evidence/qd-rec/`는 paper-access/repository-snapshot JSON만, `prototype/qd/`는 controller/demo만, `evidence/qd-adaptation/`는 정책에 열거한 검토 기록만 허용한다. 논문 전문·파생 텍스트·upstream 코드 복사본은 제외한다. 기존 제외·치환 규칙을 보존한다.
 
 위의 후속 B 대기는 과거 단계 상태다. 현재 사용자가 B 재빌드를 명시 승인했으며 publication-policy allowlist 적용과 공개 검사를 수행했다. 부모 최종 독립 평가는 별도다.
+
+## QDR 실모델 공개 규약 (2026-11-07)
+
+- 공개 허용 목록과 제외 기준은 [publication-policy.json](../evidence/qd-real/publication-policy.json)에 고정한다. `prototype/qd/`에 `scientific.py`, `analyze.py`를 추가하며 `evidence/qd-real/`는 정책에 열거한 공개 메타데이터·계획·코드·집계 기록만 허용한다. 기존 제외·치환·정제 후 해시 재계산과 이전 규약 이력은 보존한다.
+- 원본 데이터 값·문서·private input·reference·labels·prediction·response·gold 텍스트와 관련 캐시/덤프는 라이선스와 무관하게 제외한다. 데이터 연결 식별자는 해시 또는 집계 ID만 공개한다. 허용 파일명도 제외 내용을 공개할 권한을 주지 않는다.
+- `QDR-D*` 홈 행은 [자료](concepts/qd-real-data.md), `QDR-P*` 홈 행은 [절차](concepts/qd-real-procedure.md), `QDR-R*` 홈 행은 후속 [결과](concepts/qd-real-results.md)에 둔다. 결과 페이지는 부모 작업에서 작성하며 그 전에는 공개 빌드를 실행하지 않는다.
+- 고정 분석계획에 따른 diagnostic controlled one-shot이며 gold coverage는 불완전하다. 이 규약 추가는 수치 결과나 일반 성능을 주장하지 않으며 동결 protocol/model/scorer/driver/input을 변경하지 않는다.

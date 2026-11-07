@@ -5,7 +5,7 @@ import json
 import random
 
 
-def run(units, ask, onto, *, selector='coverage', seed=7, cap=64, fixed_fact=False):
+def run(units, ask, onto, *, selector='coverage', seed=7, cap=64, fixed_fact=False, state=None):
     """ask has onto.Llm.ask signature. Units supply source, unit, text, tags,
     anchor, context_dependent; source_sha256 is the full source digest.
     Tags are declared descriptors, never inferred ontology truth.
@@ -18,6 +18,9 @@ def run(units, ask, onto, *, selector='coverage', seed=7, cap=64, fixed_fact=Fal
     pending = [(u, lens) for u in units for lens in ('general', 'qualifier')]
     pool = [(u['unit'], lens) for u, lens in pending]
     history, calls, active, order = [], [], {}, []
+
+    if state is not None:
+        state.update(history=history, calls=calls, active=[], pending=[])
 
     def cell(u):
         return (tuple(sorted(set(u['tags']))), bool(u['anchor']))
@@ -35,7 +38,7 @@ def run(units, ask, onto, *, selector='coverage', seed=7, cap=64, fixed_fact=Fal
             onto.validate(value, schema)
             record['status'] = 'returned_valid_schema'
             return value
-        except Exception as exc:
+        except BaseException as exc:
             record['status'] = 'failed'
             record['error_type'] = type(exc).__name__
             raise
@@ -49,6 +52,8 @@ def run(units, ask, onto, *, selector='coverage', seed=7, cap=64, fixed_fact=Fal
         task = rng.choice(candidates)
         pending.remove(task)
         u, lens = task
+        if state is not None:
+            state.update(active=list(active.values()), pending=[{'unit': x['unit'], 'lens': l, 'reason': 'unfinished'} for x, l in [task] + pending])
         order.append((u['unit'], lens))
         record = {'source': u['source'], 'source_sha256': u['source_sha256'],
                   'unit': u['unit'], 'unit_sha256': hashlib.sha256(u['text'].encode()).hexdigest(),
@@ -86,6 +91,8 @@ def run(units, ask, onto, *, selector='coverage', seed=7, cap=64, fixed_fact=Fal
             else:
                 record['outcome'] = 'active_provisional'
                 active[key] = record
+                if state is not None:
+                    state['active'] = list(active.values())
         except Exception as exc:
             record['outcome'] = 'rejected'
             record['reason'] = str(exc) if type(exc) is ValueError else type(exc).__name__

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "squad",
+    "url": "https://rajpurkar.github.io/SQuAD-explorer/dataset/dev-v2.0.json",
+    "bytes": 4370528,
+    "sha256": "80a5225e94905956a6446d296ca1093975c4d3b3260f1d6c8f68bc2ab77182d8",
+    "utc": "2026-11-07T00:46:58.063636+00:00",
+    "license": "CC-BY-SA-4.0",
+    "published_raw": false
+  },
+  {
+    "name": "klue",
+    "url": "https://raw.githubusercontent.com/KLUE-benchmark/KLUE/3efd98708a40ff49251fddde35453f8fbb11f536/klue_benchmark/klue-re-v1.1/klue-re-v1.1_dev.json",
+    "bytes": 5212646,
+    "sha256": "d150873430e592a5c569d35b20d88fbbbfba751dae0ffa4d8cbfb6b7321dea14",
+    "utc": "2026-11-07T00:46:59.125285+00:00",
+    "license": "CC-BY-SA-4.0",
+    "published_raw": false
+  }
+]

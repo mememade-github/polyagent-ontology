@@ -16,3 +16,5 @@
 | <a id="PX-08"></a>PX-08 | 범위·공개 | [실행/실모델] | E:prototype/hashes.json, E:prototype/results.md | SQLite4테이블569행+JSONL225+로그327+Markdown6, PDF3제외. Python3.10.12/Ollama0.40.10 CPU, 3.1B Q4_K_M, ctx8192/temp0/seed7/threads8 | JSONL은 live connector아님; 배열 보존만, 자유로그 의미파싱·폴더계층·OWL/SHACL/규칙·문장간추론 없음. 코드·메타데이터만 새 공개 |
 
 동결 프로토콜 및 코드·입력·참조 SHA256, 라이선스와 파일 크기는 [해시 원장](../sources/evidence-prototype.md)에서 시작한다. 전체 대응 근거와 실패 이력은 [results.md](../../evidence/prototype/results.md)에 있다. 기존 공개 `evidence/real-model/gold.md`/`gold.txt` 합성 fixture는 유지하고 새 raw 모델 출력·facts/cache/tables/ontology dump와 샘플 본문은 공개하지 않는다.
+
+**results.md 갱신:** 후속 [QD 실제 결과](qd-real-results.md)는 세 가설 모두 INCONCLUSIVE다. 이전 raw·역사 결과는 보존한다.

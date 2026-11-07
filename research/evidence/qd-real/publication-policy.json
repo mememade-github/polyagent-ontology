@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-07",
+  "scope": "Publication configuration only; the frozen acquisition and analysis artifacts remain unchanged.",
+  "allowlists": {
+    "evidence/qd-rec": [
+      "paper-access.json",
+      "repository-snapshot.json"
+    ],
+    "prototype/qd": [
+      "analyze.py",
+      "controller.py",
+      "demo.py",
+      "scientific.py"
+    ],
+    "evidence/qd-adaptation": [
+      "addendum-lock.json",
+      "future-analysis-addendum.md",
+      "independent-calculation.json",
+      "lock.json",
+      "procedure.json",
+      "protocol.md",
+      "publication-policy.json",
+      "results.json",
+      "review-summary.json",
+      "run-001.json"
+    ],
+    "evidence/qd-real": [
+      "acquire.py",
+      "analysis-plan.md",
+      "analysis-stub.json",
+      "discovery.json",
+      "docker-audit.json",
+      "downloads.json",
+      "environment.json",
+      "execution-fix-report.md",
+      "execution-lock.json",
+      "execution-stub-summary.json",
+      "feasibility-gate.md",
+      "gold-review-summary.json",
+      "judgment-summary.json",
+      "material-lock.json",
+      "measurements.json",
+      "plan-lock.json",
+      "preparation-events.json",
+      "procedure-final.json",
+      "publication-policy.json",
+      "results.json",
+      "results.md",
+      "review-summary.json",
+      "sources-hashes.json",
+      "stub-summary.json",
+      "verification.json"
+    ]
+  },
+  "exclusions": [
+    "All raw original dataset values, document text, private inputs, reference text, labels, prediction text, model response text, and gold text are excluded regardless of license.",
+    "All raw data, input, original, gold, reference, prediction, response, and labels caches and dumps are excluded; unlisted files and nested paths in evidence/qd-real and prototype/qd are excluded.",
+    "Dataset-linked identifiers may be published only as hashes or aggregate IDs; no dataset values may be published.",
+    "Allowlisted artifacts are limited to public metadata, plans, code, hashes, aggregate IDs, and aggregate diagnostic summaries; filenames do not authorize excluded content.",
+    "Existing builder exclusions, cache/bytecode exclusions, substitutions, and post-sanitization hash recomputation remain in effect."
+  ],
+  "future_artifacts": [
+    "results.md",
+    "results.json",
+    "measurements.json",
+    "judgment-summary.json",
+    "procedure-final.json",
+    "publication-policy.json",
+    "review-summary.json",
+    "verification.json",
+    "docker-audit.json",
+    "sources-hashes.json"
+  ]
+}

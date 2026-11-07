@@ -125,6 +125,22 @@ results.md가 관련된 새 항목: [C-17](contradictions.md#C-17) 잠금 문장
 
 최초 공개 lint는 GitHub README.md의 HTTP URL을 로컬 경로로 오인해 1건 실패했다. 지정 check_wiki.py에서 URL scheme을 구분하도록 수정했고 원래 URL을 유지했다. 별도 작은 fixture에서 외부 URL 제외와 실제 누락 로컬 파일 검출을 모두 확인했다. 재빌드 결과 로컬 링크 1,644건·깨짐 0, 16자리 해시 170건·불일치 0. 공개 221파일에서 private sys.txt의 모든 40자 슬라이딩 위치(문자 73,311/바이트 73,579)와 비밀값·내부 IP·세션 경로를 검사해 검출 0건이었다. 이는 해당 검사 범위의 결과다.
 
-## [2026-11-06] lint | 저장소 수록본 정제
+## [2026-11-07] ingest | QD 실제 자료·실행 전 절차
+
+[자료](concepts/qd-real-data.md)와 [절차](concepts/qd-real-procedure.md)에 QDR-D/QDR-P 고유 홈 행을 추가했다. 허용된 metadata/plan/Stub 및 두 scratch gate 보고만으로 정리했다. frozen analyzer/acquire와 두 보고를 exclusive-create로 bytes 그대로 보존했다. 6문서·12단위·7 eligible·5 deferred·gold85·미해결6·complete=false는 획득 전 metadata이며 diagnostic-only다. 실제 결과 수치는 아직 기록하지 않았다. 기존 raw/개념/source 원장·builder·research·동결 실행 코드는 변경하지 않았다. 모델·Docker·commit·재귀 refine 없음.
+
+## [2026-11-07] ingest | QD 실제 결과 metadata 보고
+
+[결과](concepts/qd-real-results.md) QDR-R 홈과 [전체 보고서](../evidence/qd-real/results.md), [해시 원장](sources/qd-real.md)을 추가했다. 공개 metadata만 사용했다. 15 arms+pre/post 완료, 세 가설 INCONCLUSIVE, Fact precision N/A 및 T0/F0/U1, confirmed cells0/4와 미확립 recall을 분리했다. 과거 raw를 보존했다. 소스 해시·표 수치 대조는 문서 범위에서 수행하며 부모 최종 build/privacy/독립평가/등록은 대기한다. 모델·Docker·재귀 refine·commit 없음.
+
+## [2026-11-07] review | QDR 미해결 의미 표현 명확화
+
+원고만 받은 독립 검토의 필수 수정1건을 반영했다. [결과](concepts/qd-real-results.md)의 T/F/U와 INCONCLUSIVE는 불변이다. 원고 수정 전 hash와 private 사본을 보존했다.
+
+## [2026-11-07] lint | QDR 공개 검사와 원고 종결
+
+[검증 기록](../evidence/qd-real/verification.json)에 링크/해시·69,986 sliding windows·비밀값/IP/세션 scan·mirror dry·completion checker 통과와 원고 수정종결을 기록했다. 긴 공백2곳만 공개 생성 단계에서 정규화했고 실행 코드는 불변, AST 동일이다. 최종 격리 평가는 별도 gate다.
+
+## [2026-11-07] lint | 저장소 수록본 정제
 
 [SCHEMA](SCHEMA.md)의 "저장소에 없는 Raw" 기준으로 파일을 제외하고 식별자를 치환했다. 그래서 `sources/`의 해시 값이 수집 당시와 달라졌다.

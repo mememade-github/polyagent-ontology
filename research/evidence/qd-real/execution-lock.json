@@ -1,0 +1,24 @@
+{
+  "artifact_id": "QDR-execution-v1",
+  "utc": "2026-11-07T01:01:44.803220+00:00",
+  "run_id": "qdr-20261107-001",
+  "real_model_chat_calls_before_lock": 0,
+  "mode": "diagnostic_only_gold_incomplete",
+  "files": {
+    "prototype/onto.py": "400e86746580509e8d79ac038769f2d990a29c7938f6e98267925e5178c7a575",
+    "prototype/qd/controller.py": "4208b3a22d269e25159f2f4d6c4bd733120e6406fd69a2345aac209948f0a744",
+    "prototype/qd/scientific.py": "7c1413b2dd041e1f03b54d3632386db6e6976e2b1eab7c706ced9b47e4ba7f59",
+    "evidence/qd-real/analysis-plan.md": "a07d22b75d6947ca3efdc352052e7c83e5973ef60d3fb9865dc6efea6b012bbc",
+    "private/acquire.py": "2f7eec0c3c5a3b6f50b3eb47d53530029d004cdffa2ec6b3f304962d7221b2d6",
+    "private/analyze.py": "63c8ee274c790531b9b8ca410580fcfdc51ff00d8793f0b7df9b27709892b5cf",
+    "private/units-final.json": "3f9f79f6ef492a305f10f79120a67807b3053209e862c5faabfd7ba6b2607eb5",
+    "private/judge-units.json": "b66d0a9549eb277a3d6ed1afc55790cd1bc807f557ba161ec2e9c4713744102a",
+    "private/gold-reviewed.json": "34107c34c54ed3131bddb121925f2cfe7e207a26b9acfe514c64a7a62415dbab",
+    "private/gold-review.json": "6f95140087405a45967ccd38233a372203a620bc75e1fca2bb8f88507594c807",
+    "private/annotation-input.json": "5e0542db9dec5913c8af362804aa720d47c2ea481731e51957c56490322192a1",
+    "private/model.json": "2a316665f171070c565cd07c0af0599088bedf339418a3bc55a79f06b379ec70",
+    "private/squad.json": "80a5225e94905956a6446d296ca1093975c4d3b3260f1d6c8f68bc2ab77182d8",
+    "private/klue.json": "d150873430e592a5c569d35b20d88fbbbfba751dae0ffa4d8cbfb6b7321dea14"
+  },
+  "private_manifest_sha256": "b1b6791443d3de582367270898248dced29a949478a7eda9467609535f291fe7"
+}

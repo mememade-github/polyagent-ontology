@@ -1,0 +1,41 @@
+{
+  "artifact_id": "QDR-blind-judgment-summary",
+  "utc_exported": "2026-11-07T01:16:04.865688+00:00",
+  "unique_claims": 1,
+  "label_count": 1,
+  "active_occurrences": 6,
+  "counts": {
+    "true": 0,
+    "false": 0,
+    "ambiguous": 1
+  },
+  "missing_gold_count": 1,
+  "ambiguity_count": 1,
+  "labels": [
+    {
+      "id": "f6741d4ad90d57ebd16ed7b4e951b1877701158b78ce2766155f5b0b1991b022",
+      "status": "ambiguous"
+    }
+  ],
+  "input_scope": [
+    "packet with shuffled opaque IDs and triple/source text",
+    "judge-units selected text and source context",
+    "locked gold-reviewed"
+  ],
+  "excluded_scope": [
+    "arm",
+    "selector",
+    "seed",
+    "model measurements",
+    "control results"
+  ],
+  "private_hashes": {
+    "packet.json": "3532bea106ac5391ea450c1af275872c02e9d653b895390581d6bf9921b5a258",
+    "judge-units.json": "b66d0a9549eb277a3d6ed1afc55790cd1bc807f557ba161ec2e9c4713744102a",
+    "gold-reviewed.json": "34107c34c54ed3131bddb121925f2cfe7e207a26b9acfe514c64a7a62415dbab",
+    "labels.json": "d91f85e4f76ddc306cad3a1046af2a130a546b009789529f5671f2bd63afd27c",
+    "judge-report.md": "3cad67f278e82c40ff6662a0c1f4a7c881dcb08c41df9d97e8db257f230cbd6f",
+    "judge-instructions.txt": "c17a921e917dcf7da37b6b186a34f3c71c70998bf2c725910fa1fcfee198d8e9"
+  },
+  "note": "Ambiguous supported/missing-gold claims are not false; no gold amendment and no target rerun. Numeric zero precision in scorer on no resolved labels is a sentinel, not a quality estimate for the ambiguous prediction."
+}

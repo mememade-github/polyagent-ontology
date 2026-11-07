@@ -1,0 +1,13 @@
+{
+  "utc": "2026-11-07T01:13:04.865689+00:00",
+  "log_scope": "entire single container lifetime, captured after stopped",
+  "log_bytes": 1044406,
+  "log_sha256": "233cac0a516234db3993e1719ea746e41566aa302e6cb9c18b4b1a0f0e57d2eb",
+  "truncating_case_insensitive_count": 0,
+  "api_chat_log_events": 276,
+  "stopped_before_capture": true,
+  "container_removed": true,
+  "remaining_named_containers": 0,
+  "raw_log_public": false,
+  "existing_volume_and_image_retained": true
+}

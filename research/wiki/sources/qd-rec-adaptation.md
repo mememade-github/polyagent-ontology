@@ -11,7 +11,7 @@
 | `evidence/qd-adaptation/protocol.md` | 3,379 | `ace4e402d240df3b` |
 | `evidence/qd-adaptation/results.json` | 2,403 | `3c5ae7f53b295684` |
 | `evidence/qd-adaptation/run-001.json` | 38,505 | `0f8230644d85736f` |
-| `prototype/qd/controller.py` | 4,499 | `a46aefba779744bf` |
+| `prototype/qd/controller.py` | 4,894 | `4208b3a22d269e25` |
 | `prototype/qd/demo.py` | 4,184 | `eb6a3a4313573532` |
 | `prototype/onto.py` | 31,227 | `400e86746580509e` |
 

@@ -1,0 +1,51 @@
+{
+  "artifact_id": "QDR-publication-check-snapshot",
+  "utc": "2026-11-07T01:27:41.252429+00:00",
+  "scope": "250-file generated snapshot before adding this attestation; final build/check logs remain private and are reported at commit",
+  "build": {
+    "files": 250,
+    "source": "designated build_research.py"
+  },
+  "wiki": {
+    "links": 1705,
+    "broken": 0,
+    "verified_evidence_hashes": 193,
+    "mismatch": 0,
+    "not_included": 31
+  },
+  "privacy": {
+    "sys_40_char_sliding_windows": 69986,
+    "sys_fragment_hits": 0,
+    "corpus_fragment_hits": 0,
+    "secret_value_hits": 0,
+    "internal_ip_hits": 0,
+    "session_path_hits": 0,
+    "credential_pattern_hits": 0,
+    "secret_values_printed": false
+  },
+  "publication_only_formatting": {
+    "initial_failure": "two whitespace-only overlapping spans,55chars each; no non-whitespace prompt overlap found",
+    "fix": "builder reduces two continuation indents54spaces to20spaces in scientific.py only",
+    "python_AST_identical": true,
+    "execution_sha256": "7c1413b2dd041e1f03b54d3632386db6e6976e2b1eab7c706ced9b47e4ba7f59",
+    "public_sha256": "4678d6aacd3bae87c35ad142f7c6df46829fa63d9d4a61327ee906ea53adef7c",
+    "frozen_execution_source_modified": false
+  },
+  "mirror_dry": {
+    "exit_code": 0,
+    "changes": 0
+  },
+  "completion_checker": {
+    "exit_code": 0,
+    "result": "all checks passed; verification markers written for branch main",
+    "private_log_sha256": "103340ebde0f072eb93922f72ad6958a1f075a9309be83e10f4b778dc04aa3dd"
+  },
+  "manuscript_closure": {
+    "after_sha256": "7f6644d3cd5cac7b0f9da197ba1685c66e2a897cccaeb4686cda8bfb383e44e5",
+    "issue1_resolved": true,
+    "verdict": "recommend_accept",
+    "scope": "Issue 1 wording closure only. The sole input reread was __RESEARCH__/evidence/qd-real/results.md. Its relevant paragraph now says \"It is not confirmed true or false\" and preserves ambiguous/unresolved status, resolving the categorical overstatement. This acceptance concerns the manuscript wording within the prior review scope; it is not a scientific PASS, a new analysis, or a raw-data/code audit. No other files, code, raw data, numerical result artifacts, internet, or model execution were used. Source truth and previously pending external obligations remain outside this closure check."
+  },
+  "isolated_contract_evaluation": "separate final gate; not a raw semantic-data audit",
+  "registration": "commit/push result is reported separately after final gate; this attestation does not claim future execution"
+}

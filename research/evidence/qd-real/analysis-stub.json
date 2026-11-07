@@ -1,0 +1,152 @@
+{
+  "scope": "Synthetic fixtures only; no target corpus, gold, or model output opened.",
+  "checks_total": 36,
+  "checks_passed": 36,
+  "passed": true,
+  "checks": [
+    {
+      "id": "valid_baseline_all_three_claims_all_seeds_pass",
+      "passed": true
+    },
+    {
+      "id": "deferred_gold_cell_remains_denominator",
+      "passed": true
+    },
+    {
+      "id": "packet_exhaustive_and_blind",
+      "passed": true
+    },
+    {
+      "id": "shuffle_stable_under_run_order",
+      "passed": true
+    },
+    {
+      "id": "concept_excluded_from_id",
+      "passed": true
+    },
+    {
+      "id": "missing_label_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "empty_gold_invalid",
+      "passed": true
+    },
+    {
+      "id": "empty_outputs_precision_zero_valid_fail",
+      "passed": true
+    },
+    {
+      "id": "semantic_dedup_preserves_first_origin",
+      "passed": true
+    },
+    {
+      "id": "first_origin_follows_active_order",
+      "passed": true
+    },
+    {
+      "id": "incorrect_semantic_dedup",
+      "passed": true
+    },
+    {
+      "id": "correct_incorrect_dedup_independent",
+      "passed": true
+    },
+    {
+      "id": "exact_duplicates_share_label_and_keep_first",
+      "passed": true
+    },
+    {
+      "id": "precision_exact_90_percent_passes",
+      "passed": true
+    },
+    {
+      "id": "precision_below_90_percent_fails",
+      "passed": true
+    },
+    {
+      "id": "precision_comparator_nondecrease",
+      "passed": true
+    },
+    {
+      "id": "minimum_one_gain_zero",
+      "passed": true
+    },
+    {
+      "id": "ceil_ten_percent_boundary",
+      "passed": true
+    },
+    {
+      "id": "cell_recall_nondecrease",
+      "passed": true
+    },
+    {
+      "id": "control_failure_global_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "missing_seed_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "malformed_accounting_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "over_limit_accounting_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "global_timeout_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "global_wall_accounting_consistent",
+      "passed": true
+    },
+    {
+      "id": "ambiguity_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "missing_gold_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "unknown_true_semantic_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "changed_rules_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "incomplete_gold_diagnostic_only",
+      "passed": true
+    },
+    {
+      "id": "hash_mismatch_inconclusive",
+      "passed": true
+    },
+    {
+      "id": "matching_file_hash_valid",
+      "passed": true
+    },
+    {
+      "id": "all_three_seeds_required_no_pooling",
+      "passed": true
+    },
+    {
+      "id": "empty_source_record_invalid",
+      "passed": true
+    },
+    {
+      "id": "gold_empty_output_no_exception",
+      "passed": true
+    },
+    {
+      "id": "score_contains_no_prediction_or_corpus_text",
+      "passed": true
+    }
+  ]
+}

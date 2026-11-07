@@ -1,0 +1,60 @@
+{
+  "artifact_id": "QDR-preparation-events-v1",
+  "run_id": "qdr-20261107-001",
+  "written_utc": "2026-11-07T00:49:38.466787+00:00",
+  "events": [
+    {
+      "phase": "startup",
+      "observed": "git main clean; HEAD=upstream; worktrees=one; root MEMORY.md absent; project rule folder absent; df available11964MB",
+      "limits": "root-only status used instead of recursive status helper because other repos forbidden"
+    },
+    {
+      "phase": "discovery",
+      "observed": "metadata websites and licenses inspected; no target values before plan-lock",
+      "sources": "discovery.json"
+    },
+    {
+      "phase": "analysis freeze",
+      "sha256": "a07d22b75d6947ca3efdc352052e7c83e5973ef60d3fb9865dc6efea6b012bbc",
+      "lock": "plan-lock.json"
+    },
+    {
+      "phase": "download",
+      "observed": "fixed files retrieved after freeze; six docs/twelve units; initial two heuristic dependency flags",
+      "sources": "downloads.json"
+    },
+    {
+      "phase": "audit",
+      "role": "fresh codex exec ephemeral via run-isolated-role.sh audit",
+      "actual_inputs": "task scope, contract, existing controller/onto/specs; no target corpus values",
+      "result_sha256": "5c55e2a026d042c925bd13618d2e7916a8d9e1dc4078965f807ce974aa81d9e1"
+    },
+    {
+      "phase": "modify dispatched",
+      "role": "fresh codex exec ephemeral via run-isolated-role.sh modify",
+      "actual_inputs": "audit/contract/frozen plan/existing code, no target corpus/gold",
+      "status": "running"
+    },
+    {
+      "phase": "gold dispatched",
+      "role": "fresh agent no inherited conversation",
+      "actual_inputs": "annotation-input.json source+independent reference+units+annotation instructions; no arms/seeds/model output",
+      "status": "running"
+    },
+    {
+      "phase": "feasibility dispatched",
+      "role": "fresh agent no inherited conversation",
+      "actual_inputs": "plan+future addendum+hardware limits and content-free unit counts",
+      "status": "running"
+    },
+    {
+      "phase": "container prepared",
+      "observed": "only ollama-t created with requested volume/network/image; api/tags matched qwen2.5:3b",
+      "model_digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b"
+    },
+    {
+      "phase": "shell failure",
+      "observed": "python command absent; no file/plan created by that failed command; repeated using python3; no target calls"
+    }
+  ]
+}

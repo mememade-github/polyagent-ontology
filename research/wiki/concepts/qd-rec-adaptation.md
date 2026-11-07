@@ -70,3 +70,5 @@ Hq-Fact: fixed Fact 안에서 coverage 대 random의 추가 가치가 주 질문
 `onto.py:436`의 정확한 연결 행: `facts.append({"unit": uid, "doc": rel, "section": head, "sentence": u, **it,`
 
 [독립 계산 보고](../../evidence/qd-adaptation/independent-calculation.json)는 11+32 case/268 assertions, must-fix0을 전달한다. Adversarial script는 scratch에 남아 public report만으로 full script-independent rerun을 주장할 수 없다. 현재 mechanical verdict는 그대로이며 부모의 최종 독립 평가는 아직 대기다.
+
+**results.md 갱신:** 후속 [QD 실제 결과](qd-real-results.md)는 세 가설 모두 INCONCLUSIVE다. 이전 raw·역사 결과는 보존한다.

@@ -1,0 +1,51 @@
+{
+  "phase": "metadata-before-plan; hash-capture-after-plan",
+  "queries": [
+    "DocRED dataset github license annotated distant supervision human dev",
+    "KorQuAD 1.0 license CC BY ND dataset",
+    "SQuAD dataset license CC BY SA 4.0"
+  ],
+  "metadata_access": [
+    {
+      "source": "KorQuAD official historical URL",
+      "url": "https://korquad.github.io/KorQuad%201.0/",
+      "status": 404
+    }
+  ],
+  "records": [
+    {
+      "name": "squad-license",
+      "url": "https://rajpurkar.github.io/SQuAD-explorer/",
+      "status": 200,
+      "bytes": 141436,
+      "sha256": "989f7e43f27faa490ed9fc8fb440e6f0aa791c49131346a27b8361deb4a18baf",
+      "utc": "2026-11-07T00:48:44.186925+00:00"
+    },
+    {
+      "name": "klue-license",
+      "url": "https://raw.githubusercontent.com/KLUE-benchmark/KLUE/3efd98708a40ff49251fddde35453f8fbb11f536/License.md",
+      "status": 200,
+      "bytes": 20131,
+      "sha256": "7abe19ec9bb73b36141b999b861d24ad855e808bafe0f81e84cce28556f6c297",
+      "utc": "2026-11-07T00:48:44.476936+00:00"
+    },
+    {
+      "name": "docred-method",
+      "url": "https://arxiv.org/abs/2205.12696",
+      "status": 200,
+      "bytes": 42290,
+      "sha256": "6d3f1a4935e1cdc5b915bd89fd0705b25905b4375c4e824d420973bb83cf7e12",
+      "utc": "2026-11-07T00:48:44.592736+00:00"
+    },
+    {
+      "name": "redocred-readme",
+      "url": "https://raw.githubusercontent.com/tonytan48/Re-DocRED/main/README.md",
+      "status": 200,
+      "bytes": 1536,
+      "sha256": "1be14cb05364966518b9312de1523f3498954f1d86c9d54bdec9498129b75a86",
+      "utc": "2026-11-07T00:48:44.881466+00:00"
+    }
+  ],
+  "decision": "bounded five-candidate search; no certified exhaustive free-proposition gold found; SQuAD2 plus KLUE RE with independent before-output annotation fallback",
+  "structured_companion": "KLUE entity span + relation JSON and SQuAD QA JSON; no business DB or table joins evaluated"
+}
