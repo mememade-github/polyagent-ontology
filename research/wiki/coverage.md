@@ -279,7 +279,7 @@
 | R:5 | [M-17](method-and-limits.md#M-17) | results.md가 더한 등급 [디컴파일], [바이너리]와 "모델은 전부 Stub" 선언 | [미입증] | 미입증 |
 | R:7 | [M-17](method-and-limits.md#M-17) | results.md가 더한 등급 [디컴파일], [바이너리]와 "모델은 전부 Stub" 선언 | [미입증] | 미입증 |
 | R:8 | [M-17](method-and-limits.md#M-17) | results.md가 더한 등급 [디컴파일], [바이너리]와 "모델은 전부 Stub" 선언 | [미입증] | 미입증 |
-| R:12 | [M-18](method-and-limits.md#M-18) | REA `decompile` 사용 불가(300초 시작 제한, `provider_timeout`) | [실행] | 근거 있음, 잔여는 해당 행의 미입증 칸 |
+| R:12 | [M-18](method-and-limits.md#M-18) | ~~REA `decompile` 사용 불가(300초 시작 제한, `provider_timeout`)~~ → REA `decompile`이 호출자가 지정한 시작 제한 300,000ms에서 `provider_timeout`으로 끝났다(M-18) | [실행] | 근거 있음, 잔여는 해당 행의 미입증 칸 |
 | R:13 | [M-19](method-and-limits.md#M-19) | 디컴파일 경로: 같은 Ghidra, `DecAddrs.java`, 주소는 `nm` 값에 이미지 베이스를 더했다 | [실행] | 근거 있음, 잔여는 해당 행의 미입증 칸 |
 | R:14 | [M-20](method-and-limits.md#M-20) | 분석 상태: `extract`는 1500초 제한으로 미완료 저장, `ontology-agent`는 분석 없이 함수 단위 디스어셈블 | [실행] | 근거 있음, 잔여는 해당 행의 미입증 칸 |
 | R:15 | [M-21](method-and-limits.md#M-21) | REA 내장 명령 중 기여한 것: `inspect-rust-binary`, `inspect-artifact`, `doctor` | [실행] | 근거 있음, 잔여는 해당 행의 미입증 칸 |

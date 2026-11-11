@@ -144,3 +144,7 @@ results.md가 관련된 새 항목: [C-17](contradictions.md#C-17) 잠금 문장
 ## [2026-11-07] lint | 저장소 수록본 정제
 
 [SCHEMA](SCHEMA.md)의 "저장소에 없는 Raw" 기준으로 파일을 제외하고 식별자를 치환했다. 그래서 `sources/`의 해시 값이 수집 당시와 달라졌다.
+
+## [2026-11-11] ingest | REA 시작 제한 300초의 출처
+
+[정제 발췌](../evidence/rea/startup-timeout-20261111.md)를 새 Raw로 추가했다. 2026-11-06 실행의 명령이 `REA_GHIDRA_STARTUP_TIMEOUT_MS=300000`을 지정했고, 같은 설치본(rea-agents 6.8.0)의 기본값은 330,000ms다. [M-18](method-and-limits.md#M-18)과 [coverage](coverage.md)의 R:12 행을 대체 표기로 고쳤고, [C-28](contradictions.md#C-28)을 신설하고 C-22에 갱신 줄을 달았다. results.md는 불변이다. 더 긴 제한에서의 실행은 하지 않았다.

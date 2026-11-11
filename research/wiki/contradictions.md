@@ -179,6 +179,7 @@ lint에서 찾은 항목이다. 양쪽을 원문 위치와 함께 남기고, 어
 - 앞선 기록 또는 주장: I:8 `rea doctor --provider ghidra` healthy, I:19 `Budget::{...room...}`
 - 대조 기록: R:12 REA `decompile` 사용 불가, b_room.c:4 `room_before`
 - 처리: 둘 다 유지한다. healthy는 doctor의 결과이고, decompile 실패는 별도 기록이다. `room`과 `room_before`의 관계는 미확인이다
+- 갱신(2026-11-11): R:12의 decompile 실패는 호출자가 지정한 시작 제한 300,000ms에서의 결과다. REA 기본값은 330,000ms다([C-28](#C-28))
 - 영향 페이지: [method](method-and-limits.md), [sym](concepts/binary-symbols.md)
 
 ## <a id="C-23"></a>C-23 RAGFlow 추출 경로의 누락
@@ -213,6 +214,14 @@ lint에서 찾은 항목이다. 양쪽을 원문 위치와 함께 남기고, 어
 - 논문: arXiv 2610.23470v2 §5.1(QDP:182)은 Sonnet 5/Haiku 4.5 proposer와 `gpt-5.6-terra` judge를 보고한다(도서 품질은 인간 평점).
 - 처리·갱신: 두 조건을 모두 보존한다. 기본 명령 실행을 논문 결과 재현으로 간주하지 않는다. 이 세션은 어느 조건도 실행하지 않았다.
 - 영향 페이지: [QD-14](products/qd-rec.md#QD-14), [QD-18](products/qd-rec.md#QD-18), [소스 원장](sources/qd-rec.md).
+
+## <a id="C-28"></a>C-28 (세분) REA 시작 제한 300초의 출처
+
+- 종류: 세분
+- 앞선 기록 또는 주장: R:12 "300초 시작 제한에 걸렸다". [M-18](method-and-limits.md#M-18)이 이를 "사용 불가(300초 시작 제한)"로 옮겼다
+- 대조 기록: E:rea/startup-timeout-20261111.md. 명령의 지정값 300000, 오류 문구 "configured 300000 ms startup deadline", 기본값 330_000
+- 처리: R:12는 불변이다. 문장은 사실이나 제한의 출처가 없다. M-18에 출처를 덧붙였다. 더 긴 제한에서의 결과는 미입증이다
+- 영향 페이지: [method](method-and-limits.md#M-18), [coverage](coverage.md)
 
 ---
 [index](index.md) · [coverage](coverage.md)
