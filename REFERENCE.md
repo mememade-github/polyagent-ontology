@@ -311,29 +311,6 @@ CI, and temp checkouts, and does not require docker or a canonical checkout
 path. The acceptance suite is the deep oracle; run it after structural changes
 to the DevContainer (hooks, mirror, devcontainer) and before releases.
 
-## Fable audit
-
-A Fable audit is a review of this repository by Claude's Fable model in a fresh
-Claude process. Run it where `claude` and `jq` are installed, such as this
-DevContainer:
-
-```bash
-bash scripts/meta/run-fable-audit.sh <prompt-file> [output-file]
-```
-
-The script first uses the dedicated key in the ignored `.env/fable-audit.env`.
-The file holds one line, `FABLE_AUDIT_TOKEN=<Claude OAuth token>`; keep it at
-mode 0600. When the key is missing or rejected with HTTP 401, the script uses
-the caller's Claude login. Any other failure, such as a usage limit on the key,
-stops with an error. Standard error names the credential used.
-
-The key reaches Claude on a file descriptor, never in an environment variable
-or a command line. The auditor can still read the whole repository, `.env/`
-included, with its Read and Bash tools, so this is not a security boundary.
-The output file is emptied at the start and stays empty when the audit fails.
-Inside a git work tree it must be ignored by git, and it must never be an env
-or key file.
-
 ## Polyagent parity
 
 ```bash
@@ -442,4 +419,4 @@ for the current branch, including an initial branch without commits.
 
 ---
 
-*Last updated: 2026-11-11*
+*Last updated: 2026-11-06*
