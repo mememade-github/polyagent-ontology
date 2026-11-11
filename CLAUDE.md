@@ -21,6 +21,7 @@ The container and its host-mounted `docker.sock` are not a security sandbox (see
 - Fix root causes — diagnose across infra/config/deploy/code; no workarounds.
 - Explicit failure — every operation must succeed or fail visibly.
 - Use `/refine` for meaningful changes and direct editing for trivial ones. Evaluation runs in a fresh evaluator context, never the modifier's context.
+- When asked for a Fable audit, run `bash scripts/meta/run-fable-audit.sh` rather than a Fable subagent, which cannot use the dedicated key; see [REFERENCE.md](REFERENCE.md) §Fable audit.
 - For work likely to span sessions, create a WIP via the **wip-manager** agent at `wip/task-YYYYMMDD-description/README.md`; delete the WIP directory when complete.
 - Before an agent-issued commit, `bash scripts/meta/completion-checker.sh` must pass; it is environment-independent across fresh clones, CI, and temp checkouts. Never bypass verification. Run the docker-backed `.devcontainer/verify-template.sh` on demand and in CI, not per commit.
 

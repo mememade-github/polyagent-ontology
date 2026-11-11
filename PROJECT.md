@@ -34,6 +34,7 @@ Sync: `bash scripts/sync-agents-mirror.sh` — `.claude/` → `.agents/rules`, `
 ## Environment
 
 - **DevContainer configuration**: `.devcontainer/.env` (build and startup values)
+- **Fable audit key**: optional, ignored `.env/fable-audit.env` (see [REFERENCE.md](REFERENCE.md) §Fable audit)
 - **Persistent volumes**: `~/.claude` (Claude auth), `~/.codex` (Codex auth), `~/.gemini` (Antigravity auth, settings, conversations), `~/.config/antigravity` (Antigravity plugin/MCP secrets), `/commandhistory` (shell history)
 - **Editor workspace settings**: `.vscode/` is tracked for VS Code convenience settings; it is not an agent vendor.
 
@@ -44,4 +45,4 @@ Sync: `bash scripts/sync-agents-mirror.sh` — `.claude/` → `.agents/rules`, `
 
 ---
 
-*Last updated: 2026-11-06*
+*Last updated: 2026-11-11*
