@@ -6,9 +6,9 @@ Research on structuring general documents to build ontologies automatically with
 
 DevContainer base for running multiple AI coding agents (Claude Code · Codex CLI · Antigravity CLI) in parity on the same project. The container is workspace-scoped, not a security sandbox — see [REFERENCE.md § Privilege boundary](REFERENCE.md#privilege-boundary) for the docker.sock / docker-group implications.
 
-Single ground truth (`.claude/`) + per-vendor mirror (`.agents/rules`, `.agents/skills`, `.codex/`). Antigravity reuses the same mirror plus a small native layer in `.agents/` (a hook adapter that runs the Claude hooks, and a rule-folder registration). Adding a new vendor reuses the mirror pattern instead of rewriting governance.
+Shared duties live in one hand-maintained `AGENTS.md` that all three agents read. `.claude/` is the source of the rules, skills, and roles from which `scripts/sync-agents-mirror.sh` generates `.agents/rules` and `.agents/skills`. `.codex/` and a small native layer in `.agents/` (a hook adapter that runs the Claude hooks, and a rule-folder registration) are hand-maintained per vendor. Adding a new vendor reuses `AGENTS.md` and the generated copies instead of rewriting governance.
 
-Behavioral foundation: [Karpathy 4-rule](https://github.com/forrestchang/andrej-karpathy-skills) (Think Before Coding · Simplicity First · Surgical Changes · Goal-Driven Execution) auto-loaded for Claude (`@import` in `CLAUDE.md`); for Codex, `AGENTS.md` instructs an explicit `Read` of the rule files under `.agents/rules/` at session start; Antigravity loads them automatically through their `trigger: always_on` frontmatter.
+Behavioral foundation: four rules adapted from [andrej-karpathy-skills](https://github.com/forrestchang/andrej-karpathy-skills) (Think Before Coding · Simplicity First · Surgical Changes · Goal-Driven Execution), kept in `AGENTS.md` with the other shared duties. Claude reads `AGENTS.md` through `@AGENTS.md` in `CLAUDE.md`; Codex and Antigravity read `AGENTS.md` directly. Project rules in `.claude/rules/project/` load automatically for Claude, through `.agents/rules.json` for Antigravity, and for Codex because `AGENTS.md` tells it to read them at session start.
 
 ## Requirements
 
@@ -58,20 +58,21 @@ agy
 
 On first run, `claude` prompts interactive login and Codex needs
 `codex login --device-auth` once. For `agy`, sign in at the printed Google URL
-and follow the terminal prompts. Gemini 4 Argon requires a paid Google AI Pro
-or Ultra plan, excluding free trials. All three credentials persist in named volumes.
+and follow the terminal prompts. Some models require a paid Google AI Pro or
+Ultra plan and may not be included in free trials; after sign-in,
+`agy models` lists the available models. All three credentials persist in named volumes.
 
 Codex compatibility and project trust details are covered in [Codex sandbox bypass](REFERENCE.md#codex-sandbox-bypass-devcontainer-only).
 
 ## What's included
 
-| Component | Count | Notes |
-|-----------|------:|-------|
-| AI agents | 3 | Claude Code · Codex CLI · Antigravity CLI (`agy`) |
-| Governance roles | 2 | evaluator, wip-manager (Claude agents; Codex skill/subprocess mirrors; Antigravity built-in `self` subagents) |
-| Hooks | 3 / 3 / 3 | session-start, pre-commit-gate, pre-push-gate (Antigravity runs the Claude hooks through `.agents/hooks/claude-hooks-adapter.sh`) |
-| Skills | 6 | /status, /verify, karpathy-guidelines, typesafe-ai, llm-wiki, collaborative-experiment-agents |
-| Tools | 20+ | ripgrep, fd, fzf, jq, tmux, gh, docker CLI, uv |
+| Component | Contents |
+|-----------|----------|
+| AI agents | Claude Code · Codex CLI · Antigravity CLI (`agy`) |
+| Governance roles | evaluator, wip-manager (Claude agents; Codex skill/subprocess mirrors; Antigravity built-in `self` subagents) |
+| Hooks | session-start, pre-push-gate (Antigravity runs the Claude hooks through `.agents/hooks/claude-hooks-adapter.sh`) |
+| Skills | /status, /verify, typesafe-ai, llm-wiki, collaborative-experiment-agents |
+| Tools | ripgrep, fd, fzf, jq, tmux, gh, docker CLI, uv, and the others in [Pre-installed tools](REFERENCE.md#pre-installed-tools) |
 
 For the optional TypeSafe API key, see [REFERENCE.md §TypeSafe (optional)](REFERENCE.md#typesafe-optional).
 
@@ -91,27 +92,18 @@ This project is not official material from the projects below. Rights to each ma
 
 ## Vendor parity sync
 
-```bash
-bash scripts/sync-agents-mirror.sh         # .claude/ → .agents/rules, .agents/skills (prunes deleted-source orphans)
-bash scripts/sync-agents-mirror.sh --dry   # diff only
-```
-
-`.claude/` is the ground truth. `.agents/rules/` and `.agents/skills/` are
-generated with matching content and file modes; do not edit them by hand. The
-other `.agents/` files (`hooks.json`, `hooks/`, `rules.json`) are hand-maintained
-Antigravity configuration that the sync never touches.
+After editing `.claude/`, run `bash scripts/sync-agents-mirror.sh` (`--dry` only
+reports drift). See [Polyagent parity](REFERENCE.md#polyagent-parity).
 
 ## Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
-| Build fails | `docker compose -f .devcontainer/docker-compose.yml build --no-cache` |
 | Files invisible or container is unhealthy | A: use Reopen in Container. B: set `HOST_WORKSPACE_PATH` to a project path accessible to the Docker daemon. See [Configuration](REFERENCE.md#configuration-devcontainerenv). |
 | Reopen menu missing | Install the Dev Containers extension |
-| Claude re-auth needed | `docker volume ls \| grep claude-config` |
-| Codex re-auth needed | `docker volume ls \| grep codex-config` |
-| Antigravity re-auth needed or a rule is ignored | See [REFERENCE troubleshooting](REFERENCE.md#troubleshooting) |
-| `.agents/` drift | `bash scripts/sync-agents-mirror.sh` |
+
+For a failed build, re-authentication, an ignored Antigravity rule, `.agents/`
+drift, and other symptoms, see [REFERENCE troubleshooting](REFERENCE.md#troubleshooting).
 
 ## License
 

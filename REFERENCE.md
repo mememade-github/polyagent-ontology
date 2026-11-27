@@ -21,11 +21,21 @@ DevContainer inside a VM or on a dedicated machine.
 
 ## Configuration (`.devcontainer/.env`)
 
-DevContainer build and startup configuration lives in `.devcontainer/.env`;
-[Quick start](README.md#quick-start) covers initial setup
-(compose defaults apply when `.env` is absent).
+DevContainer build and startup configuration lives in `.devcontainer/.env`, a
+copy of `.devcontainer/.env.example`; [Quick start](README.md#quick-start)
+covers initial setup. The Compose commands in README and this file pass
+`--env-file .devcontainer/.env` and fail with `Couldn't find env file` when it
+is absent. `COMPOSE_PROJECT_NAME` is set only in that file: a Compose command
+run without it names the project, and the volume prefix, after the
+`.devcontainer` directory (`devcontainer`). For every variable below
+except `TYPESAFE_API_KEY`, a variable of the same name in the shell that runs
+`docker compose` takes precedence over the file's value.
 
-| Variable | Default | Used by | Purpose |
+The second column is the value in effect with an unedited copy of
+`.env.example`; where that file leaves a variable empty, the fallback in
+`docker-compose.yml` applies (`DNS_PRIMARY`).
+
+| Variable | With `.env.example` | Used by | Purpose |
 |----------|---------|---------|---------|
 | `COMPOSE_PROJECT_NAME` | `polyagent-devcontainer` | docker-compose.yml | Docker namespace |
 | `CONTAINER_NAME` | `polyagent-dev` | docker-compose.yml | Container name |
@@ -35,20 +45,80 @@ DevContainer build and startup configuration lives in `.devcontainer/.env`;
 | `TYPESAFE_API_KEY` | *(empty)* | `.devcontainer/.env` | Optional TypeSafe key; store only in `.devcontainer/.env`; load it in the command before a request |
 | `DNS_PRIMARY` | `8.8.8.8` | docker-compose.yml dns | First DNS resolver; set to your network's DNS server if internal hostnames must resolve |
 | `PROJECT_NODE_VERSION` | *(empty)* | Dockerfile ARG | Project Node.js version (empty = not installed) |
-| `HOST_WORKSPACE_PATH` | *(empty)* | docker-compose.yml volumes | Empty binds the parent of `.devcontainer` to `/workspaces`. If that path does not identify the same project for the Docker daemon, set a project path accessible to the daemon. This can occur inside another container, with a remote daemon, or on a host that needs path translation. On Windows, if the daemon expects `/c/...` paths, `C:\Users\you\my-project` becomes `/c/Users/you/my-project`. |
+| `HOST_WORKSPACE_PATH` | *(empty)* | docker-compose.yml volumes | Empty binds the parent of `.devcontainer` to `/workspaces`. If that path does not identify the same project for the Docker daemon, set a project path accessible to the daemon. This can occur inside another container, with a remote daemon, or on a host that needs path translation (see [Docker from inside the container](#docker-from-inside-the-container)). On Windows, if the daemon expects `/c/...` paths, `C:\Users\you\my-project` becomes `/c/Users/you/my-project`. |
 
-## Runtime isolation
+## Docker from inside the container
+
+The container uses the host's Docker daemon through the mounted
+`/var/run/docker.sock`; this is not Docker-in-Docker (see
+[Privilege boundary](#privilege-boundary)). It needs the mounted socket, the
+in-container user in the `docker` group, and, for `devcontainer` commands, the
+`devcontainer` CLI.
+
+Startup step 1 lets the `docker` group use the socket. When the socket's group
+number is not 0 and differs from the container's `docker` group, the step
+changes the `docker` group's number to the socket's and leaves the socket alone.
+When the socket's group is 0, as some daemons hand it over, the step changes the
+socket's group to `docker` instead. The socket is shared, so every container
+that mounts it sees that new group. Where the mounted socket is the host's own
+file, as with a daemon on a Linux host, the host sees it too, and any host group
+with that number gains access to the daemon. A socket recreated after the start
+keeps its own group until the next start. When the step cannot read or change
+the group, it prints a WARN and startup continues; Docker commands run as the
+container user can then fail with permission denied.
+
+| Works through the socket | Not possible in the container |
+|--------------------------|-------------------------------|
+| `docker compose build`, `docker images`, `docker inspect` | VS Code extension testing |
+| `devcontainer up`, `devcontainer exec` | GUI-dependent features |
+| Compose bind mounts whose source path the daemon can see (below) | |
+
+Compose resolves the two kinds of path in different places:
+
+| Command | Who reads the path | Path inside this container |
+|---------|--------------------|----------------------------|
+| `docker compose build` | The Docker CLI reads the build context and sends it to the daemon | Works |
+| `docker compose up` with a bind mount | The daemon mounts the source from its own filesystem | Works only if the daemon sees the same path |
+
+The daemon may not see this container's `/workspaces/...` paths. For example,
+with Docker Desktop on WSL2 the container's 9p-mounted `/workspaces` and the
+daemon's host paths are different filesystem namespaces. In that case set
+`HOST_WORKSPACE_PATH` to the project's path as the daemon sees it, and keep the
+usual command form from the repository root:
+
+```bash
+HOST_WORKSPACE_PATH=<daemon-visible project path> \
+  docker compose --env-file .devcontainer/.env -f .devcontainer/docker-compose.yml up -d
+```
+
+`HOST_WORKSPACE_PATH` changes only the `/workspaces` bind source; the build
+context stays `.devcontainer/` and the CLI reads it from this container. Do not
+add `--project-directory <host path>`: Compose then resolves the build context
+against that host path as well, which the CLI inside the container cannot read.
+Running the same command with `config` instead of `up -d` prints both resolved
+paths without starting anything.
+
+The daemon-visible source of a running container's workspace is:
+
+```bash
+docker inspect <container_name> \
+  --format '{{range .Mounts}}{{if eq .Destination "/workspaces"}}{{.Source}}{{end}}{{end}}'
+```
+
+## Runtime layout
 
 ```
-AI agent infrastructure (kept separate from project code):
+AI agent infrastructure:
   Claude Code → native binary (~/.local/bin/claude, auto-updated)
-  Codex CLI   → npm global (~/.npm-global/bin/codex)
+  Codex CLI   → npm global (~/.npm-global/bin/codex), a `#!/usr/bin/env node`
+                script run by the first `node` on PATH
   Antigravity → native binary (~/.local/bin/agy, self-updating)
-  Node.js     → Node 22 LTS for Codex CLI infrastructure
+  Node.js     → Node 22 LTS at /usr/bin/node
   Python      → system python3 + uv (general development)
 
 Project code (when PROJECT_NODE_VERSION is set):
-  Node.js → project-node (nvm alias, .nvmrc auto-applied)
+  Node.js → project-node (nvm alias; interactive bash runs `nvm use`,
+            which applies .nvmrc when present)
   Python  → install via deadsnakes / pyenv / etc.
   Other   → Go, Rust, etc. installed freely.
 
@@ -57,22 +127,39 @@ Aliases:
   default      → project-node
 ```
 
+With `PROJECT_NODE_VERSION` set, interactive bash (`vscode`'s shell and the
+VS Code terminal's default profile) puts the project Node first on PATH, so
+`node`, `npm`, and Codex with its launcher's npm update run on the project
+Node there, and so does any shell or script started from it, because it
+inherits that PATH. Processes started without that PATH keep Node 22: the
+startup setup, and a non-interactive bash or a zsh started directly by
+`docker exec`. Without `PROJECT_NODE_VERSION`, nvm is not installed and
+`node` is Node 22.
+
 ## DevContainer lifecycle
 
 ```
 Dockerfile ENTRYPOINT → entrypoint.sh (every container start)
-  └── setup-env.sh (idempotent; postCreateCommand runs it once on first build)
-        [1/6] Permissions   — Docker socket ownership, git core.filemode,
-                              git safe.directory, command-history setup
+  └── setup-env.sh (path A's postCreateCommand runs it once more when the
+        container is created; the two runs can overlap in time, and only the
+        Codex update in step 4 is serialized, by the launcher's flock)
+        [1/6] Permissions   — Docker socket access, git core.filemode,
+                              git safe.directory '*' (for mounts whose owner
+                              differs from the container user; it turns off
+                              Git's ownership check in every directory, on
+                              any filesystem), command-history setup
         [2/6] SSH            — chmod 700/600/644 on ~/.ssh keys (optional)
         [3/6] Claude CLI     — `claude update` (skip with SKIP_CLAUDE_UPDATE=1)
         [4/6] Codex CLI      — reconcile PATH-first launcher, then refresh the
                               real ~/.npm-global/bin/codex with npm --prefix
                               (skip with SKIP_CODEX_UPDATE=1)
-        [5/6] Codex config   — validate project config; preserve user config without copying
-        [6/6] Antigravity    — `agy update`; a failure prints a WARN and the
-                              output tail and keeps the installed binary
-                              (skip with SKIP_AGY_UPDATE=1)
+        [5/6] Codex config   — warn when the project .codex/config.toml is missing
+                              or it or ~/.codex/config.toml sets the obsolete
+                              `ask_for_approval`; remove a ~/.codex/config.toml
+                              symlink to the project config and warn on any
+                              other symlink there; never copy project config
+                              into ~/.codex
+        [6/6] Antigravity    — `agy update` (skip with SKIP_AGY_UPDATE=1)
 
 postStartCommand (every start, devcontainer.json)
   git config core.filemode false
@@ -80,11 +167,11 @@ postStartCommand (every start, devcontainer.json)
 
 Both `docker compose up` and VS Code "Reopen in Container" route through
 `entrypoint.sh`, so the 6 steps run regardless of how the container was started.
-The container healthcheck requires all three agent CLIs (`--version` only: no
-login, no network call) and a recognizable
-`/workspaces` project marker (`.git`, `AGENTS.md`, `CLAUDE.md`, `README.md`, or
-`.devcontainer/`). A container with an empty or mis-mounted workspace stays
-`unhealthy` instead of reporting a false green status.
+The container healthcheck runs `--version` of the three agent CLIs (no login,
+no network call; Codex with `SKIP_CODEX_UPDATE=1`) and checks that
+`/workspaces` has at least one of `.git`, `AGENTS.md`, `CLAUDE.md`,
+`README.md`, or `.devcontainer/`. It shows only that the CLIs run and that one
+of those entries exists, not that the intended project is mounted.
 
 A is VS Code "Reopen in Container". B uses Docker Compose and does not read
 `devcontainer.json`. Both paths use the Dockerfile and Compose declarations below.
@@ -109,7 +196,6 @@ A also has these declarations in `devcontainer.json`:
 | `shutdownAction: stopCompose` | `devcontainer.json` `shutdownAction` |
 | Host `~/.ssh` bind to `/home/vscode/.ssh` | `devcontainer.json` `mounts` |
 | `NODE_OPTIONS=--max-old-space-size=4096` | `devcontainer.json` `containerEnv` |
-| `CLAUDE_CODE_DISABLE_AUTO_MEMORY=0` | `devcontainer.json` `remoteEnv` |
 | VS Code editor settings and four extensions | `devcontainer.json` `customizations.vscode` |
 
 For configuration values and workspace path conditions, see
@@ -135,6 +221,30 @@ with distinct values for the two identifiers described in [Quick start](README.m
 Every Compose command selects that file with `--env-file`.
 
 See [Persistent volumes](#persistent-volumes) for volume deletion behavior.
+
+### Project setup file
+
+After step 6, `setup-env.sh` sources `/usr/local/bin/setup-env.project.sh` if
+that file exists. The template image does not contain it. A project that needs
+its own startup steps keeps the script as `.devcontainer/setup-env.project.sh`,
+adds `COPY setup-env.project.sh /usr/local/bin/` to the Dockerfile next to the
+`setup-env.sh` copy, and rebuilds; edits to the file take effect only after a
+rebuild.
+
+The file then runs on every container start, at the end of `setup-env.sh` and
+in the same Bash process, and on path A once more through `postCreateCommand`.
+It runs under `setup-env.sh`'s `set -e`, an `exit` in it ends the setup, and
+variables it exports do not reach the container's main process or later
+shells.
+
+When a command in the file exits non-zero, or the file has a syntax error,
+`setup-env.sh` stops at that point. On a start through the entrypoint, the
+container's command starts anyway after
+`[entrypoint] WARN: setup-env.sh exited with error (non-fatal)`. The
+entrypoint does not name the failed command; Bash names it only when it
+reports the error itself, as for a command that is not found, so a command
+that exits non-zero without a message, such as `false`, leaves no name. The healthcheck does not reflect
+the failure.
 
 ## Persistent volumes
 
@@ -185,16 +295,36 @@ The DevContainer intentionally pulls latest releases at build/run time:
   lines from the installer's final `agy install` step. A nonzero installer exit
   or any `E`/`W`/`F`-level prefix keeps the full raw log.
 - **`claude update`**: runs on every container start (`setup-env.sh` step 3),
-  unless `SKIP_CLAUDE_UPDATE=1` is set.
+  unless `SKIP_CLAUDE_UPDATE=1` is set. Startup reports "already latest" only
+  when `claude update` exits 0 and the version is unchanged; a failed update
+  prints a WARN, the version still in use, and the tail of its output, and
+  startup continues.
 - **Codex update**: every container start reconciles the launcher symlinks and
   delegates refresh to `/usr/local/bin/codex-launcher --update-only`, which
   updates the real binary with `npm install -g --prefix ~/.npm-global
-  @openai/codex@latest`, unless `SKIP_CODEX_UPDATE=1` is set. The same launcher
-  performs the preflight before every new `codex` process. Codex's built-in
+  @openai/codex@latest`, unless `SKIP_CODEX_UPDATE=1` is set. Its exit status
+  tells startup what happened: 0 when Codex was reinstalled or already matched
+  the latest version (or, with `SKIP_CODEX_UPDATE=1`, when the install was
+  neither checked nor changed), 3 when the latest version could not be checked (npm
+  missing, or the registry unreachable while `~/.npm-global/bin/codex` is
+  executable) and the install was left as it was, 4 when
+  the reinstall failed and a working previous install was restored, and 5 when
+  the reinstall failed and no working `codex` is installed. Startup prints "already
+  latest" only for 0 with an unchanged version; 3, 4, 5, and any other status
+  print a WARN, and 4, 5, and other statuses add the tail of the npm output.
+  Startup continues in every case. A failed reinstall moves the previous
+  package aside first and restores it, and with the registry unreachable an
+  existing executable is never removed; with the registry unreachable and no
+  executable, the reinstall is still tried. The same launcher
+  performs the preflight before every new `codex` process; there a failed
+  reinstall prints one line on stderr, nothing is added to stdout, and a
+  skipped or unchecked update is silent. Codex's built-in
   `codex update` is **not** used: it targets the root-owned default npm prefix
   (`/usr/lib/node_modules`) and fails as the unprivileged `vscode` user.
 - **Antigravity updates**: `agy update` runs on every container start
-  (`setup-env.sh` step 6), unless `SKIP_AGY_UPDATE=1` is set. The CLI also
+  (`setup-env.sh` step 6), unless `SKIP_AGY_UPDATE=1` is set. A failed update
+  prints a WARN and the tail of its output, keeps the installed binary, and
+  startup continues. The CLI also
   updates in the background during sessions. The healthcheck uses
   `agy --version`, which does not start the updater.
 
@@ -214,7 +344,7 @@ To skip startup refresh, pass `SKIP_CLAUDE_UPDATE=1`, `SKIP_CODEX_UPDATE=1`, or
 
 ## Agent system
 
-### Governance roles (2)
+### Governance roles
 
 | Agent | Purpose | Invocation |
 |-------|---------|------------|
@@ -226,8 +356,9 @@ Current Codex supports in-process subagents and project
 skills for portable discovery. Independent evaluation uses
 `scripts/meta/run-isolated-role.sh evaluate` in a fresh `codex exec --ephemeral`
 process supplied with the evaluator role body, authorized request, acceptance
-conditions, actual diff, relevant repository facts, execution evidence,
-repository location, and report destination, without the modifier's reasoning.
+conditions, actual diff, relevant repository facts, execution evidence, and
+repository location in the prompt file, without the modifier's reasoning; the
+helper appends the report destination (its `<output-file>` argument) to the prompt.
 The report destination must be outside the repository or gitignored. The helper
 clears any previous report before execution and fails on process failure or a
 missing or empty report, without validating report content or format.
@@ -235,7 +366,7 @@ missing or empty report, without validating report content or format.
 consumes the mirror directly, so do not delete it as a mere convention. Mirrored
 `SKILL.md` frontmatter (`tools`, `model`, `maxTurns`, `color`) is Claude-host
 metadata that Codex ignores.
-Antigravity discovers eight tracked mirrored skills, including the two governance roles.
+Antigravity discovers the mirrored skills, including the evaluator and wip-manager roles.
 Independent evaluation uses a fresh built-in `self` subagent supplied with the
 evaluator role body and the same permitted inputs, excluding the parent
 conversation and modifier's reasoning. Children retain repository rules and
@@ -243,50 +374,80 @@ hooks and need no `.agents/agents/*.md` definition file.
 
 ### Hooks
 
-Claude (3): `session-start.sh`, `pre-commit-gate.sh`, `pre-push-gate.sh`.
+Claude: `session-start.sh`, `pre-push-gate.sh`.
 
-Codex (3): `session-start.sh`, `pre-commit-gate.sh`, `pre-push-gate.sh`.
+Codex: `session-start.sh`, `pre-push-gate.sh`.
 Codex matchers support `Bash`, `apply_patch`, `Edit`, and
-`Write`; these commit/push gates intentionally inspect `Bash` commands.
+`Write`; the push gate intentionally inspects `Bash` commands.
 
-Antigravity runs the adapter after workspace trust. `.agents/hooks.json` registers
+In `agy -p` sessions (agy 1.5.18) Antigravity ran the adapter whether or not
+the project path was in `trustedWorkspaces`, with or without
+`--dangerously-skip-permissions`. `.agents/hooks.json` registers
 SessionStart and PreToolUse (`run_command`), calling
 `.agents/hooks/claude-hooks-adapter.sh` from `.agents/`. The unmodified Claude
-hooks receive `CLAUDE_PROJECT_DIR` set to the git root of the command's `Cwd`:
+hooks receive `CLAUDE_PROJECT_DIR` set to the git root of the command's `Cwd`,
+or to `Cwd` itself when it is not inside a repository. When `Cwd` is given but
+is not a directory, the gate finds no repository, so a push is reported as not
+checked; the credential check on the command text still runs:
 
 | agy event | Claude hook | agy answer |
 |-----------|-------------|------------|
-| PreToolUse `run_command` | `pre-commit-gate.sh`, then `pre-push-gate.sh` | exit 2 → `{"decision":"deny","reason":<stderr>}`; otherwise `{"decision":"ask"}` |
-| SessionStart | `session-start.sh` (`{"source":"startup"}`) | `additionalContext` → `injectSteps[0].systemMessage.systemMessage` |
+| PreToolUse `run_command` | `pre-push-gate.sh` | exit 2 → `{"decision":"deny","reason":<stderr>}`; exit 0 → `{"decision":"ask"}`; any other exit (including a 124 timeout), or the adapter cannot run the gate (no `jq`, unreadable input, no hook file) → `{"decision":"ask"}` plus `pre-push gate: not checked: <cause>` on the adapter's stderr |
+| SessionStart | `session-start.sh` (`{"source":"startup"}`) | `additionalContext`, followed by the contents of the repository root `PROJECT.md` when that file is non-empty and readable, → `injectSteps[0].systemMessage.systemMessage`; with neither, `{"injectSteps":[]}`. agy 1.5.18 kept about the first 48 KB of that message and replaced the rest with `<truncated N bytes>` |
 
-`ask` hands the call to agy's own permission settings; agy treats an empty
+`ask` hands the call to agy's own permission settings and is not an approval;
+agy treats an empty
 `{}` as a block, so the adapter never emits one for a registered event. The adapter never runs the
 command itself and always exits 0 with valid JSON; that is the response format,
-and the Claude hooks keep their fail-open policy. Antigravity uses the Claude hooks'
-verification markers in `.claude/`.
+and the Claude hooks keep their fail-open policy. An unchecked `ask` carries no
+`reason` field; the not-checked line is on the adapter's stderr only.
 The adapter intercepts `run_command`, not file-editing tools. A hook `deny`
 still blocks under `--dangerously-skip-permissions`.
 
-All gates are advisory policy tripwires (see §Privilege boundary), not a
-security sandbox. A gate blocks (exit 2) only on a positive match — a
-`--no-verify`/`-n` commit bypass, a credential pattern in raw command text,
-credential-bearing stored git config on a push, a force
-push, or a missing/stale verification marker. On any parse failure, internal
-error, or unrecognized command shape the gate exits 0 (fail-open). The
-verification marker is per-branch and considered fresh for 24 hours from its
-mtime; `scripts/meta/completion-checker.sh` writes it (see §Verification).
-These gates do not scan staged file contents.
+The pre-push gate is an advisory policy tripwire (see §Privilege boundary),
+not a security sandbox. It reads the command text and does not work out what
+the shell will run. It blocks (exit 2) only on a match: a credential pattern
+in the raw text of any command (including `git commit`, and a command that
+only prints the text), or, when the text contains `git … push` outside quoted
+spans, a literal credential in the `remote.*`, `url.*`, or `credential.*` git
+config visible from the target repository. A push or credential hidden in a
+variable, `eval`, an alias, or a script file is not seen. Each push, the text
+between `;`, `|`, `&`, `(`, `)` and newlines that contains `git … push`, is
+checked against a repository the gate infers from the text: that push's
+`git -C <path>` (a path without spaces, quotes removed), else
+`CLAUDE_PROJECT_DIR` (Codex: `CODEX_PROJECT_DIR`), else the current directory;
+a preceding `cd` or a variable is not followed. When no repository is found
+for a push, the gate reports `no git repository found at <path>` as not
+checked. The gate does not block force pushes; approval for them is
+the agent's duty in `AGENTS.md` and each vendor's permission settings.
+
+Exit 0 means the gate did not block: it checked and found no match, or the
+command has no `git … push` text. It is not an approval and not evidence that
+the command is safe. When a step the result depends on fails (unreadable or
+non-JSON input, no command in it, `jq` or `git` missing, a `sed`, `grep`, or
+`git config` error, or no repository found for a push-shaped command), the gate
+writes `pre-push gate: not checked: <cause>` to stderr and does not block. The Claude gate then exits 1, which Claude Code's hooks documentation
+defines as a non-blocking error for PreToolUse. The Codex gate exits 0,
+because the Codex hooks documentation defines only exit 0 and exit 2 for
+PreToolUse, so on Codex an unchecked command has the same exit code as a
+checked one. In the sessions observed (Claude Code 2.1.332, codex-cli 0.172.0,
+agy 1.5.18) the line never reached the agent: Claude Code recorded it as a hook
+error in its debug log and `stream-json` hook events, `codex exec` showed it
+nowhere in its output, and Antigravity wrote it only to its own log file
+(`--log-file`). To learn whether the gate checked a command, read the Claude Code or
+Antigravity record; the observed `codex exec` output does not tell an
+unchecked command from a checked one. No hook requires a verification step before a commit, and none
+scans file contents.
 
 Codex project trust and hook review are covered in
 [Codex sandbox bypass](#codex-sandbox-bypass-devcontainer-only).
 
-### Skills (6)
+### Skills
 
 | Skill | Description |
 |-------|-------------|
 | /status | Workspace status |
-| /verify | Pre-commit verification |
-| karpathy-guidelines | Reference handle for the Karpathy 4 rules (`SKILL.md`) |
+| /verify | Run the checks relevant to a change and report what ran, failed, or was skipped |
 | typesafe-ai | TypeSafe workflow skill from [typesafe-ai/skills](https://github.com/typesafe-ai/skills), commit `65a39f393687675ce170e6094757de20370365b9`; MIT; vendored with one local delta: an offline snapshot of the HTTP API reference at `reference/api.md` and the SKILL.md sentence that names it; generated mirror for Codex |
 | llm-wiki | Karpathy's LLM Wiki pattern, source of the `research/` knowledge space |
 | collaborative-experiment-agents | Roles, gates and controls for experimental research agents, from arXiv 2610.40589 |
@@ -304,13 +465,27 @@ Two tiers, split by cost:
 
 | Tier | Command | When |
 |------|---------|------|
-| Fast checks | `bash scripts/meta/completion-checker.sh` | Before each commit — writes the per-branch marker the pre-commit gate reads |
-| Acceptance suite | `bash .devcontainer/verify-template.sh` | On demand and in CI, not per commit — full template integrity, including docker-backed checks |
+| Fast checks | `bash scripts/meta/completion-checker.sh` | For a change that touches what it checks; report which checks ran, failed, or were skipped |
+| Template checks | `bash .devcontainer/verify-template.sh` | On demand, not per commit: tools present on the runner, the fast checks once, hook scripts and the Antigravity adapter on synthetic input |
 
-`completion-checker.sh` is environment-independent: it works in fresh clones,
-CI, and temp checkouts, and does not require docker or a canonical checkout
-path. The acceptance suite is the deep oracle; run it after structural changes
-to the DevContainer (hooks, mirror, devcontainer) and before releases.
+`completion-checker.sh` needs no Docker, network, or canonical checkout path,
+and it checks the checkout that contains the script (a worktree's copy checks
+that worktree). It exits 1 when any check failed or could not read its input.
+The Codex TOML parse needs python3 with `tomllib` (Python 3.11 or later). This
+DevContainer's image uses Ubuntu 22.04's python3 3.10, so in the container that
+check is `NOT CHECKED` and the run can still exit 0.
+
+`verify-template.sh` exits 0 when every required check ran and passed, 1 when
+a check failed, and 2 when nothing failed but a required check (the fast
+checks or the hook cases) could not run. An optional tool missing from the
+runner (Docker, the agent CLIs, node, python3, uv) does not change the exit
+code; the fast checks and the hook cases need git and jq and fail or do not
+run without them. Its hook cases show only the hook scripts' and the
+adapter's output for synthetic input, not a real agent session's rule
+loading, hook invocation, or blocking. It starts no container and creates no
+Docker objects, so observe a normal container start and the healthcheck by
+starting the container as README describes. Run it after changes to the
+hooks, the adapter, or the fast checker.
 
 ## Polyagent parity
 
@@ -319,31 +494,41 @@ bash scripts/sync-agents-mirror.sh         # .claude/ → .agents/ generated mir
 bash scripts/sync-agents-mirror.sh --dry   # diff only
 ```
 
-`.claude/` is ground truth; `.agents/rules/` and `.agents/skills/` are
+`.claude/` is the source of `.agents/rules/` and `.agents/skills/`, which are
 generated. The sync copies content and file modes, and **prunes** entries in
 those two trees whose `.claude/` source was deleted, so the mirror tracks
 metadata and deletions, not just additions. Other `.agents/` entries
 (`hooks.json`, `hooks/`, `rules.json`) are Antigravity's hand-maintained native
-files; the sync neither compares nor removes them.
+files; the sync neither compares, checks for symlinks, nor removes them.
+Symlinks are rejected only in the two generated trees and their `.claude/`
+sources. `--dry` exits 0 and prints the number of differences; a failed
+`find`, `diff` or `stat` exits 1 before any result is printed or any file is
+changed. The sync copies file content verbatim and does not judge what it
+says; text that only one vendor can use must be made vendor-neutral in the
+`.claude/` source.
 
 ### Codex sandbox bypass (DevContainer only)
 
-Codex CLI sandboxes commands with [bubblewrap](https://github.com/containers/bubblewrap), which requires unprivileged user namespaces. Docker kernel policy blocks namespace creation, so every shell call from the sandbox fails (`bwrap: No permissions to create a new namespace`).
+Codex CLI sandboxes commands with [bubblewrap](https://github.com/containers/bubblewrap), which needs to create unprivileged user namespaces. Docker's [default seccomp profile](https://docs.docker.com/engine/security/seccomp/) denies `unshare` and namespace-creating `clone` calls to a container without `CAP_SYS_ADMIN`, and the template's Compose file sets no other profile and adds no capability. In a container started that way, `bwrap` fails with `bwrap: No permissions to create new namespace`, `unshare -U true` fails with `Operation not permitted`, and so every sandboxed Codex shell call fails. A daemon or container with another seccomp profile or added capabilities, or a host that restricts unprivileged user namespaces, can behave differently; the template does not detect which case applies.
 
 | Environment | Sandbox works | Recommended |
 |-------------|:-------------:|-------------|
-| Host Linux directly | ✓ | (default) `--sandbox workspace-write` |
-| **DevContainer** | ✗ (kernel) | `--dangerously-bypass-approvals-and-sandbox` |
+| Linux host that allows unprivileged user namespaces | ✓ | (default) `--sandbox workspace-write` |
+| **DevContainer** under Docker's default seccomp profile | ✗ (seccomp) | `--dangerously-bypass-approvals-and-sandbox` |
 
-The bypass makes the DevContainer the command-execution compatibility boundary,
-not a security or trust boundary. The mounted Docker socket grants host-level
+The bypass is a compatibility measure, not a security or trust boundary: Codex
+commands then run unsandboxed with the container's access. The mounted Docker socket grants host-level
 power; outside containers, keep the default sandbox.
 
-On first interactive use, Codex loads `.codex/config.toml` directly after the
-project is trusted. Project command hooks require review in `/hooks`, and
-changed definitions are skipped until reviewed again. The
-`--dangerously-bypass-hook-trust` flag is for automation that independently vets
-the hook source.
+In a project that is not trusted, Codex runs neither the project
+`.codex/config.toml` nor the project hooks, and `--dangerously-bypass-hook-trust`
+does not change that, even with `-c features.hooks=true`. The Codex hooks
+documentation says project hooks load only from a trusted project, each hook
+definition must also be reviewed and trusted in `/hooks`, new or changed
+definitions are skipped until trusted, and `--dangerously-bypass-hook-trust`
+skips only the stored hook trust for one invocation. That the hooks run once
+the project and its hooks are trusted rests on that documentation; this
+template's checks do not observe a Codex session.
 
 ### Codex commands
 
@@ -363,10 +548,27 @@ inside the `gemini-config` volume.
 
 | Feature | Requirement | DevContainer configuration |
 |---------|-------------|----------------------------|
-| Terminal sandbox (`--sandbox`) | Host permission for kernel namespaces | Off by default in this DevContainer |
+| Terminal sandbox (`--sandbox`; also agent mode `auto`, the default, for commands agy runs without review) | Kernel namespaces, which Docker's default seccomp profile denies | Unavailable in this container: a sandboxed command fails with `Command failed to run: fork/exec /home/vscode/.local/bin/agy: operation not permitted` |
 | Browser | Google Chrome | Not installed |
 | Voice | Microphone | No microphone device configured |
 | Remote control | Eligible account and paired external device | Supplied separately by the user |
+
+Observed with agy 1.5.18 in `agy -p` sessions in this container: without
+`--dangerously-skip-permissions`, `echo hi` went to the terminal sandbox and
+failed with that error, in a trusted workspace and also with
+`enableTerminalSandbox: false`; agy's documentation says the sandbox has no
+effect where it is unavailable, but here the command failed instead. With
+`--mode accept-edits` and no other setting, print mode denied the command
+because it cannot prompt for the `command` permission. The command ran with
+`--dangerously-skip-permissions`; with `"toolPermission": "always-proceed"`,
+both in the default mode and with `--mode accept-edits`; and with
+`--mode accept-edits` plus a matching `permissions.allow` rule such as
+`command(echo hi)` (a rule without `--mode accept-edits` was not tried). The
+settings were passed with `--settings`. Running agy commands outside the sandbox is a
+compatibility measure for a container under Docker's default seccomp profile,
+as for Codex (§Codex sandbox bypass): the commands then run with the
+container's access, including the host Docker socket, so it is not a security
+boundary.
 
 ### Registering deeper rule folders
 
@@ -388,24 +590,22 @@ evidence that a rule loads.
 
 | Symptom | Fix |
 |---------|-----|
-| Build fails | `docker compose build --no-cache` |
+| Build fails | From the repository root: `docker compose --env-file .devcontainer/.env -f .devcontainer/docker-compose.yml build --no-cache` |
 | Claude re-auth needed | check named volume: `docker volume ls \| grep claude-config` |
 | Codex re-auth needed | check named volume: `docker volume ls \| grep codex-config` |
 | Antigravity re-auth needed | check named volumes: `docker volume ls \| grep -E 'gemini-config\|antigravity-secrets'` |
 | Antigravity files are root-owned after using an older image | `sudo chown -R vscode:vscode ~/.gemini ~/.config/antigravity` |
 | Antigravity ignores a rule | See [Registering deeper rule folders](#registering-deeper-rule-folders) |
-| `/status` stops with exit 2 under agy | `ANTIGRAVITY_AGENT=1` is missing from the command environment; set `AGENT_VENDOR=antigravity` |
 | Codex says `Run npm install -g @openai/codex to update` | restart the current Codex process; new sessions enter through the launcher and re-exec the latest real binary |
 | Strict config rejects `ask_for_approval` | replace it with `approval_policy` in `~/.codex/config.toml`; project config is not copied there |
 | Wrong Node version | `nvm use` or create `.nvmrc` |
-| Hook test fails | `export CLAUDE_PROJECT_DIR=/workspaces` (Codex: `CODEX_PROJECT_DIR`) |
-| Git permission errors | `git config core.filemode false` |
+| Files with only a mode change show as modified in a repository cloned under `/workspaces` after the container started | `git config core.filemode false` in that repository; restarting the container also works outside `node_modules` and `.venv` |
 | `.agents/` drift | `bash scripts/sync-agents-mirror.sh` |
 
 ## Shared status and verification
 
 `scripts/git/git-status.sh` reports status and `scripts/meta/completion-checker.sh`
-runs the pre-commit checks. Status finds
+runs the fast checks. Status finds
 nested Git repositories and worktrees, excluding `node_modules` and `.venv`.
 Full and brief output show each repository’s branch, changes and upstream state.
 
@@ -413,11 +613,11 @@ The default tracked-content policy checks public-template identifiers. A private
 project can replace it with its own extended regexes in
 `scripts/meta/leak-patterns.txt`; optional untracked identifiers come from
 `.env/leak-patterns`. Matches report filenames without copying secret values.
-An invalid pattern or failed scan is an error. Repositories that already own
+A pattern file that exists as a directory entry must be readable, and
+`scripts/meta/leak-patterns.txt` must hold at least one pattern; otherwise the
+scan fails. A `git grep` error, such as a pattern it rejects or a tracked file
+it cannot read, also fails the scan; its messages are not printed because they
+can quote the patterns. In the checker's `Leak patterns:` line, a local file it
+cannot see is reported as `none`. Repositories that already own
 `scripts/meta/verify-env-sync.sh` run it when their `.env` exists. Others have no
-additional synchronization check. Successful checks write both vendor markers
-for the current branch, including an initial branch without commits.
-
----
-
-*Last updated: 2026-11-06*
+additional synchronization check.
